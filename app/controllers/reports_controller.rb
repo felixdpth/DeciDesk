@@ -110,8 +110,4 @@ class ReportsController < ApplicationController
   def report_params
     params.require(:report).permit(:name, :csv_file)
   end
-
-  def csv_parse
-
-  end
 end
