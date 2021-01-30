@@ -4,6 +4,7 @@
   border-radius: 4px;
   background: #1EDD88;
   transition: background 0.3s ease;
+  margin-top: 12px;
 }
 
 .btn-flat:hover {
@@ -23,5 +24,21 @@
 
 .btn-nav:hover {
   background: #02a36d;
+  color:  #1F008C;
+}
+
+.btn-bleu {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #1F008C;
+  transition: background 0.3s ease;
+  margin: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.btn-bleu:hover {
+  background: #1BCB7F;
   color: white;
 }
