@@ -1,7 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: #1F008C;
-  z-index: 500;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -14,6 +13,9 @@
 
 .navbar {
   position: fixed;
-  z-index:1; //any higher integer value
   width: 100%;
+}
+
+.margin-nav {
+  margin-top: 74px
 }
