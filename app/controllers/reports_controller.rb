@@ -9,6 +9,7 @@ class ReportsController < ApplicationController
 
   def show
     authorize @report
+    @report = Report.new
   end
 
   def new
