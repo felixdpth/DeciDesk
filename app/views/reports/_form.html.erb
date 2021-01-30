@@ -1,0 +1,6 @@
+ <div class="mt-5">
+   <%= simple_form_for(@report, as: :report, method: :post, url: report_path) do |f| %>
+    <%= f.input :csv_file, as: :file, hint: 'Upload your FEC in csv format here', required: true %>
+    <%= f.submit %>
+  <% end %>
+</div>

@@ -1,0 +1,5 @@
+<% @reports.each do |report| %>
+  <% if policy(report).edit? %>
+    <%= link_to "Update", edit_report_path(report) %>
+  <% end %>
+<% end %>

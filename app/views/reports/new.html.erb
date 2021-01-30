@@ -1,0 +1,5 @@
+<h1>Hello</h1>
+
+<% if policy(Report).create? %>
+  <%= link_to "New report", new_report_path %>
+<% end %>
