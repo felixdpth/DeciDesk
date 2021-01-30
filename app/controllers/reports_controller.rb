@@ -1,8 +1,4 @@
 class ReportsController < ApplicationController
-<<<<<<< HEAD
-  def show
-    @report = Report.new
-=======
   before_action :set_report, only: [ :show, :edit, :update, :destroy ]
 
   def index
@@ -13,6 +9,7 @@ class ReportsController < ApplicationController
 
   def show
     authorize @report
+    @report = Report.new
   end
 
   def new
@@ -53,6 +50,5 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:name)
->>>>>>> master
   end
 end
