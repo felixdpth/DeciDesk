@@ -35,3 +35,29 @@
 .spacing-signup {
   margin-top: 100px;
 }
+
+.fec-presentation {
+  background-color: white;
+  transform: skewY(2deg);
+  -ms-transform: skewY(2deg);
+  -webkit-transform: skewY(2deg);
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.fec-presentation-title {
+  transform: skewY(-2deg);
+  -ms-transform: skewY(-2deg);
+  -webkit-transform: skewY(-2deg);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.title-presentation {
+  color: $blue;
+  font-size: 14px;
+  text-align: center;
+  margin: 4px;
+  margin-top: 10px;
+}
