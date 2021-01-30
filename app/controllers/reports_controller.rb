@@ -44,7 +44,7 @@ class ReportsController < ApplicationController
   private
 
   def set_report
-    @report = Report.find(params[:id])
+    @report = Report.last || Report.new
   end
 
   def report_params
