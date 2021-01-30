@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Security and authorization
 gem 'devise'
+gem 'pundit'
 
 # file storage and images
 gem 'cloudinary', '~> 1.16.0'
