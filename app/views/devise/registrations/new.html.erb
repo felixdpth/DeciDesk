@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row justify-content-center spacing-signup">
-    <div class="col-6"></div>
-    <div class="col-6 mt-10 mb-10">
+    <div class="col-6">
+    
+    </div>
+    <div class="col-6 mt-10 mb-10 login-card">
     
      <h2>Welcome to DeciDesk 👋 </h2>
      <h4>Please complete the form below to signup</h4>
@@ -24,11 +26,16 @@
        </div>
      
        <div class="form-actions">
-         <%= f.button :submit, "Sign up" %>
+         <div class="btn-nav">
+           <%= f.button :submit, "Sign up" %>
+         </div>
        </div>
      <% end %>
+
+     <div class="mt-3">
+      <p>Already have an account 👉<%= render "devise/shared/links" %> </p>
+     </div>
      
-     <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>
