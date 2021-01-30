@@ -20,8 +20,8 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     @report.user = current_user
+    authorize @report
     @report.save
-    authorize @reports
 
     redirect_to report_path
   end
@@ -49,6 +49,6 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:name)
+    params.require(:report).permit(:name, :csv_file)
   end
 end
