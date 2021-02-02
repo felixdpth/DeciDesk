@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
   def index
     @reports = Report.All
     @reports = policy_scope(Report).order(created_at: :desc)
-    authorize @reports
+    authorize @report
   end
 
   def show
@@ -92,14 +92,14 @@ class ReportsController < ApplicationController
 
   def update
     @report.update(report_params)
-    authorize @reports
+    authorize @report
 
     redirect_to report_path(@report)
   end
 
   def destroy
     @report.destroy
-    authorize @reports
+    authorize @report
     redirect_to report_path
   end
 
