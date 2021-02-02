@@ -16,3 +16,55 @@
   vertical-align: middle;
   margin-top: 50px;
 }
+
+.card img {
+  height: 100px;
+}
+
+.card p {
+  opacity: .5;
+  text-align: center;
+  text-justify: auto;
+}
+
+.card {
+  width: 340px;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgb(230,230,230);
+  text-align: center;
+  padding: 20px;
+  border: 1px solid rgb(230,230,230);
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  transition: width 0.1s, transform 0.1s;
+
+}
+
+.card:hover{
+  border: 1.5px solid black;
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
