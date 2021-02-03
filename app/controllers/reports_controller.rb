@@ -71,6 +71,8 @@ class ReportsController < ApplicationController
         "Extrodinary Gains"
       elsif row["CompteNum"].start_with?("78")
         "Depreciation Gains"
+      elsif row["CompteNum"].start_with?("5")
+        "Treasury" 
       end
       if category && sub_category
         Line.create(

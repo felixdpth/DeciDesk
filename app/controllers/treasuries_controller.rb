@@ -2,12 +2,15 @@ class TreasuriesController < ApplicationController
 
   def index
     @lines = Line.all
-    @treasuries = Line.where(category: "Treasury")
+    @treasuries = Line.treasury
     authorize @treasuries
+    authorize @lines
   end
 
   def show
-    @treasuries = Line.where(category: "Treasury")
+    @lines = Line.all
+    @treasuries = Line.treasury
     authorize @treasuries
-  end
+    authorize @lines
+    end
 end

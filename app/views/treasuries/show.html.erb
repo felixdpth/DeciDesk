@@ -1,5 +1,7 @@
 <div>
   <%= current_user.email %>
-  <%= current_user.lines.count %>
-  <%# <%= current_user.lines.last.category %>
+
+
+
+  <%= @lines.treasury_debit.sum(:debit)
 </div>
