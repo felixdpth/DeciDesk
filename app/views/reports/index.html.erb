@@ -1,1 +1,14 @@
 <h1>Hello</h1>
+<div>
+  <%= render 'form', reports: @reports %>
+</div>
+
+<div>
+  <%= current_user.email %>
+  <%= current_user.lines.count %>
+  <% if @reports %>
+    <p>You have <%= @reports.count %> FEC uploaded already !</p>
+  <% else %>
+    <p>You have not imported any FEC yet !</p>
+  <% end %>
+</div>
