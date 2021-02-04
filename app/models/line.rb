@@ -1,6 +1,15 @@
 class Line < ApplicationRecord
   belongs_to :report
 
+  ##Expenditure
+  scope :treasury, -> { where(category: "Treasury") }
+  scope :treasury_debit, -> { where(credit: "0", category: "Treasury") }
+  scope :treasury_credit, -> { where(credit: "Credit", category: "Treasury") }
+
+  scope :expenditure, -> { where(category: "Expenditure") }
+  scope :expenditure_debit, -> { where(credit: "0", category: "Expenditure") }
+  scope :expenditure_credit, -> { where(credit: "Credit", category: "Expenditure") }
+
   ##Treasury
   scope :treasury, -> { where(category: "Treasury") }
   scope :treasury_debit, -> { where(credit: "0", category: "Treasury").pluck(:debit) }
