@@ -5,5 +5,9 @@
 <div>
   <%= current_user.email %>
   <%= current_user.lines.count %>
-  <%# <%= current_user.lines.last.category %> %>
+  <% if @reports %>
+    <p>You have <%= @reports.count %> FEC uploaded already !</p>
+  <% else %>
+    <p>You have not imported any FEC yet !</p>
+  <% end %>
 </div>
