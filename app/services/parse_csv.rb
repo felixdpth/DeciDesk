@@ -1,36 +1,12 @@
-require 'csv'
-
-class ReportsController < ApplicationController
-  before_action :set_report, only: [ :show, :edit, :update, :destroy ]
-
-  def index
-    @reports = Report.all
-    @reports = policy_scope(Report).order(created_at: :desc)
-    authorize @reports
-
+class ParseCsv
+  def initialize(filepath, report)
+    @filepath = filepath
+    @report = report
   end
 
-  def show
-    authorize @report
-    @report = Report.new
-  end
-
-  def new
-    @report = Report.new
-    authorize @report
-  end
-
-  def create
-    @report = Report.new(report_params)
-    @report.user = current_user
-    authorize @report
-    @report.save
-    ParseCsv.new(params[:report][:csv_file].tempfile.path, @report).call
-
-
-    filepath = params[:report][:csv_file].tempfile.path
+  def call
     csv_options = { col_sep: ';', force_quotes: true, headers: :first_row }
-    CSV.foreach(filepath, csv_options) do |row|
+    CSV.foreach(@filepath, csv_options) do |row|
       category = if row["CompteNum"].start_with?("512")
         "Treasury"
       elsif row["CompteNum"].start_with?("6")
@@ -74,8 +50,6 @@ class ReportsController < ApplicationController
         "Extrodinary Gains"
       elsif row["CompteNum"].start_with?("78")
         "Depreciation Gains"
-      elsif row["CompteNum"].start_with?("5")
-        "Treasury"
       end
       if category && sub_category
         Line.create(
@@ -89,33 +63,5 @@ class ReportsController < ApplicationController
         )
       end
     end
-
-    redirect_to report_path
-  end
-
-  def edit
-  end
-
-  def update
-    @report.update(report_params)
-    authorize @report
-
-    redirect_to report_path(@report)
-  end
-
-  def destroy
-    @report.destroy
-    authorize @report
-    redirect_to report_path
-  end
-
-  private
-
-  def set_report
-    @reports = Report.last || Report.new
-  end
-
-  def report_params
-    params.require(:reports).permit(:name, :csv_file)
   end
 end
