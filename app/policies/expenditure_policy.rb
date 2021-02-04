@@ -5,9 +5,12 @@ class ExpenditurePolicy < ApplicationPolicy
     end
   end
 
-  def expenditure?
-    true
+  def index?
+    return true
   end
 
+  def show?
+    return true
+  end
 
 end
