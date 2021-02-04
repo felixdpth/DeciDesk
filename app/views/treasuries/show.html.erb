@@ -1,8 +1,81 @@
-<div>
-  <%= current_user.email %>
+<div class="container">
 
-  <%= @lines.treasury_debit.debit(:debit)
+
+    <%= @lines.treasury_debit %>
+
+
+    <%= current_user.email %>
+
+    <p>Total Debit</p>
+    <%= @lines.treasury_debit.first(5) %>
+
+    <p>Total Credit</p>
+    <%= @lines.treasury_credit.sum %>
 </div>
 
+<% @lines.treasury.max(5).each do |line| %>
+  <%= line.compte_num  %>
+<% end %>
+
+
 ## comme la search -> get avec un formulaire + des if -> formulaire se submit quand c'est ok
-.sum(:debit)}
+
+<table class="table">
+  <h3>Top 5 - Cashin 👍 </h3>
+  <thead>
+    <tr>
+      <th scope="col">Top</th>
+      <th scope="col">Account number</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td> <%= @lines.treasury.max.compte_num  %> </td>
+      <td> <%= @lines.treasury_debit.max %> €</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+
+    <tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table">
+ <p>Top 5 - Cashout 👎 </p>
+  <thead>
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
