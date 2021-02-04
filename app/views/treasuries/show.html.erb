@@ -1,7 +1,8 @@
 <div>
   <%= current_user.email %>
 
-
-
-  <%= @lines.treasury_debit.sum(:debit)
+  <%= @lines.treasury_debit.debit(:debit)
 </div>
+
+## comme la search -> get avec un formulaire + des if -> formulaire se submit quand c'est ok
+.sum(:debit)}
