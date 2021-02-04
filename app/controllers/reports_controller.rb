@@ -4,9 +4,9 @@ class ReportsController < ApplicationController
   before_action :set_report, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @reports = Report.All
+    @reports = Report.all
     @reports = policy_scope(Report).order(created_at: :desc)
-    authorize @report
+    authorize @reports
   end
 
   def show
@@ -72,7 +72,7 @@ class ReportsController < ApplicationController
       elsif row["CompteNum"].start_with?("78")
         "Depreciation Gains"
       elsif row["CompteNum"].start_with?("5")
-        "Treasury" 
+        "Treasury"
       end
       if category && sub_category
         Line.create(
@@ -108,10 +108,10 @@ class ReportsController < ApplicationController
   private
 
   def set_report
-    @report = Report.last || Report.new
+    @reports = Report.last || Report.new
   end
 
   def report_params
-    params.require(:report).permit(:name, :csv_file)
+    params.require(:reports).permit(:name, :csv_file)
   end
 end
