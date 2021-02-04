@@ -4,9 +4,8 @@ class ReportsController < ApplicationController
   before_action :set_report, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @reports = Report.All
+    @reports = Report.all
     @reports = policy_scope(Report).order(created_at: :desc)
-    authorize @report
   end
 
   def show
