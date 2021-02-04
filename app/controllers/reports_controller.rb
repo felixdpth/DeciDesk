@@ -7,12 +7,11 @@ class ReportsController < ApplicationController
     @reports = Report.all
     @reports = policy_scope(Report).order(created_at: :desc)
     authorize @reports
-
+    @report = Report.new
   end
 
   def show
     authorize @report
-    @report = Report.new
   end
 
   def new
@@ -90,7 +89,7 @@ class ReportsController < ApplicationController
       end
     end
 
-    redirect_to report_path
+    redirect_to report_path(@report)
   end
 
   def edit
@@ -105,17 +104,17 @@ class ReportsController < ApplicationController
 
   def destroy
     @report.destroy
-    authorize @report
+    authorize @reports
     redirect_to report_path
   end
 
   private
 
   def set_report
-    @reports = Report.last || Report.new
+    @report = Report.find params[:id]
   end
 
   def report_params
-    params.require(:reports).permit(:name, :csv_file)
+    params.require(:report).permit(:name, :csv_file)
   end
 end
