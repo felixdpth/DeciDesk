@@ -34,3 +34,4 @@ class LinePolicy < ApplicationPolicy
       record.user == user
     end
   end
+end
