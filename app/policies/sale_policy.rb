@@ -6,7 +6,6 @@ class SalePolicy < ApplicationPolicy
   end
 
   def show?
-    raise
     return true
   end
 end
