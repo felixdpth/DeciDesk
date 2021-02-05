@@ -1,8 +1,4 @@
 <div>
-  <%= render 'form', reports: @reports %>
-</div>
-
-<div>
   <%= current_user.email %>
   <%= current_user.lines.count %>
   <% if @reports %>
@@ -11,3 +7,6 @@
     <p>You have not imported any FEC yet !</p>
   <% end %>
 </div>
+
+
+
