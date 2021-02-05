@@ -1,6 +1,56 @@
 <div class="container">
 
+  <div class="dash-nav">
+    <p><%= link_to "Treasuy", "#" %></p>
+    <p><%= link_to "Advise", "#" %></p>
+    <p><%= link_to "Notes", "#" %></p>
+  </div>
 
+  <div class="row d-flex justify-content-around">
+    <div class="col-lg-7 card-dash">Graph</div>
+    <div class="col-lg-4 card-dash">
+      <table class="table">
+        <p><strong>How's your cash ont the period ?</strong></p>
+         <thead>
+           <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Balance</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <th scope="row">1</th>
+             <td>Mark</td>
+           </tr>
+           <tr>
+             <th scope="row">2</th>
+             <td>Jacob</td>
+           </tr>
+           <tr>
+             <th scope="row">3</th>
+             <td>Larry</td>
+           </tr>
+           <tr>
+             <th scope="row">3</th>
+             <td>Larry</td>
+           </tr>
+           <tr>
+             <th scope="row">3</th>
+             <td>Larry</td>
+           </tr>
+           
+         </tbody>
+      </table>
+    </div>
+  </div>
+
+    <div class="row d-flex justify-content-around">
+    <div class="col-lg-5 card-dash">Table 1</div>
+    <div class="col-lg-5 card-dash">Table 2
+    </div>
+  </div>
+
+</div>
     <%= @lines.treasury_debit %>
 
 
@@ -11,7 +61,6 @@
 
     <p>Total Credit</p>
     <%= @lines.treasury_credit.sum %>
-</div>
 
 <% @lines.treasury.max(5).each do |line| %>
   <%= line.compte_num  %>

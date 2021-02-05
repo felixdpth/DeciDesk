@@ -16,6 +16,10 @@ class Line < ApplicationRecord
   scope :treasury_credit, -> { where(credit: "Credit", category: "Treasury") }
   scope :treasury_debit_date, -> (date) { treasury_debit.where("ecriture_date < ?", date) }
   # scope :treasury_credit_date
+  scope :treasury_debit, -> { where(credit: "0", category: "Treasury").pluck(:debit) }
+  scope :treasury_credit, -> { where(debit: "0", category: "Treasury").pluck(:credit) }
+  scope :treasury_debit_date, ->(date) { treasury_debit.where("ecriture_date < ?", date) }
+
 
   # Sales
   scope :sales, -> { where(category: "Sales") }
@@ -24,12 +28,7 @@ class Line < ApplicationRecord
   scope :sales_debit_date, -> (date) { sales_debit.where("ecriture_date < ?", date) }
   # scope :sales_credit_date
 
-
-  # Richard : not sure what this is so didn't delete it  
-  scope :treasury_debit, -> { where(credit: "0", category: "Treasury").pluck(:debit) }
-  scope :treasury_credit, -> { where(debit: "0", category: "Treasury").pluck(:credit) }
-  scope :treasury_debit_date, ->(date) { treasury_debit.where("ecriture_date < ?", date) }
-
+  
   def self.all_debit(date)
     treasury_debit_date(date).sum(:debit)
   end
