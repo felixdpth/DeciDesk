@@ -60,7 +60,41 @@
   margin-top: 10px;
 }
 
+//Table design
+
+.divTable
+{
+  display: table;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  background-color:rgb(255, 255, 255);
+  border-spacing:1px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  padding: 10px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
 
 
+.divRow
+{
+  display:table-row;
+  width:auto;
+  text-align: center;
+}
 
+.divCell {
+  float:left;/*fix for  buggy browsers*/
+  display:table-column;
+  width:150px;
+  background-color:rgb(255, 255, 255);
+  text-align: center;
+  border-bottom: dashed 1px #1f008c;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 
