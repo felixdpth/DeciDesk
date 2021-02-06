@@ -13,12 +13,12 @@ class Line < ApplicationRecord
 
   # Treasury
   scope :treasury, -> { where(category: "Treasury") }
-  scope :treasury_debit, -> { where(credit: "0", category: "Treasury") }
-  scope :treasury_credit, -> { where(credit: "Credit", category: "Treasury") }
+  scope :treasury_debit_lines, -> { where(credit: "0", category: "Treasury") }
+  scope :treasury_credit_lines, -> { where(debitt: "0", category: "Treasury") }
   scope :treasury_debit_date, -> (date) { treasury_debit.where("ecriture_date < ?", date) }
-  scope :treasury_debit, -> { where(credit: "0", category: "Treasury").pluck(:debit) }
-  scope :treasury_credit, -> { where(debit: "0", category: "Treasury").pluck(:credit) }
-  scope :treasury_debit_date, ->(date) { treasury_debit.where("ecriture_date < ?", date) }
+
+  scope :treasury_top5_debit, -> { where(category: "Treasury").sort_by { |line| line.debit }.reverse.first(5) }
+  scope :treasury_top5_credit, -> { where(category: "Treasury").sort_by { |line| line.credit }.reverse.first(5) }
 
   # Sales
   scope :sales, -> { where(category: "Sales") }

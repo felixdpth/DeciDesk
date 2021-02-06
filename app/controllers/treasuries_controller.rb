@@ -10,5 +10,7 @@ class TreasuriesController < ApplicationController
     @lines = Line.all
     @treasuries = Line.treasury
     authorize current_user, policy_class: TreasuriesPolicy
-    end
+    @top5_debit = @lines.treasury_top5_debit
+    @top5_credit = @lines.treasury_top5_credit
+  end
 end
