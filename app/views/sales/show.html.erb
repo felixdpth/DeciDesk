@@ -1,4 +1,5 @@
 <h1>Sales</h1>
+
 <!-- <div class="row">
   <div class="col-6">
     <div data-controller="charts" data-charts-numbers="<%= Line.annual_sales.map { |key, value| {x: key, y: value } }.to_json %>">
@@ -9,5 +10,6 @@
 </div> -->
 
 <div>
-  <%= line_chart Line.annual_sales.map { |key, value| {x: key, y: value } } %>
+  <%= column_chart Line.annual_sales, prefix: "€", thousands: ",", download: true, title: "Annual Sales" %>
 </div>
+
