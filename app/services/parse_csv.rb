@@ -51,7 +51,7 @@ class ParseCsv
       elsif row["CompteNum"].start_with?("78")
         "Depreciation Gains"
       end
-      if category && sub_category
+      if category || sub_category
         Line.create(
           report_id: @report.id,
           category: category,

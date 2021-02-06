@@ -3,7 +3,19 @@
       <h2 class ="mt-4">All the info you need to know about your treasury</h2>
   </div>
 
-  <div class="row justify-content-center">
+  <div class="dash-nav">
+    <p><%= link_to "Expenditures", report_expenditures_path, class: "tab-underlined active" %></p>
+    <p><%= link_to "Advice", report_expenditures_path, class: "tab-underlined" %></p>
+    <p><%= link_to "Comments", report_expenditures_path, class: "tab-underlined" %></p>
+  </div>
+
+<div>
+  <%= line_chart Line.annual_expenditures.map { |key, value| {x: key, y: value } } %>
+</div>
+
+
+
+<!--     <div class="row justify-content-center">
     <ul class="list-inline tabs-underlined">
       <li>
         <%= link_to "Expenditures", report_expenditures_path, class: "tab-underlined active" %>
@@ -16,9 +28,4 @@
       </li>
     </ul>
   </div>
-</div>
-
-
-<div>
-  <%= line_chart Line.annual_expenditures.map { |key, value| {x: key, y: value } } %>
-</div>
+</div> -->

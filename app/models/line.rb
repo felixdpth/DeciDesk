@@ -7,14 +7,14 @@ class Line < ApplicationRecord
   scope :expenditures_credit, -> { where(credit: "Credit", category: "Expenditures") }
   scope :expenditures_debit_date, -> (date) { expenditures_debit.where("ecriture_date < ?", date) }
   # scope :expenditure_credit_date
-  scope :expenditures_debit, -> { where(credit: "0", category: "Expenditures").pluck(:debit) }
-  scope :expenditures_credit, -> { where(debit: "0", category: "Expenditures").pluck(:credit) }
-  scope :expenditures_debit_date, ->(date) { expenditures_debit.where("ecriture_date < ?", date) }
+  # scope :expenditures_debit, -> { where(credit: "0", category: "Expenditures").pluck(:debit) }
+  # scope :expenditures_credit, -> { where(debit: "0", category: "Expenditures").pluck(:credit) }
+  # scope :expenditures_debit_date, ->(date) { expenditures_debit.where("ecriture_date < ?", date) }
 
   # Treasury
   scope :treasury, -> { where(category: "Treasury") }
   scope :treasury_debit_lines, -> { where(credit: "0", category: "Treasury") }
-  scope :treasury_credit_lines, -> { where(debitt: "0", category: "Treasury") }
+  scope :treasury_credit_lines, -> { where(debit: "0", category: "Treasury") }
   scope :treasury_debit_date, -> (date) { treasury_debit.where("ecriture_date < ?", date) }
 
   scope :treasury_top5_debit, -> { where(category: "Treasury").sort_by { |line| line.debit }.reverse.first(5) }
