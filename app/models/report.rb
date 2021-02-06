@@ -16,4 +16,8 @@ class Report < ApplicationRecord
          .transform_values { |value| value.sum(&:credit).to_i }
          .sort.to_h
   end
+
+  def expenditures_top5_debit
+    lines.where(category: "Expenditures").sort_by { |line| line.debit }.reverse.first(5)
+  end
 end
