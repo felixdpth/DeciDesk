@@ -10,7 +10,7 @@ class ParseCsv
       category = if row["CompteNum"].start_with?("512")
         "Treasury"
       elsif row["CompteNum"].start_with?("6")
-        "Expenses"
+        "Expenditures"
       elsif row["CompteNum"].start_with?("7")
         "Sales"
       end
@@ -25,9 +25,9 @@ class ParseCsv
       elsif row["CompteNum"].start_with?("64")
         "Employee Costs"
       elsif row["CompteNum"].start_with?("65")
-        "Day-to-day Expenses"
+        "Day-to-day Expenditures"
       elsif row["CompteNum"].start_with?("66")
-        "Financial Expenses"
+        "Financial Expenditures"
       elsif row["CompteNum"].start_with?("67")
         "Extrodinary Charges"
       elsif row["CompteNum"].start_with?("68")
