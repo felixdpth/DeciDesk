@@ -4,7 +4,7 @@ class Line < ApplicationRecord
   ##Expenditures
   scope :expenditures, -> { where(category: "Expenditures") }
   scope :expenditures_debit, -> { where(credit: "0", category: "Expenditures") }
-  scope :expenditures_credit, -> { where(credit: "Credit", category: "Expenditures") }
+  scope :expenditures_credit, -> { where(debit: "0", category: "Expenditures") }
   scope :expenditures_debit_date, -> (date) { expenditures_debit.where("ecriture_date < ?", date) }
   # scope :expenditure_credit_date
   # scope :expenditures_debit, -> { where(credit: "0", category: "Expenditures").pluck(:debit) }
@@ -39,8 +39,13 @@ class Line < ApplicationRecord
   end
 
   def self.annual_expenditures
-    expenditures.group_by {|u| u.ecriture_date.beginning_of_month }
-         .transform_values {|value| value.sum(&:credit).to_i}
+    expenditures.group_by {|exp| exp.ecriture_date.beginning_of_month }
+         .transform_values {|value| value.sum(&:debit).to_i}
+         .sort.to_h
          # .transform_keys {|key| key.strftime('%B %Y')}
+  end
+
+  def self.top_expenditures_subcategory
+    expenditures.group(:sub_category).count
   end
 end
