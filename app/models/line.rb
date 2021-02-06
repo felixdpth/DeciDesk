@@ -5,7 +5,6 @@ class Line < ApplicationRecord
   scope :last_day, -> { order('ecriture_date DESC').first }
   scope :first_day, -> { order('ecriture_date DESC').last }
 
-
   ##Expenditures
   scope :expenditures, -> { where(category: "Expenditures") }
   scope :expenditures_debit, -> { where(credit: "0", category: "Expenditures") }
@@ -34,13 +33,12 @@ class Line < ApplicationRecord
       .transform_values { |value| value.sum(&:debit).to_i }
       .sort.to_h
          # .transform_keys {|key| key.strftime('%B %Y')}
-    result = Hash.new 
+    result = Hash.new
     credit.keys.each_with_index do |date, index|
       result[date] = debit.values.first(index + 1).sum - credit.values.first(index + 1).sum
     end
   return result
   end
-
 
   # Sales
   scope :sales, -> { where(category: "Sales") }
@@ -54,10 +52,9 @@ class Line < ApplicationRecord
   end
 
   def self.annual_expenditures
-    expenditures.group_by {|exp| exp.ecriture_date.beginning_of_month }
-         .transform_values {|value| value.sum(&:debit).to_i}
-         .sort.to_h
-         # .transform_keys {|key| key.strftime('%B %Y')}
+    expenditures.group_by { |exp| exp.ecriture_date.beginning_of_month }
+                .transform_values { |value| value.sum(&:debit).to_i }
+                .sort.to_h
   end
 
   def self.top_expenditures_subcategory

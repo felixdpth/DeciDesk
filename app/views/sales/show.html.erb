@@ -1,5 +1,5 @@
 <h1>Sales</h1>
-
+<p>You are looking at your sales report for <%= @report.name %></p>
 <div>
   <%= column_chart @annual_sales, prefix: "€", thousands: ",", download: true, title: "Monthly Sales" %>
 </div>
