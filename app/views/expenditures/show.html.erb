@@ -28,35 +28,22 @@
 
 <div class="col-lg-5 card-dash">
       <table class="table">
-        <h3 style= color:#1E0087>Top expenditure items this month</h3>
+        <h3 style= color:#1E0087>Top expenditure items this year</h3>
          <thead>
            <tr>
             <th scope="col">Item</th>
+            <th scope="col">Date</th>
             <th scope="col">Expenditure</th>
            </tr>
          </thead>
          <tbody>
-           <tr>
-             <th scope="row">LANGUEDOC-BRELUZEAU-BERTHEAU</th>
-             <td>14002€</td>
-           </tr>
-           <tr>
-             <th scope="row">BRIFFAUD GABORIT ROUSSEAU</th>
-             <td>10664€</td>
-           </tr>
-           <tr>
-             <th scope="row">PRESTATIONS</th>
-             <td>5500€</td>
-           </tr>
-           <tr>
-             <th scope="row">RABET MALIK VINET BENARD FUSELIER</th>
-             <td>3547€</td>
-           </tr>
-           <tr>
-             <th scope="row">SCI LES PECS</th>
-             <td>3080€</td>
-           </tr>
-
+          <% @top5_expenditures.each do |line| %>
+            <tr>
+              <th scope="row"><%= line.ecriture_lib %></th>
+              <td><%= line.ecriture_date%></td>
+              <td><%= line.debit%>€</td>
+            </tr>
+          <% end %>
          </tbody>
       </table>
       <p class = "row justify-content-center"><%= link_to "Show more", report_expenditures_path, class: "tab-underlined" %></p>

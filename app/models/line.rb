@@ -11,10 +11,18 @@ class Line < ApplicationRecord
   scope :expenditures_debit, -> { where(credit: "0", category: "Expenditures") }
   scope :expenditures_credit, -> { where(debit: "0", category: "Expenditures") }
   scope :expenditures_debit_date, -> (date) { expenditures_debit.where("ecriture_date < ?", date) }
-  # scope :expenditure_credit_date
-  # scope :expenditures_debit, -> { where(credit: "0", category: "Expenditures").pluck(:debit) }
-  # scope :expenditures_credit, -> { where(debit: "0", category: "Expenditures").pluck(:credit) }
-  # scope :expenditures_debit_date, ->(date) { expenditures_debit.where("ecriture_date < ?", date) }
+  scope :expenditures_top5_debit, -> { where(category: "Expenditures").sort_by { |line| line.debit }.reverse.first(5) }
+
+  def self.annual_expenditures
+    expenditures.group_by {|exp| exp.ecriture_date.beginning_of_month }
+      .transform_values {|value| value.sum(&:debit).to_i}
+      .sort.to_h
+      # .transform_keys {|key| key.strftime('%B %Y')}
+  end
+
+  def self.top_expenditures_subcategory
+    expenditures.group(:sub_category).count
+  end
 
   # Treasury
   scope :treasury, -> { where(category: "Treasury") }
@@ -34,7 +42,7 @@ class Line < ApplicationRecord
       .transform_values { |value| value.sum(&:debit).to_i }
       .sort.to_h
          # .transform_keys {|key| key.strftime('%B %Y')}
-    result = Hash.new 
+    result = Hash.new
     credit.keys.each_with_index do |date, index|
       result[date] = debit.values.first(index + 1).sum - credit.values.first(index + 1).sum
     end
@@ -53,14 +61,4 @@ class Line < ApplicationRecord
     treasury_debit_date(date).sum(:debit)
   end
 
-  def self.annual_expenditures
-    expenditures.group_by {|exp| exp.ecriture_date.beginning_of_month }
-         .transform_values {|value| value.sum(&:debit).to_i}
-         .sort.to_h
-         # .transform_keys {|key| key.strftime('%B %Y')}
-  end
-
-  def self.top_expenditures_subcategory
-    expenditures.group(:sub_category).count
-  end
 end
