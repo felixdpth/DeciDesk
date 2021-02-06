@@ -17,8 +17,6 @@ class ExpendituresController < ApplicationController
 #     authorize :expenditure, :expenditure?
 #   end
 # end
-
-
   def index
     @lines = Line.all
     @expenditures = Line.expenditure
@@ -30,7 +28,4 @@ class ExpendituresController < ApplicationController
     @expenditures = Line.expenditures
     authorize current_user, policy_class: ExpenditurePolicy
   end
-
 end
-
-
