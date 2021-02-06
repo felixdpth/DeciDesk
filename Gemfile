@@ -24,7 +24,7 @@ gem 'redis', '~> 4.0'
 
 #chart
 gem "chartkick"
-
+gem "groupdate"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
