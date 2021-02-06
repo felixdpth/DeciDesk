@@ -25,17 +25,10 @@ class Line < ApplicationRecord
   scope :sales_debit, -> { where(credit: "0", category: "Sales") }
   scope :sales_credit, -> { where(credit: "Credit", category: "Sales") }
   scope :sales_debit_date, -> (date) { sales_debit.where("ecriture_date < ?", date) }
-
+  scope :sales_top5sales_credit, -> { where(category: "Sales").sort_by { |line| line.credit }.reverse.first(5) }
 
   def self.all_debit(date)
     treasury_debit_date(date).sum(:debit)
-  end
-
-  def self.annual_sales
-    sales.group_by { |u| u.ecriture_date.beginning_of_month }
-         .transform_values { |value| value.sum(&:credit).to_i }
-         .sort.to_h
-         # .transform_keys {|key| key.strftime('%B %Y')}
   end
 
   def self.annual_expenditures

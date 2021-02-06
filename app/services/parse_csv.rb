@@ -59,7 +59,8 @@ class ParseCsv
           ecriture_date: row["EcritureDate"].to_date,
           compte_num: row["CompteNum"], compte_lib: row["CompteLib"],
           credit: row["Credit"].gsub(",",".").to_f,
-          debit: row["Debit"].gsub(",",".").to_f
+          debit: row["Debit"].gsub(",",".").to_f,
+          ecriture_lib: row["EcritureLib"]
         )
       end
     end
