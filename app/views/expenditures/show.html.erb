@@ -18,3 +18,7 @@
   </div>
 </div>
 
+
+<div>
+  <%= line_chart Line.annual_expenditures.map { |key, value| {x: key, y: value } } %>
+</div>

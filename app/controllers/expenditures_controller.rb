@@ -28,7 +28,11 @@ class ExpendituresController < ApplicationController
 
   def show
     @lines = Line.all
-    @texpenditures = Line.expenditure
+    @expenditures = Line.expenditure
     authorize current_user, policy_class: ExpenditurePolicy
+    @expenditures = @lines.where(category: "Expenditures")
   end
+
 end
+
+
