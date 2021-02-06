@@ -51,7 +51,7 @@ class ParseCsv
       elsif row["CompteNum"].start_with?("78")
         "Depreciation Gains"
       end
-      if category && sub_category
+      if category || sub_category
         Line.create(
           report_id: @report.id,
           category: category,
@@ -59,7 +59,8 @@ class ParseCsv
           ecriture_date: row["EcritureDate"].to_date,
           compte_num: row["CompteNum"], compte_lib: row["CompteLib"],
           credit: row["Credit"].gsub(",",".").to_f,
-          debit: row["Debit"].gsub(",",".").to_f
+          debit: row["Debit"].gsub(",",".").to_f,
+          ecriture_lib: row["EcritureLib"]
         )
       end
     end

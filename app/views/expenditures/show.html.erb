@@ -1,9 +1,70 @@
 <div class="container">
   <div class="row justify-content-center">
-      <h2 class ="mt-4">All the info you need to know about your treasury</h2>
+      <h1 class ="mt-4" style= color:#1E0087>At a glance: all the information you need about your treasury</h1>
   </div>
 
-  <div class="row justify-content-center">
+  <div class="dash-nav">
+    <p><%= link_to "Expenditures", report_expenditures_path, class: "tab-underlined active" %></p>
+    <p><%= link_to "Advice", report_expenditures_path, class: "tab-underlined" %></p>
+    <p><%= link_to "Comments", report_expenditures_path, class: "tab-underlined" %></p>
+  </div>
+
+  <div class="col-lg-12 card-dash row justify-content-center">
+    <h3 style= color:#1E0087>Monthly Expenditures</h3>
+    <br>
+    <%= column_chart Line.annual_expenditures %>
+  </div>
+
+<br>
+<br>
+
+ <div class="row d-flex justify-content-between">
+<div class="col-lg-6 card-dash row justify-content-center">
+  <h3 style= color:#1E0087>Expenditures per category</h3>
+  <br>
+    <%= pie_chart Line.top_expenditures_subcategory, legend: "right" %>
+</div>
+
+
+<div class="col-lg-5 card-dash">
+      <table class="table">
+        <h3 style= color:#1E0087>Top expenditure items this month</h3>
+         <thead>
+           <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Expenditure</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <th scope="row">LANGUEDOC-BRELUZEAU-BERTHEAU</th>
+             <td>14002€</td>
+           </tr>
+           <tr>
+             <th scope="row">BRIFFAUD GABORIT ROUSSEAU</th>
+             <td>10664€</td>
+           </tr>
+           <tr>
+             <th scope="row">PRESTATIONS</th>
+             <td>5500€</td>
+           </tr>
+           <tr>
+             <th scope="row">RABET MALIK VINET BENARD FUSELIER</th>
+             <td>3547€</td>
+           </tr>
+           <tr>
+             <th scope="row">SCI LES PECS</th>
+             <td>3080€</td>
+           </tr>
+
+         </tbody>
+      </table>
+      <p class = "row justify-content-center"><%= link_to "Show more", report_expenditures_path, class: "tab-underlined" %></p>
+
+    </div>
+    </div>
+
+<!--     <div class="row justify-content-center">
     <ul class="list-inline tabs-underlined">
       <li>
         <%= link_to "Expenditures", report_expenditures_path, class: "tab-underlined active" %>
@@ -16,9 +77,4 @@
       </li>
     </ul>
   </div>
-</div>
-
-
-<div>
-  <%= line_chart Line.annual_expenditures.map { |key, value| {x: key, y: value } } %>
-</div>
+</div> -->
