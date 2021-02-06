@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :reports do
     resources :comments, only: [:new, :create]
-    get '/expenditure', to: 'expenditures#show'
+    get '/expenditures', to: 'expenditures#show'
     get '/sales', to: 'sales#show'
     get '/treasury', to: 'treasuries#show'
   end

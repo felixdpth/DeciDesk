@@ -6,15 +6,19 @@
   <div class="row justify-content-center">
     <ul class="list-inline tabs-underlined">
       <li>
-        <%= link_to "Expenditure", report_expenditure_path, class: "tab-underlined active" %>
+        <%= link_to "Expenditures", report_expenditures_path, class: "tab-underlined active" %>
       </li>
       <li>
-        <%= link_to "Advice", report_expenditure_path, class: "tab-underlined" %>
+        <%= link_to "Advice", report_expenditures_path, class: "tab-underlined" %>
       </li>
       <li>
-        <%= link_to "Comments", report_expenditure_path, class: "tab-underlined" %>
+        <%= link_to "Comments", report_expenditures_path, class: "tab-underlined" %>
       </li>
     </ul>
   </div>
 </div>
 
+
+<div>
+  <%= line_chart Line.annual_expenditures.map { |key, value| {x: key, y: value } } %>
+</div>
