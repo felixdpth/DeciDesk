@@ -25,7 +25,9 @@ class ExpendituresController < ApplicationController
   end
 
   def show
-    @expenditures = Line.expenditures
+    @report = Report.find params[:report_id]
+    @expenditures = @report.lines.where(category: "Expenditures")
     authorize current_user, policy_class: ExpenditurePolicy
+    @top5_expenditures = @report.expenditures_top5_debit
   end
 end

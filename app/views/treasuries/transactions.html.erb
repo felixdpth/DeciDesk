@@ -1,0 +1,54 @@
+<div class="container">
+
+  <div class="dash-nav">
+    <p><%= link_to "Treasuy", "./" %></p>
+    <p><%= link_to "Advise", "./treasury/advise" %></p>
+    <p><%= link_to "Notes", "./treasury/notes" %></p>
+    <p><%= link_to "All Transaction", "./transactions" %></p>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Choose View</option>
+      <option value="1">Monthly</option>
+      <option value="2">Weeekly</option>
+    </select>
+  </div>
+
+  <h3 class="text-center mb-5 mt-5">All treasury transactions 👎</h3>
+
+  <div class="container">
+    <div class="container-equal-margin mb-4 p-0">
+      <%= form_tag report_transactions_path, method: :get do %>
+      <div class="d-flex align-items-center m-3">
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control mr-1",
+      placeholder: "Search a date, an amount, a transaction..."
+      %>
+      <%= submit_tag "Search", class: "btn btn-flat m-0" %>
+      <% end %>
+    </div>
+    
+    <div class="divTableAll mt-3">
+      <div class="divRow d-flex justify-content-around">
+        <div class="divCell mb-3"><h5><strong class="highlight">Ecriture</strong></h5></div>
+        <div class="divCell mb-3"><h5><strong class="highlight">Date</strong></h5></div>
+        <div class="divCell mb-3"><h5><strong class="highlight">Amount</strong></h5></div>
+      </div>
+    
+        <% @lines.each do |line| %>
+          <div class="divRow d-flex justify-content-around"> 
+          <div class="divCell"> <%= line.compte_num %></div>
+          <div class="divCell"> <%= line.ecriture_date %></div>
+      
+          <% if line.debit == 0 %>
+            <div class="divCell">- <%= line.credit %> </div>
+          <% else %>
+            <div class="divCell"><%= line.debit %> </div>
+          <% end %>
+          </div>
+        <% end %>
+      
+    </div>
+  
+  </div>
+
+</div>
