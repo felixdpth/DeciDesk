@@ -63,10 +63,11 @@ class Line < ApplicationRecord
 
   # Sales
   scope :sales, -> { where(category: "Sales") }
-  scope :sales_debit, -> { where(credit: "0", category: "Sales") }
-  scope :sales_credit, -> { where(credit: "Credit", category: "Sales") }
+  scope :sales_debit, -> { where(credit: "0", category: "Sales").pluck(:debit) }
+  scope :sales_credit, -> { where(credit: "Credit", category: "Sales").pluck(:credit) }
   scope :sales_debit_date, -> (date) { sales_debit.where("ecriture_date < ?", date) }
   scope :sales_top5sales_credit, -> { where(category: "Sales").sort_by { |line| line.credit }.reverse.first(5) }
+  scope :sales_last_day, -> { where(category: "Sales").order('ecriture_date DESC').first }
 
   def self.all_debit(date)
     treasury_debit_date(date).sum(:debit)
@@ -81,4 +82,5 @@ class Line < ApplicationRecord
   def self.top_expenditures_subcategory
     expenditures.group(:sub_category).count
   end
+
 end
