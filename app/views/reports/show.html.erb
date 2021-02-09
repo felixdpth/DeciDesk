@@ -2,11 +2,8 @@
   <%= current_user.email %>
   <%= current_user.lines.count %>
   <% if @reports %>
-    <p>You have <%= @reports.count %> FEC uploaded already !</p>
+    <p>You have <%= current_user.reports.count %> FEC uploaded already !</p>
   <% else %>
     <p>You have not imported any FEC yet !</p>
   <% end %>
 </div>
-
-
-
