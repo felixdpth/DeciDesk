@@ -1,10 +1,16 @@
 <div class="container">
 
+  <div>
+    <h4>Report name</h4>
+    <p>Start</p>
+    <p>Start</p>
+  </div>
+
   <div class="dash-nav">
-    <p><%= link_to "Treasury", "./treasury" %></p>
-    <p><%= link_to "Advise", "./advise" %></p>
+    <p><%= link_to "Treasury", report_treasury_path %></p>
+    <p><%= link_to "Advise", report_treasury_advise_path %></p>
     <p><%= link_to "Notes", "./notes" %></p>
-    <p><%= link_to "All Transaction", "./transactions" %></p>
+    <p><%= link_to "All Transactions", report_transactions_path %></p>
     <select class="form-select" aria-label="Default select example">
       <option selected>Choose View</option>
       <option value="1">Monthly</option>
@@ -18,23 +24,23 @@
 
   <div class="row d-flex justify-content-around">
     <div class="col-lg-7 card-dash">
-       <%= column_chart Line.monthly_cash, prefix: "€", thousands: ",", download: true, title: "Monthly Cash" %>
+       <%= column_chart @treasuries.monthly_cash, prefix: "€", thousands: ",", download: true, title: "Monthly Cash" %>
     </div>
 
     <div class="col-lg-7 card-dash">
-       <%= column_chart Line.weekly_cash, prefix: "€", thousands: ",", download: true, title: "Weekly Cash" %>
+       <%= column_chart @treasuries.weekly_cash, prefix: "€", thousands: ",", download: true, title: "Weekly Cash" %>
     </div>
 
       <div class="divTable">
-         <div class="divRow"> How's your cash on the period ? </div>
-         <div class="headRow">
+         <div class="d-flex justify-content-around"> How's your cash on the period ? </div>
+         <div class="DivRow d-flex justify-content-around"> 
            <div  class="divCell"><strong class="highlight">Date</strong></div>
            <div  class="divCell"><strong class="highlight">Amount</strong></div>
          </div>
 
          <% Line.monthly_cash.each do |key, value| %>
-           <div class="divRow">
-             <div class="divCell text-left"> <%= key.strftime("%b %Y") %></div>
+           <div class="divRow d-flex justify-content-around">
+             <div class="divCell"> <%= key.strftime("%b %Y") %></div>
              <div class="divCell"> <%= value %> € </div>
            </div> 
          <% end %>
@@ -43,14 +49,14 @@
   </div>
 
         <div class="divTable">
-         <div class="divRow"> How's your cash on the period ? </div>
-         <div class="headRow">
+         <div class="d-flex justify-content-around"> How's your cash on the period ? </div>
+         <div class="DivRow d-flex justify-content-around">
            <div  class="divCell"><strong class="highlight">Date</strong></div>
            <div  class="divCell"><strong class="highlight">Amount</strong></div>
          </div>
 
          <% Line.weekly_cash.each do |key, value| %>
-           <div class="divRow">
+           <div class="divRow d-flex justify-content-around">
              <div class="divCell"> <%= key.strftime("%d %B %Y") %></div>
              <div class="divCell"> <%= value %> € </div>
            </div> 
@@ -62,15 +68,15 @@
     <div class="row d-flex justify-content-around">
 
        <div class="divTable">
-         <div class="divRow"> Top 5 - CashIn 👍</div>
-         <div class="headRow">
+         <div class="d-flex justify-content-around"> Top 5 - CashIn 👍</div>
+         <div class="DivRow d-flex justify-content-around">
            <div  class="divCell"><strong class="highlight">Account number</strong></div>
            <div  class="divCell"><strong class="highlight">Date</strong></div>
            <div  class="divCell"><strong class="highlight">Amount</strong></div>
          </div>
 
          <% @top5_debit.each do |line| %>
-           <div class="divRow">
+           <div class="DivRow d-flex justify-content-around">
              <div class="divCell"><%= line.compte_num %></div>
              <div class="divCell"> <%= line.ecriture_date.strftime('%d %B %Y') %></div>
              <div class="divCell"> <%= line.debit %> €</div>
@@ -79,15 +85,15 @@
       </div>
 
       <div class="divTable">
-        <div class="divRow"> Top 5 - CashOut 👎 </div>
-          <div class="headRow">
+        <div class="d-flex justify-content-around"> Top 5 - CashOut 👎 </div>
+          <div class="DivRow d-flex justify-content-around">
             <div  class="divCell"><strong class="highlight">Account number</strong></div>
             <div  class="divCell"><strong class="highlight">Date</strong></div>
             <div  class="divCell"><strong class="highlight">Amount</strong></div>
           </div>
         
           <% @top5_credit.each do |line| %>
-          <div class="divRow">
+          <div class="DivRow d-flex justify-content-around">
             <div class="divCell"><%= line.compte_num %></div>
             <div class="divCell"><%= line.ecriture_date.strftime('%d %B %Y') %></div>
             <div class="divCell">- <%= line.credit %> €</div>

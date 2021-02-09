@@ -1,13 +1,54 @@
-<h1>Hello, please upload your FEC report here 👎</h1>
-<div>
-  <%= render 'form', report: @report %>
+<div class="container-title">
+  <h2 class="title-dash">Hello <strong class="highlight"><%= @current_user.email%> </strong></h5>
+  <h5>Welcome to Decidesk, let’s get this accounting party started !</h5>
+
+<div class="card-page">
+  <div class="col-lg-3 cards-page">
+    <h4> Total <strong class="highlight">Treasury</strong></h4>
+    <h2> <strong class="highlight text-center"><%= @treasury_balance.to_i %> € </strong></h2>
+    <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
+    <div class="text-center"><%= link_to "See details", report_treasury_path(@last_report), class: "btn btn-bleu" %></div>
+  </div>
+
+   <div class="col-lg-3 cards-page ">
+      <h4>Total <strong class="highlight">Sales</strong></h4>
+      <h2> <strong class="highlight text-center"><%= @treasury_balance.to_i %> € </strong></h2>
+    <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
+      <div class="text-center"><%= link_to "See details", report_sales_path(@last_report), class: "btn btn-bleu" %></div>
+   </div>
+
+   <div class="col-lg-3 cards-page">
+      <h4>Total <strong class="highlight">Expenditure</strong></h4>
+      <h2> <strong class="highlight text-center"><%= @treasury_balance.to_i %> € </strong></h2>
+    <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
+      <div class="text-center"><%= link_to "See details", report_expenditures_path(@last_report), class: "btn btn-bleu" %></div>
+
+   </div>
 </div>
+
+<div class="card-page">
+  <div class="col-lg-3 cards-page">
+    <h4> Start a <strong class="highlight">new Analysis</strong></h4>
+    <div>
+      <%= render 'form', report: @report %>
+    </div>
+  </div>
+  <div class="col-lg-3 cards-page">
+    <h4><strong class="highlight">Your analysis</strong></h4>
+  </div>
+</div>
+
+
+<div class="card-page">
+</div>
+
+
 
 <div>
   <%= current_user.email %>
   <%= current_user.lines.count %>
   <% if @reports %>
-    <p>You have <%= @reports.count %> FEC uploaded already !</p>
+    <p>You have <%= @current_user.reports.count %> FEC uploaded already !</p>
   <% else %>
     <p>You have not imported any FEC yet !</p>
   <% end %>

@@ -1,8 +1,9 @@
 class TreasuriesController < ApplicationController
 
   def index
-    @lines = Line.all
-    @treasuries = Line.treasury
+    @report = Report.find params[:report_id]
+    @lines = @report.lines.all
+    @treasuries = @lines.treasury
     authorize @lines
   end
 
@@ -11,17 +12,19 @@ class TreasuriesController < ApplicationController
 
   def transactions
     authorize current_user, policy_class: TreasuriesPolicy
+    @report = Report.find params[:report_id]
     if params[:query].present?
-      sql_query = "compte_num ILIKE :query OR ecriture_lib ILIKE :query OR debit ILIKE :query OR credit ILIKE :query"
-      @lines = Line.treasury.where(sql_query, query: "%#{params[:query]}%")
+      sql_query = "compte_num::text ILIKE :query OR ecriture_lib::text ILIKE :query OR debit::text ILIKE :query OR credit::text ILIKE :query"
+      @lines = @report.lines.treasury.where(sql_query, query: "%#{params[:query]}%")
     else
-      @lines = Line.treasury
+      @lines = @report.lines.treasury
     end
   end
 
   def show
-    @lines = Line.all
-    @treasuries = Line.treasury
+    @report = Report.find params[:report_id]
+    @lines = @report.lines.all
+    @treasuries = @lines.treasury
     authorize current_user, policy_class: TreasuriesPolicy
     @top5_debit = @lines.treasury_top5_debit
     @top5_credit = @lines.treasury_top5_credit

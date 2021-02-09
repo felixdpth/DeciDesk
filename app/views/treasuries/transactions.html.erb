@@ -1,19 +1,20 @@
 <div class="container">
 
   <div class="dash-nav">
-    <p><%= link_to "Treasuy", "./" %></p>
-    <p><%= link_to "Advise", "./treasury/advise" %></p>
-    <p><%= link_to "Notes", "./treasury/notes" %></p>
-    <p><%= link_to "All Transaction", "./transactions" %></p>
+    <p><%= link_to "Treasury", report_treasury_path %></p>
+    <p><%= link_to "Advise", report_treasury_advise_path %></p>
+    <p><%= link_to "Notes", "./notes" %></p>
+    <p><%= link_to "All Transactions", report_transactions_path %></p>
     <select class="form-select" aria-label="Default select example">
       <option selected>Choose View</option>
       <option value="1">Monthly</option>
       <option value="2">Weeekly</option>
     </select>
   </div>
+  </div>
 
   <h3 class="text-center mb-5 mt-5">All treasury transactions 👎</h3>
-
+ 
   <div class="container">
     <div class="container-equal-margin mb-4 p-0">
       <%= form_tag report_transactions_path, method: :get do %>

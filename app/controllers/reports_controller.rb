@@ -8,10 +8,15 @@ class ReportsController < ApplicationController
     @reports = policy_scope(Report).order(created_at: :desc)
     authorize @reports
     @report = Report.new
+
+    @last_report = Report.last
+    @treasury_balance = (@last_report.lines.treasury_debit_lines.sum - @last_report.lines.treasury_credit_lines.sum).to_f
+    @treasury_last_day =  @last_report.lines.treasury_last_day
   end
 
   def show
     authorize @report
+    @reports = Report.all
   end
 
   def new
