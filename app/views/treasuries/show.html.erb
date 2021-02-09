@@ -1,13 +1,19 @@
 <div class="container">
 
   <div class="dash-nav">
-    <p><%= link_to "Treasury", "#" %></p>
-    <p><%= link_to "Advise", "#" %></p>
-    <p><%= link_to "Notes", "#" %></p>
+    <p><%= link_to "Treasury", "./treasury" %></p>
+    <p><%= link_to "Advise", "./advise" %></p>
+    <p><%= link_to "Notes", "./notes" %></p>
+    <p><%= link_to "All Transaction", "./transactions" %></p>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Choose View</option>
+      <option value="1">Monthly</option>
+      <option value="2">Weeekly</option>
+    </select>
   </div>
 
-  <div class="row">
-    <h4>Your cash is at <strong class="highlight"><%= @balance_last_day.to_i %> € </strong>on <%= @treasury_last_day.ecriture_date %></h4>
+  <div class="row d-flex justify-content-center mb-5 mt-5">
+    <h4>Your cash is at <strong class="highlight"><%= @balance_last_day.to_i %> € </strong>on <%= @treasury_last_day.ecriture_date.strftime("%d %B %Y") %> </h4>
   </div>
 
   <div class="row d-flex justify-content-around">
@@ -15,59 +21,39 @@
        <%= column_chart Line.monthly_cash, prefix: "€", thousands: ",", download: true, title: "Monthly Cash" %>
     </div>
 
+    <div class="col-lg-7 card-dash">
+       <%= column_chart Line.weekly_cash, prefix: "€", thousands: ",", download: true, title: "Weekly Cash" %>
+    </div>
+
       <div class="divTable">
-         <div class="divRow"> How's your cash ont the period ? </div>
+         <div class="divRow"> How's your cash on the period ? </div>
          <div class="headRow">
            <div  class="divCell"><strong class="highlight">Date</strong></div>
            <div  class="divCell"><strong class="highlight">Amount</strong></div>
          </div>
-                  <% Line.monthly_cash.each do |key, value| %>
-           <div class="divRow">
-             <div class="divCell"> <%= key %></div>
-             <div class="divCell"> <%= value %> € </div>
-           </div> 
-         <% end %>
-       </div>   
-
-  
-  <div class="row d-flex justify-content-around">
-    <div class="col-lg-7 card-dash">Graph</div>
-    <div class="col-lg-4 card-dash">
-      <table class="table">
-        <p><strong>How's your cash ont the period ?</strong></p>
-         <thead>
-           <tr>
-            <th scope="col">Month</th>
-            <th scope="col">Balance</th>
-           </tr>
-         </thead>
-         <tbody>
-           <tr>
-             <th scope="row">1</th>
-             <td>Mark</td>
-           </tr>
-           <tr>
-             <th scope="row">2</th>
-             <td>Jacob</td>
-           </tr>
-           <tr>
-             <th scope="row">3</th>
-             <td>Larry</td>
-           </tr>
-           <tr>
-             <th scope="row">3</th>
-             <td>Larry</td>
-           </tr>
-           <tr>
-             <th scope="row">3</th>
-             <td>Larry</td>
-           </tr>
 
          <% Line.monthly_cash.each do |key, value| %>
            <div class="divRow">
-             <div class="divCell"> <%= key %></div>
+             <div class="divCell text-left"> <%= key.strftime("%b %Y") %></div>
              <div class="divCell"> <%= value %> € </div>
-           </div>
+           </div> 
+         <% end %>
+      </div>
+    </div>
+  </div>
+
+        <div class="divTable">
+         <div class="divRow"> How's your cash on the period ? </div>
+         <div class="headRow">
+           <div  class="divCell"><strong class="highlight">Date</strong></div>
+           <div  class="divCell"><strong class="highlight">Amount</strong></div>
+         </div>
+
+         <% Line.weekly_cash.each do |key, value| %>
+           <div class="divRow">
+             <div class="divCell"> <%= key.strftime("%d %B %Y") %></div>
+             <div class="divCell"> <%= value %> € </div>
+           </div> 
          <% end %>
       </div>
     </div>
@@ -86,9 +72,9 @@
          <% @top5_debit.each do |line| %>
            <div class="divRow">
              <div class="divCell"><%= line.compte_num %></div>
-             <div class="divCell"> <%= line.ecriture_date %></div>
-             <div class="divCell"> <%= line.debit %></div>
-           </div>
+             <div class="divCell"> <%= line.ecriture_date.strftime('%d %B %Y') %></div>
+             <div class="divCell"> <%= line.debit %> €</div>
+           </div> 
          <% end %>
       </div>
 
@@ -99,106 +85,16 @@
             <div  class="divCell"><strong class="highlight">Date</strong></div>
             <div  class="divCell"><strong class="highlight">Amount</strong></div>
           </div>
-
+        
           <% @top5_credit.each do |line| %>
           <div class="divRow">
             <div class="divCell"><%= line.compte_num %></div>
-            <div class="divCell"><%= line.ecriture_date %></div>
-            <div class="divCell">- <%= line.credit %></div>
+            <div class="divCell"><%= line.ecriture_date.strftime('%d %B %Y') %></div>
+            <div class="divCell">- <%= line.credit %> €</div>
           </div>
         <% end %>
       </div>
 
     </div>
-<<<<<<< HEAD
     
 </div>
-
-
-
-
-
-
-
-
-
-## comme la search -> get avec un formulaire + des if -> formulaire se submit quand c'est ok
-
-<table class="table">
-  <h3>Top 5 - Cashin 👍 </h3>
-  <thead>
-    <tr>
-      <th scope="col">Top</th>
-      <th scope="col">Account number</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td> <%=  %> 512</td>
-      <td> <%=  %> €</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-
-    <tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-
-    <tr>
-      <th scope="row">4</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-
-    <tr>
-      <th scope="row">5</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="table">
- <p>Top 5 - Cashout 👎 </p>
-  <thead>
-    <tr>
-      <th scope="col">Item</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-=======
-
-</div>
->>>>>>> 48dd916c7c036fd25b1f200f9f8cdd4293fe9e9b

@@ -28,7 +28,6 @@ class Line < ApplicationRecord
   scope :treasury, -> { where(category: "Treasury") }
   scope :treasury_debit_lines, -> { where(credit: "0", category: "Treasury", ).pluck(:debit) }
   scope :treasury_credit_lines, -> { where(debit: "0", category: "Treasury").pluck(:credit) }
-
   scope :treasury_debit_date, -> (date) { treasury_debit.where("ecriture_date < ?", date) }
   scope :treasury_top5_debit, -> { where(category: "Treasury").sort_by { |line| line.debit }.reverse.first(5) }
   scope :treasury_top5_credit, -> { where(category: "Treasury").sort_by { |line| line.credit }.reverse.first(5) }
@@ -36,12 +35,11 @@ class Line < ApplicationRecord
 
   def self.monthly_cash
     credit = treasury.group_by { |u| u.ecriture_date.beginning_of_month }
-         .transform_values { |value| value.sum(&:credit).to_i }
-         .sort.to_h
+      .transform_values { |value| value.sum(&:credit).to_i }
+      .sort.to_h
     debit = treasury.group_by { |u| u.ecriture_date.beginning_of_month }
       .transform_values { |value| value.sum(&:debit).to_i }
       .sort.to_h
-         # .transform_keys {|key| key.strftime('%B %Y')}
     result = Hash.new
     credit.keys.each_with_index do |date, index|
       result[date] = debit.values.first(index + 1).sum - credit.values.first(index + 1).sum
@@ -49,6 +47,19 @@ class Line < ApplicationRecord
   return result
   end
 
+  def self.weekly_cash
+    credit = treasury.group_by { |u| u.ecriture_date.beginning_of_week }
+      .transform_values { |value| value.sum(&:credit).to_i }
+      .sort.to_h
+    debit = treasury.group_by { |u| u.ecriture_date.beginning_of_week }
+      .transform_values { |value| value.sum(&:debit).to_i }
+      .sort.to_h
+    result = Hash.new
+    credit.keys.each_with_index do |date, index|
+      result[date] = debit.values.first(index + 1).sum - credit.values.first(index + 1).sum
+    end
+  return result
+  end  
 
   # Sales
   scope :sales, -> { where(category: "Sales") }
