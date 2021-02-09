@@ -6,11 +6,22 @@ class ExpenditurePolicy < ApplicationPolicy
   end
 
   def index?
-    return true
+    true
   end
 
   def show?
-    return true
+    true
   end
 
+  def transactions?
+    true
+  end
+
+  def advice?
+    true
+  end
+
+  def comments?
+    true
+  end
 end
