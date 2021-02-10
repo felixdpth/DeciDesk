@@ -8,6 +8,11 @@ class TreasuriesController < ApplicationController
   end
 
   def advise
+    authorize current_user, policy_class: TreasuriesPolicy
+  end
+
+  def comments
+    authorize current_user, policy_class: TreasuriesPolicy
   end
 
   def transactions

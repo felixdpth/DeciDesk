@@ -1,10 +1,17 @@
 <div class="container">
 
+  <div>
+    <h4>Report name</h4>
+    <p>Start</p>
+    <p>Start</p>
+  </div>
+
+
   <div class="dash-nav">
     <p><%= link_to "Treasury", report_treasury_path %></p>
     <p><%= link_to "Advise", report_treasury_advise_path %></p>
-    <p><%= link_to "Notes", "./notes" %></p>
-    <p><%= link_to "All Transactions", report_transactions_path %></p>
+    <p><%= link_to "Notes", report_treasury_comments_path %></p>
+    <p><%= link_to "All Transactions", report_treasury_transactions_path %></p>
     <select class="form-select" aria-label="Default select example">
       <option selected>Choose View</option>
       <option value="1">Monthly</option>
@@ -17,7 +24,7 @@
  
   <div class="container">
     <div class="container-equal-margin mb-4 p-0">
-      <%= form_tag report_transactions_path, method: :get do %>
+      <%= form_tag report_treasury_transactions_path, method: :get do %>
       <div class="d-flex align-items-center m-3">
       <%= text_field_tag :query,
       params[:query],
