@@ -7,9 +7,9 @@
   </div>
 
  <div class="nav-links">
-    <p><%= link_to "Dashboard", '#' %></p>
-    <p><%= link_to "Treasury",  '#' %></p>
-    <p><%= link_to "Sales",  '#' %></p>
-    <p><%= link_to "Exoenditures",  '#' %></p>
+    <p><%= link_to "Dashboard", reports_path%></p>
+    <p><%= link_to "Treasury",  report_treasury_path(Report.last.id) %></p>
+    <p><%= link_to "Sales",  report_sales_path(Report.last.id) %></p>
+    <p><%= link_to "Expenditures", report_expenditures_path(Report.last.id)%></p>
   </div>
 </div>
