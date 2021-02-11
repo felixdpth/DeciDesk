@@ -40,3 +40,16 @@
   background: #1BCB7F;
   color: white;
 }
+
+.btn-small {
+  color: white;
+  padding: 0px 8px;
+  border-radius: 4px;
+  background: #1F008C;
+  transition: background 0.3s ease;
+}
+
+.btn-small:hover {
+  background: #1BCB7F;
+  color: white;
+}

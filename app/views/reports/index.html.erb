@@ -1,8 +1,8 @@
 <%= render 'shared/side-nav' %>
 
-<div class="container-title">
-  <h2 class="title-dash">Hello <strong class="highlight"><%= @current_user.email%> </strong></h5>
-  <h5>Welcome to Decidesk, let’s get this accounting party started !</h5>
+<div class="container-title mt-5">
+  <h1 class="main-title"><strong class="highlight">Hello you !</strong></h1>
+  <h3 class="sub-title">Welcome to Decidesk, let’s get this accounting party started !</h3>
 
 <div class="card-page">
   <div class="col-lg-3 cards-page">
@@ -30,28 +30,19 @@
 
 <div class="card-page">
   <div class="col-lg-3 cards-page">
-    <h4> Start a <strong class="highlight">new Analysis</strong></h4>
-    <div>
-      <%= render 'form', report: @report %>
-    </div>
+    <h4 class="text-center"><strong class="highlight">New Analysis</strong></h4>
+    <div class="text-center">
+    <%= link_to "Import a FEC !", new_report_path, class: "btn btn-bleu" %></div>
   </div>
-  <div class="col-lg-3 cards-page">
-    <h4><strong class="highlight">Your analysis</strong></h4>
+
+  <div class="col-lg-6 cards-page">
+    <h4 class="text-center"><strong class="highlight">Your previous analysis</strong> (<%= Report.all.count %>)</h4>
+      <% Report.all.each do |report| %>
+        <div class="divRow d-flex justify-content-around">
+          <p class="divCell"><%= report.name %></p>
+          <p class="divCell"><%= report.created_at.strftime("%b %Y") %></p>
+          <p class="divCell"><%= link_to "See details", report_path(report.id), class: "btn btn-small" %></p>
+        </div> 
+      <% end %>
   </div>
-</div>
-
-
-<div class="card-page">
-</div>
-
-
-
-<div>
-  <%= current_user.email %>
-  <%= current_user.lines.count %>
-  <% if @reports %>
-    <p>You have <%= @current_user.reports.count %> FEC uploaded already !</p>
-  <% else %>
-    <p>You have not imported any FEC yet !</p>
-  <% end %>
 </div>
