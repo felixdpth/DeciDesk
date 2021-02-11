@@ -1,0 +1,51 @@
+<%= render 'shared/side-nav' %>
+<div class="container ml200">
+  <div class="dash-nav">
+    <p><%= link_to "Sales", report_sales_path %></p>
+    <p><%= link_to "Advice", report_sales_advise_path %></p>
+    <p><%= link_to "Notes", report_sales_comments_path %></p>
+    <p><%= link_to "All Sales", report_sales_transactions_path %></p>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Choose View</option>
+      <option value="1">Monthly</option>
+      <option value="2">Weeekly</option>
+    </select>
+  </div>
+</div>
+  <div class="row justify-content-center">
+      <h3 class ="mt-4" style= color:#1E0087>See all of your sales at a glance</h3>
+  </div>
+
+  <div class="container ml200">
+    <div class="container-equal-margin mb-4 p-0">
+      <%= form_tag report_sales_transactions_path, method: :get do %>
+      <div class="d-flex align-items-center m-3">
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control mr-1",
+      placeholder: "Search a date, an amount, a sale..."
+      %>
+      <%= submit_tag "Search", class: "btn btn-flat m-0" %>
+      <% end %>
+    </div>
+
+    <div class="divTableAll mt-3">
+      <div class="divRow d-flex justify-content-around">
+        <div class="divCell mb-3"><h5><strong class="highlight">Sale</strong></h5></div>
+        <div class="divCell mb-3"><h5><strong class="highlight">Date</strong></h5></div>
+        <div class="divCell mb-3"><h5><strong class="highlight">Amount</strong></h5></div>
+      </div>
+
+        <% @lines.each do |line| %>
+          <div class="divRow d-flex justify-content-around">
+            <div class="divCell"> <%= line.ecriture_lib %></div>
+            <div class="divCell"> <%= line.ecriture_date %></div>
+            <div class="divCell">€ <%= line.credit %> </div>
+          </div>
+        <% end %>
+
+    </div>
+
+  </div>
+
+  </div>

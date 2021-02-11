@@ -1,0 +1,39 @@
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid blue;
+}
+
+thead th:nth-child(1) {
+  width: 60%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 20%;
+}
+
+th, td {
+  padding: 20px;
+}
+
+tbody td {
+  text-align: center;
+}
+
+th {
+  text-align: center;
+}
+
+// zebra stripes in table
+.grey_line {
+  background-color: #f5f5f5;
+}
+
+table {
+  background-color: white;
+}

@@ -1,10 +1,10 @@
 <%= render 'shared/side-nav' %>
-<div class="container">
+<div class="container ml200">
   <div class="dash-nav">
-    <p><%= link_to "Sales", "./sales" %></p>
-    <p><%= link_to "Advise", "./advice" %></p>
-    <p><%= link_to "Notes", "./notes" %></p>
-    <p><%= link_to "All Sales", "./sales" %></p>
+    <p><%= link_to "Sales", report_sales_path %></p>
+    <p><%= link_to "Advice", report_sales_advise_path %></p>
+    <p><%= link_to "Notes", report_sales_comments_path %></p>
+    <p><%= link_to "All Sales", report_sales_transactions_path %></p>
     <select class="form-select" aria-label="Default select example">
       <option selected>Choose Your View</option>
       <option value="1">Monthly</option>
@@ -13,7 +13,7 @@
   </div>
 
   <div class="row d-flex justify-content-center mb-5 mt-5">
-    <h4>Your total sales for the period are <strong class="highlight">€ <%= number_with_delimiter(@total_sales, :delimiter => ',') %></strong></h4>
+    <h4>🚀 Your total sales for the period are <strong class="highlight">€ <%= number_with_delimiter(@total_sales, :delimiter => ',') %> 🚀</strong></h4>
   </div>
   <div class="row d-flex justify-content-around">
     <div class="col-lg-7 card-dash">
@@ -24,21 +24,22 @@
       <%= column_chart @sales_volume, download: true, title: "Monthly Sales Volume" %>
     </div>
 
-      <div class="divTable">
+      <div class="ml50 mb40">
         <div class="divRow"> Top 5 - Sales 💶</div>
-          <div class="headRow">
-            <div class="divCell"><strong class="highlight">Sales</strong></div>
-            <div class="divCell"><strong class="highlight">Date</strong></div>
-            <div class="divCell"><strong class="highlight">Amount</strong></div>
-          </div>
-
-          <% @top5sales_credit.each do |line| %>
-          <div class="divRow">
-            <div class="divCell"><%= line.ecriture_lib %></div>
-            <div class="divCell"><%= line.ecriture_date %></div>
-            <div class="divCell"><%= line.credit %></div>
-          </div>
-        <% end %>
+          <table>
+            <tr class="grey_line">
+              <th><strong class="highlight">Sales</strong></th>
+              <th><strong class="highlight">Date</strong></th>
+              <th><strong class="highlight">Amount</strong></th>
+            </tr>
+          <% @top5sales_credit.each_with_index do |line, index| %>
+            <tr class="<%= 'grey_line' if index.odd? %>">
+              <td><%= line.ecriture_lib %></td>
+              <td><%= line.ecriture_date %></td>
+              <td>€ <%= line.credit %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>
