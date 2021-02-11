@@ -36,8 +36,8 @@
   </div>
 
   <div class="col-lg-6 cards-page">
-    <h4 class="text-center"><strong class="highlight">Your previous analysis</strong> (<%= Report.all.count %>)</h4>
-      <% Report.all.each do |report| %>
+    <h4 class="text-center"><strong class="highlight">Your previous analysis</strong> (<%= @current_user.reports.all.count %>)</h4>
+      <% @current_user.reports.all.each do |report| %>
         <div class="divRow d-flex justify-content-around">
           <p class="divCell"><%= report.name %></p>
           <p class="divCell"><%= report.created_at.strftime("%b %Y") %></p>
