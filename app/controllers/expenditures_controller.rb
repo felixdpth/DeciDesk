@@ -12,6 +12,11 @@ before_action :set_report, only: [:show, :transactions]
     @expenditures = @report.lines.where(category: "Expenditures")
     authorize current_user, policy_class: ExpenditurePolicy
     @top5_expenditures = @report.expenditures_top5_debit
+    sum = 0
+    @total_expenditures = @expenditures.each do |expenditure|
+      sum += expenditure.debit
+    end
+    @total_expenditures = sum.round(0)
   end
 
   def transactions
