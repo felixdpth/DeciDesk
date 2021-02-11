@@ -1,5 +1,5 @@
 .container-title {
-  margin-left: 200px;
+  margin-left: 250px;
 }
 
 .card-page {
@@ -8,34 +8,57 @@
   justify-content: center;
 }
 
-.cards-page {empty-cells: show;
+.cards-page {
+    empty-cells: show;
     background-position: center;
-    height: 220px;
+    height: auto;
     justify-content: center;
     align-items: center;
-    color: white;
+    background-color: white;
     font-size: 24px;
     font-weight: bold;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    margin: 20px;
-    padding: 8px;
+    margin: 40px;
+    padding: 18px;
     padding-left: 12px;
   }
 
 .card-page h4{
-  color: black
+  color: black;
+  text-align: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .card-page h2{
   text-align: center;
   align-items: center;
-  margin-top: 30px;
 }
 
 .card-page h5{
   text-align: center;
   align-items: center;
   color: black;
+}
+
+.card-page p{
+  text-align: center;
+  align-items: center;
+  color: black;
+  font-size: 15px;
+}
+
+.main-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.sub-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
 }
