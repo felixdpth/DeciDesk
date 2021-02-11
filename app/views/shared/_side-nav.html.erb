@@ -1,0 +1,15 @@
+<div class="sidenav">
+  <%= link_to reports_path, class: "navbar-brand" do %>
+    <%= image_tag "logo-white.png" %>
+  <% end %>
+<div class="user">
+  <%= current_user.email %>
+</div>
+
+ <div class="nav-links">
+  <a href="#about">Dashboard</a>
+  <a href="#services">Treasury</a>
+  <a href="#clients">Sales</a>
+  <a href="#contact">Expenditure</a>
+  </div>
+</div>
