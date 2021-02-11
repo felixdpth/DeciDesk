@@ -2,14 +2,14 @@
   <%= link_to reports_path, class: "navbar-brand" do %>
     <%= image_tag "logo-white.png" %>
   <% end %>
-<div class="user">
-  <%= current_user.email %>
-</div>
+  <div class="user">
+    <%= current_user.email %>
+  </div>
 
  <div class="nav-links">
-  <a href="#about">Dashboard</a>
-  <a href="#services">Treasury</a>
-  <a href="#clients">Sales</a>
-  <a href="#contact">Expenditure</a>
+    <p><%= link_to "Dashboard", reports_path%></p>
+    <p><%= link_to "Treasury",  report_treasury_path(Report.last.id) %></p>
+    <p><%= link_to "Sales",  report_sales_path(Report.last.id) %></p>
+    <p><%= link_to "Expenditures", report_expenditures_path(Report.last.id)%></p>
   </div>
 </div>
