@@ -1,19 +1,23 @@
 .sidenav {
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: $blue;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
-  
-  .sidenav a {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: $blue;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.nav-links {
+  margin-top: 50px;
+}
+
+.nav-links a{
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: $light-gray;
     display: block;
     transition: background 0.3s ease;
@@ -32,16 +36,10 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    background: transparent;
 }
 
-.sidenav img:hover {
-  text-decoration: none;
 
-}
-
-.nav-links {
-  margin-top: 50px;
-}
 
 .user {
   font-size: 15px;
