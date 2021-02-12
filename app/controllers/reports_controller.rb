@@ -16,7 +16,8 @@ class ReportsController < ApplicationController
 
   def show
     authorize @report
-    @reports = Report.all
+    @treasury_balance = (@report.lines.treasury_debit_lines.sum - @report.lines.treasury_credit_lines.sum).to_f
+    @treasury_last_day =  @report.lines.treasury_last_day
   end
 
   def new
@@ -31,7 +32,7 @@ class ReportsController < ApplicationController
     @report.save
     ParseCsv.new(params[:report][:csv_file].tempfile.path, @report).call
 
-    redirect_to reports_path
+    redirect_to report_path(@report)
   end
 
   def edit
