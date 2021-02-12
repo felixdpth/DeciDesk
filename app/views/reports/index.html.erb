@@ -17,6 +17,8 @@
   <div class="card-page">
     <div class="col-lg-12 cards-page">
       <h4 class="text-center"><strong class="highlight">Your previous analysis</strong> (<%= @current_user.reports.all.count %>)</h4>
+      
+      <% if @current_user.reports %>    
         <% @current_user.reports.all.each do |report| %>
           <div class="divRow d-flex justify-content-around">
             <p class="divCell"><%= report.name %></p>
@@ -24,6 +26,7 @@
             <p class="divCell"><%= link_to "See details", report_path(report.id), class: "btn btn-small" %></p>
           </div> 
         <% end %>
+         <% end %>
     </div>
   </div>
 </div>
