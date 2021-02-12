@@ -2,6 +2,6 @@
    <%= simple_form_for(@report) do |f| %>
     <%= f.input :name, as: :string, hint: 'We suggest naming your report by time period', require: true %>
     <%= f.input :csv_file, as: :file, hint: 'Upload your FEC in csv format here', required: true %>
-    <%= f.button :submit, 'Send!', class: 'btn-nav', data: {disable_with: "We are loading your file!"} %>
+    <%= f.button :submit, 'Send !', class: 'btn-nav', data: {disable_with: "We are loading your file!"} %>
   <% end %>
 </div>

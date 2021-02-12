@@ -72,14 +72,14 @@
        <div class="divTable">
          <div class="d-flex justify-content-around"> Top 5 - CashIn 👍</div>
          <div class="DivRow d-flex justify-content-around">
-           <div  class="divCell"><strong class="highlight">Account number</strong></div>
+           <div  class="divCell"><strong class="highlight">Item</strong></div>
            <div  class="divCell"><strong class="highlight">Date</strong></div>
            <div  class="divCell"><strong class="highlight">Amount</strong></div>
          </div>
 
          <% @top5_debit.each do |line| %>
            <div class="DivRow d-flex justify-content-around">
-             <div class="divCell"><%= line.compte_num %></div>
+             <div class="divCell"><%= line.compte_lib %></div>
              <div class="divCell"> <%= line.ecriture_date.strftime('%d %B %Y') %></div>
              <div class="divCell">€ <%= number_with_delimiter(line.debit.to_i, :delimiter => ',') %></div>
            </div> 
@@ -89,14 +89,14 @@
       <div class="divTable">
         <div class="d-flex justify-content-around"> Top 5 - CashOut 👎 </div>
           <div class="DivRow d-flex justify-content-around">
-            <div  class="divCell"><strong class="highlight">Account number</strong></div>
+            <div  class="divCell"><strong class="highlight">Item</strong></div>
             <div  class="divCell"><strong class="highlight">Date</strong></div>
             <div  class="divCell"><strong class="highlight">Amount</strong></div>
           </div>
         
           <% @top5_credit.each do |line| %>
           <div class="DivRow d-flex justify-content-around">
-            <div class="divCell"><%= line.compte_num %></div>
+            <div class="divCell"><%= line.compte_lib %></div>
             <div class="divCell"><%= line.ecriture_date.strftime('%d %B %Y') %></div>
             <div class="divCell">€ - <%= number_with_delimiter(line.credit.to_i, :delimiter => ',') %></div>
           </div>

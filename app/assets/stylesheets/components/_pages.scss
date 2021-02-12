@@ -8,7 +8,7 @@
   justify-content: start;
   height: 30px;
   color: rgba(0, 0, 0, 0.3);
-  border-bottom: solid 1px #1f008c;
+  border-bottom: solid 1px $blue;
   margin-bottom: 20px;
 }
 
@@ -16,7 +16,7 @@
   margin-right: 110px;
   margin-left: 10px;
   margin-bottom: 10px;
-  color: #1f008c;
+  color: $blue;
 }
 
 // Card for the graph
@@ -105,7 +105,7 @@
   justify-content: around;
   width: 100%;
   text-align: center;
-  border-bottom: dashed 1px #1f008c;
+  border-bottom: dashed 1px $blue;
 }
 
 .divCell {
