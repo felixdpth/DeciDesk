@@ -41,7 +41,7 @@
            <div  class="divCell"><strong class="highlight">Amount</strong></div>
          </div>
 
-         <% Line.monthly_cash.each do |key, value| %>
+         <% @report.lines.monthly_cash.each do |key, value| %>
            <div class="divRow d-flex justify-content-around">
              <div class="divCell"> <%= key.strftime("%b %Y") %></div>
              <div class="divCell">€ <%= number_with_delimiter(value.to_i, :delimiter => ',') %> </div>
@@ -58,7 +58,7 @@
            <div  class="divCell"><strong class="highlight">Amount</strong></div>
          </div>
 
-         <% Line.weekly_cash.each do |key, value| %>
+         <% @report.lines.weekly_cash.each do |key, value| %>
            <div class="divRow d-flex justify-content-around">
              <div class="divCell"> <%= key.strftime("%d %B %Y") %></div>
              <div class="divCell">€ <%= number_with_delimiter(value.to_i, :delimiter => ',') %></div>
