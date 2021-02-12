@@ -1,5 +1,5 @@
 class ExpendituresController < ApplicationController
-before_action :set_report, only: [:show, :transactions]
+before_action :set_report, only: [:show, :transactions, :advice, :comments]
 
   def index
     @lines = Line.all
@@ -29,9 +29,11 @@ before_action :set_report, only: [:show, :transactions]
   end
 
   def advice
+    authorize current_user, policy_class: ExpenditurePolicy
   end
 
   def comments
+    authorize current_user, policy_class: ExpenditurePolicy
   end
 
   private
