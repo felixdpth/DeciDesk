@@ -6,17 +6,33 @@
     <h1 class="main-title"><strong class="highlight">Hello you !</strong></h1>
     <h3 class="sub-title">Welcome to Decidesk, let’s get this accounting party started !</h3>
 
-    <div class="card-page">
-      <div class="col-lg-12 cards-page">
-        <h4 class="text-center"><strong class="highlight">New Analysis</strong></h4>
-        <div class="text-center">
-        <%= link_to "Import a FEC !", new_report_path, class: "btn btn-bleu" %></div>
+ </div>
+
+ <div class="container">
+  <div class="card-dash col-lg-12">
+      <h4 class="text-center mb-5"><strong class="highlight">Your activity on DeciDesk</strong></h4>
+      <div class="row mt-3">
+        <div class="col text-center"><h5><strong class="highlight-blue"><%= number_with_delimiter(@current_user.reports.all.count, :delimiter => ',') %></strong></h5></div>
+        <div class="col text-center"><h5><strong class="highlight-blue"><%= number_with_delimiter(@current_user.lines.all.count, :delimiter => ',') %></strong> </h5></div>
+      </div>
+      <div class="row mt-3">
+        <div class="col text-center"><h5>Reports uploaded</h5></div>
+        <div class="col text-center"><h5>Lines Analysed</h5></div>
+      </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div class="d-flex flex-column" style="min-width: 50%">
+      <div class="card-dash">
+          <h4 class="text-center"><strong class="highlight">Upload a new FEC for analysis</strong></h4>
+          <div>
+            <%= render 'reports/form' %>
+        </div>
       </div>
     </div>
-
-    <div class="card-page">
-      <div class="col-lg-12 cards-page">
-        <h4 class="text-center"><strong class="highlight">Your previous analysis</strong> (<%= @current_user.reports.all.count %>)</h4>
+    <div class="d-flex flex-column" style="min-width: 50%">
+      <div class="card-dash">
+        <h4 class="text-center"><strong class="highlight">Your previous analysis</strong></h4>
         <% if @current_user.reports %>
           <% @current_user.reports.all.each do |report| %>
             <div class="divRow d-flex justify-content-around">
@@ -29,21 +45,6 @@
       </div>
     </div>
   </div>
-
-  <div class="card-page mb-5">
-    <div class="col-lg-12 cards-page">
-      <h4 class="text-center mb-5"><strong class="highlight">Your activity on DeciDesk</strong></h4>
-      <div class="row mt-3">
-        <div class="col text-center"><h5><strong class="highlight-blue"><%= number_with_delimiter(@current_user.reports.all.count, :delimiter => ',') %></strong></h5></div>
-        <div class="col text-center"><h5><strong class="highlight-blue"><%= number_with_delimiter(@current_user.lines.all.count, :delimiter => ',') %></strong> </h5></div>
-        <div class="col text-center"><h5><strong class="highlight-blue"><%= number_with_delimiter(@current_user.lines.all.count, :delimiter => ',') %></strong> </h5></div>
-      </div>
-      <div class="row mt-3">
-        <div class="col text-center"><h5>Reports uploaded</h5></div>
-        <div class="col text-center"><h5>Lines Analysed</h5></div>
-        <div class="col text-center"><h5>Lines Analysed</h5></div>
-      </div>
-    </div>
   </div>
+</div>
 
- </div>
