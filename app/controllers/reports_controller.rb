@@ -6,6 +6,8 @@ class ReportsController < ApplicationController
   def index
     @reports = Report.all
     @reports = policy_scope(Report).order(created_at: :desc)
+    @report = Report.new
+    authorize @report
     authorize @reports
   end
 
