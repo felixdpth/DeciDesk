@@ -1,26 +1,34 @@
 <div class="sidenav">
   <div class="flex-container">
-      <%= link_to reports_path, class: "text-muted" do %>
-        <%= image_tag "logo-white.png" %>
-      <% end %>
-      <div class="dd-title">Decidesk</div>
+    <%= link_to reports_path, class: "text-muted" do %>
+      <%= image_tag "logo-white.png" %>
+    <% end %>
+    <div class="dd-title">Decidesk</div>
   </div>
- <div class="nav-links">
-    <p><%= link_to reports_path do %>
-      <i class="fas fa-home pr-10"></i> Dashboard
-    <% end %>
+
+  <div class="nav-links">
+    <p>
+      <%= link_to reports_path do %>
+        <i class="fas fa-home pr-10"></i> Dashboard
+      <% end %>
     </p>
-    <p><%= link_to report_treasury_path(@report) do %>
-      <i class="fas fa-piggy-bank pr-10"></i> Treasury
-    <% end %>
+
+    <p>
+      <%= link_to report_treasury_path(@report) do %>
+        <i class="fas fa-piggy-bank pr-10"></i> Treasury
+      <% end %>
     </p>
-    <p><%= link_to report_sales_path(@report) do %>
-      <i class="fas fa-cart-plus pr-10"></i> Sales
-    <% end %>
+
+    <p>
+      <%= link_to report_sales_path(@report) do %>
+        <i class="fas fa-cart-plus pr-10"></i> Sales
+      <% end %>
     </p>
-    <p><%= link_to report_expenditures_path(@report) do %>
-      <i class="fas fa-coins pr-10"></i> Expenditures
-    <% end %>
+
+    <p>
+      <%= link_to report_expenditures_path(@report) do %>
+        <i class="fas fa-coins pr-10"></i> Expenditures
+      <% end %>
     </p>
   </div>
 </div>
