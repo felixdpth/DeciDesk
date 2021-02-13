@@ -17,10 +17,20 @@ before_action :set_report, only: [:show, :transactions, :advice, :comments]
       sum += expenditure.debit
     end
     @total_expenditures = sum.round(0)
+
+    @sales = @report.lines.where(category: "Sales")
+    sum = 0
+    @total_sales = @sales.each do |sale|
+      sum += sale.credit
+    end
+    @total_sales = sum.round(0)
+
      authorize @report
     @treasury_balance = (@report.lines.treasury_debit_lines.sum - @report.lines.treasury_credit_lines.sum).to_f
     @treasury_last_day =  @report.lines.treasury_last_day
   end
+
+
 
   def transactions
     authorize current_user, policy_class: ExpenditurePolicy
