@@ -1,89 +1,104 @@
 <%= render 'shared/side-nav' %>
 <%= render 'shared/tabs', section: :treasury %>
 
-  <div class="row d-flex justify-content-center mb-5 mt-5">
-    <h4>Your cash is at <strong class="highlight">€ <%= number_with_delimiter(@balance_last_day.to_i, :delimiter => ',') %> € </strong>on <%= @treasury_last_day.ecriture_date.strftime("%d %B %Y") %> </h4>
-  </div>
 
-  <div class="row d-flex justify-content-around">
-    <div class="col-lg-7 card-dash">
-       <%= column_chart @treasuries.monthly_cash, prefix: "€", thousands: ",", download: true, title: "Monthly Cash" %>
-    </div>
-
-    <div class="col-lg-7 card-dash">
-       <%= column_chart @treasuries.weekly_cash, prefix: "€", thousands: ",", download: true, title: "Weekly Cash" %>
-    </div>
-
-      <div class="divTable">
-         <div class="d-flex justify-content-around"> How's your cash on the period ? </div>
-         <div class="DivRow d-flex justify-content-around">
-           <div  class="divCell"><strong class="highlight">Date</strong></div>
-           <div  class="divCell"><strong class="highlight">Amount</strong></div>
-         </div>
-
-         <% @report.lines.monthly_cash.each do |key, value| %>
-           <div class="divRow d-flex justify-content-around">
-             <div class="divCell"> <%= key.strftime("%b %Y") %></div>
-             <div class="divCell">€ <%= number_with_delimiter(value.to_i, :delimiter => ',') %> </div>
-           </div>
-         <% end %>
+<div class="container ml200">
+  <br>
+  <h2 class="text-center">At a glance: all you need to know abour your expenditures</h2>
+  
+  <div class="d-flex justify-content-between p-3">
+    <div class="d-flex flex-column" style="min-width: 45%">
+      <div class="card-dash">
+        <h3 class="text-center">Monthly Cash</h3>
+        <br>
+        <%= column_chart @treasuries.monthly_cash, prefix: "€", thousands: ",", download: true %>
       </div>
-    </div>
-  </div>
-
-        <div class="divTable">
-         <div class="d-flex justify-content-around"> How's your cash on the period ? </div>
-         <div class="DivRow d-flex justify-content-around">
-           <div  class="divCell"><strong class="highlight">Date</strong></div>
-           <div  class="divCell"><strong class="highlight">Amount</strong></div>
-         </div>
-
-         <% @report.lines.weekly_cash.each do |key, value| %>
-           <div class="divRow d-flex justify-content-around">
-             <div class="divCell"> <%= key.strftime("%d %B %Y") %></div>
-             <div class="divCell">€ <%= number_with_delimiter(value.to_i, :delimiter => ',') %></div>
-           </div>
-         <% end %>
-      </div>
-    </div>
-  </div>
-
-    <div class="row d-flex justify-content-around">
-
-       <div class="divTable">
-         <div class="d-flex justify-content-around"> Top 5 - CashIn 👍</div>
-         <div class="DivRow d-flex justify-content-around">
-           <div  class="divCell"><strong class="highlight">Item</strong></div>
-           <div  class="divCell"><strong class="highlight">Date</strong></div>
-           <div  class="divCell"><strong class="highlight">Amount</strong></div>
-         </div>
-
-         <% @top5_debit.each do |line| %>
-           <div class="DivRow d-flex justify-content-around">
-             <div class="divCell"><%= line.compte_lib %></div>
-             <div class="divCell"> <%= line.ecriture_date.strftime('%d %B %Y') %></div>
-             <div class="divCell">€ <%= number_with_delimiter(line.debit.to_i, :delimiter => ',') %></div>
-           </div>
-         <% end %>
-      </div>
-
-      <div class="divTable">
-        <div class="d-flex justify-content-around"> Top 5 - CashOut 👎 </div>
-          <div class="DivRow d-flex justify-content-around">
-            <div  class="divCell"><strong class="highlight">Item</strong></div>
-            <div  class="divCell"><strong class="highlight">Date</strong></div>
-            <div  class="divCell"><strong class="highlight">Amount</strong></div>
-          </div>
-
-          <% @top5_credit.each do |line| %>
-          <div class="DivRow d-flex justify-content-around">
-            <div class="divCell"><%= line.compte_lib %></div>
-            <div class="divCell"><%= line.ecriture_date.strftime('%d %B %Y') %></div>
-            <div class="divCell">€ - <%= number_with_delimiter(line.credit.to_i, :delimiter => ',') %></div>
-          </div>
-        <% end %>
+      
+      <div class="card-dash">
+        <table class="table table-hover">
+          <h3 class="text-center">Top <strong class="highlight">cashin</strong> items this year</h3>
+          <br>
+          <thead style= "color: grey">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">item</th>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @top5_debit.each_with_index do |line, index| %>
+              <tr>
+                <th scope="row" span class="badge bg-secondary" style= "color: white"><%= index + 1 %></th>
+                <td><%= line.compte_lib %></th>
+                <td><%= line.ecriture_date.strftime('%d %B %Y') %></td>
+                <td>€ <%= number_with_delimiter(line.debit.to_i, :delimiter => ',') %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="text-center"><%= link_to "Show more", report_treasury_transactions_path(@report), class: "btn btn-bleu" %>
+        </div>
       </div>
 
     </div>
 
-</div>
+  <div class="d-flex flex-column ml-4" style="max-width: 53%">
+    <div class="four-cards">
+      <div class="d-flex justify-content-between">
+        <div class="card-dash p-4 text-center" style="min-width: 45%; color: grey">
+          <h4>Total <strong class="highlight">CashIn</strong></h4>
+          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@cash_in.to_i, :delimiter => ',') %></strong></h2>
+          <p class="m-0">during the period</p>
+        </div>
+  
+        <div class="card-dash p-4 text-center" style="min-width: 45%; color: grey">
+          <h4>Total <strong class="highlight">Cashout</strong></h4>
+          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@cash_out.to_i, :delimiter => ',') %></strong></h2>
+          <p class="m-0">during the period</p>
+        </div>  
+      </div>
+  
+      <div class="d-flex justify-content-between">
+        <div class="card-dash p-4 text-center" style="min-width: 45%; color: grey">
+          <h4>Total <strong class="highlight">CashIn</strong></h4>
+          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@cash_in.to_i, :delimiter => ',') %></strong></h2>
+          <p class="m-0">during the period</p>
+        </div>
+  
+        <div class="card-dash p-4 text-center" style="min-width: 45%; color: grey">
+          <h4>Total <strong class="highlight">Cashout</strong></h4>
+          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@cash_out.to_i, :delimiter => ',') %></strong></h2>
+          <p class="m-0">during the period</p>
+        </div>  
+      </div>
+    </div> 
+      
+
+    <div class="card-dash" id="table-right">
+      <table class="table table-hover">
+        <h3 class="text-center">Top <strong class="highlight">cashout</strong> items this year</h3>
+        <br>
+         <thead style= "color: grey">
+           <tr>
+            <th scope="col">#</th>
+            <th scope="col">item</th>
+            <th scope="col">Date</th>
+            <th scope="col">Amount</th>
+           </tr>
+         </thead>
+         <tbody>
+           <% @top5_credit.each_with_index do |line, index| %>
+             <tr>
+               <th scope="row" span class="badge bg-secondary" style= "color: white"><%= index + 1 %></th>
+               <td><%= line.compte_lib %></th>
+               <td><%= line.ecriture_date.strftime('%d %B %Y') %></td>
+               <td>€ -<%= number_with_delimiter(line.credit.to_i, :delimiter => ',') %></td>
+             </tr>
+           <% end %>
+         </tbody>
+      </table>
+      <div class="text-center"><%= link_to "Show more", report_treasury_transactions_path(@report), class: "btn btn-bleu" %>
+      </div>
+    </div>  
+</div>  
