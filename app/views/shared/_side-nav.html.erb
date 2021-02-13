@@ -1,15 +1,27 @@
 <div class="sidenav">
-  <%= link_to reports_path, class: "text-muted" do %>
-    <%= image_tag "logo-white.png" %>
-  <% end %> 
-  <div class="user">
-    <%= current_user.email %>
+  <div class="flex-container">
+      <%= link_to reports_path, class: "text-muted" do %>
+        <%= image_tag "logo-white.png" %>
+      <% end %>
+      <div class="dd-title">Decidesk</div>
   </div>
-
  <div class="nav-links">
-    <p><%= link_to "Dashboard", reports_path%></p>
-    <p><%= link_to "Treasury",  report_treasury_path(@report) %></p>
-    <p><%= link_to "Sales",  report_sales_path(@report) %></p>
-    <p><%= link_to "Expenditures", report_expenditures_path(@report)%></p>
+    <p><%= link_to reports_path do %>
+      <i class="fas fa-home pr-10"></i> Dashboard
+    <% end %>
+    </p>
+    <p><%= link_to report_treasury_path(@report) do %>
+      <i class="fas fa-piggy-bank pr-10"></i> Treasury
+    <% end %>
+    </p>
+    <p><%= link_to report_sales_path(@report) do %>
+      <i class="fas fa-cart-plus pr-10"></i> Sales
+    <% end %>
+    </p>
+    <p><%= link_to report_expenditures_path(@report) do %>
+      <i class="fas fa-coins pr-10"></i> Expenditures
+    <% end %>
+    </p>
   </div>
 </div>
+
