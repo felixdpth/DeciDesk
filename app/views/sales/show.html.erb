@@ -1,33 +1,5 @@
 <%= render 'shared/side-nav' %>
-
-<div class="main-tabs ml200">
-  <div class="row"> 
-
-    <div class="col-lg">
-      <div class="tab-title">
-        <h4> <strong class="highlight">Sales</strong></h1>
-      </div>
-    </div>
-
-    <div class="col-lg">
-       <div class="tabs">
-         <div class="tab active">
-           <a href="<%= report_sales_path %>">Highlights</a>
-         </div>
-         <div class="tab">
-           <a href="<%= report_sales_advice_path %>">Advice</a>
-         </div>
-         <div class="tab">
-           <a href="<%= report_sales_comments_path %>">Notes</a>
-         </div>
-         <div class="tab ">
-           <a href="<%= report_sales_transactions_path %>">All transactions</a>
-         </div>
-       </div>
-    </div>
-  </div>
-</div>
-
+<%= render 'shared/tabs', section: :sales %>
 
 <div class="container ml200">
   <div class="row d-flex justify-content-center mb-5 mt-5">
