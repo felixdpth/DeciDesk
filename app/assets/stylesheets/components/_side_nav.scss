@@ -1,6 +1,6 @@
 .sidenav {
   height: 100%;
-  width: 200px;
+  width: 15%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -15,31 +15,29 @@
 }
 
 .nav-links a{
-    padding: 6px 8px 6px 16px;
+    padding: 6px 10px 6px 20px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 15px !important;
     color: $light-gray;
     display: block;
     transition: background 0.3s ease;
+    font-family: 'Lato', sans-serif;
   }
-  
+
   .sidenav a:hover {
-    color: #f1f1f1;
-    background: $green;
-    color: $blue;
+    color: green;
+    background-color: #102E69;
   }
 
   .sidenav img {
-    height: 80px;
+    height: 35px;
     width: auto;
     text-align: center;
     display: block;
-    margin-left: auto;
+    margin-left: 20px;
     margin-right: auto;
     background: transparent;
 }
-
-
 
 .user {
   font-size: 15px;
@@ -53,7 +51,7 @@
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
   }
-  
+
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
