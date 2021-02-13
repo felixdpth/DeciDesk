@@ -1,7 +1,7 @@
 <%= render 'shared/side-nav' %>
 
 <div class="main-tabs ml200">
-  <div class="row"> 
+  <div class="row">
 
     <div class="col-lg">
       <div class="tab-title">
@@ -21,28 +21,43 @@
            <a href="<%= report_sales_comments_path %>">Notes</a>
          </div>
          <div class="tab ">
-           <a href="<%= report_sales_transactions_path %>">All transactions</a>
+           <a href="<%= report_sales_transactions_path %>">All Sales</a>
          </div>
        </div>
     </div>
   </div>
 </div>
 
-
 <div class="container ml200">
-  <div class="row d-flex justify-content-center mb-5 mt-5">
-    <h4>🚀 Your total sales for the period are <strong class="highlight">€ <%= number_with_delimiter(@total_sales, :delimiter => ',') %> 🚀</strong></h4>
-  </div>
-  <div class="row d-flex justify-content-around">
-    <div class="col-lg-7 card-dash">
-      <%= column_chart @annual_sales, prefix: "€", thousands: ",", download: true, title: "Monthly Sales" %>
+
+  <div class="d-flex justify-content-between p-3">
+
+    <div class="d-flex flex-column" style="min-width: 45%">
+      <div class="card-dash">
+        <%= column_chart @annual_sales, prefix: "€", thousands: ",", download: true, title: "Monthly Sales" %>
+      </div>
+
+      <div class="card-dash">
+        <%= column_chart @sales_volume, download: true, title: "Monthly Sales Volume" %>
+      </div>
+
     </div>
 
-    <div class="col-lg-7 card-dash">
-      <%= column_chart @sales_volume, download: true, title: "Monthly Sales Volume" %>
-    </div>
+    <div class="d-flex flex-column" style="max-width: 53%">
+      <div class="d-flex justify-content-between">
 
-      <div class="ml50 mb40">
+        <div class="card-dash p-4 text-center" style="min-width: 45%; color: #999">
+          <h4>Total <strong class="highlight">Sales</strong></h4>
+          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_sales, :delimiter => ',') %></strong></h2>
+        </div>
+
+        <div class="card-dash p-4 text-center" style="min-width: 45%; color: #999">
+          <h4>Volume of <strong class="highlight">Sales</strong></h4>
+          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> <%= @sales.count %> </strong></h2>
+        </div>
+      </div>
+
+      <div class="card-dash">
         <div class="divRow"> Top 5 - Sales 💶</div>
           <table>
             <tr class="grey_line">
@@ -59,6 +74,10 @@
           <% end %>
         </table>
       </div>
+
     </div>
+
   </div>
+
 </div>
+

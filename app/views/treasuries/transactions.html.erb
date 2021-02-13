@@ -1,7 +1,7 @@
 <%= render 'shared/side-nav' %>
 
 <div class="main-tabs ml200">
-  <div class="row"> 
+  <div class="row">
 
     <div class="col-lg">
       <div class="tab-title">
@@ -30,7 +30,7 @@
 
 <div class="container ml200">
   <h3 class="text-center mb-5 mt-5">All treasury transactions 👎</h3>
- 
+
   <div class="container">
     <div class="container-equal-margin mb-4 p-0">
       <%= form_tag report_treasury_transactions_path, method: :get do %>
@@ -43,19 +43,19 @@
       <%= submit_tag "Search", class: "btn btn-flat m-0" %>
       <% end %>
     </div>
-    
+
     <div class="divTableAll mt-3">
       <div class="divRow d-flex justify-content-around">
         <div class="divCell mb-3"><h5><strong class="highlight">Ecriture</strong></h5></div>
         <div class="divCell mb-3"><h5><strong class="highlight">Date</strong></h5></div>
         <div class="divCell mb-3"><h5><strong class="highlight">Amount</strong></h5></div>
       </div>
-    
+
         <% @lines.each do |line| %>
-          <div class="divRow d-flex justify-content-around"> 
+          <div class="divRow d-flex justify-content-around">
           <div class="divCell"> <%= line.compte_lib %></div>
           <div class="divCell"> <%= line.ecriture_date %></div>
-      
+
           <% if line.debit == 0 %>
             <div class="divCell">- <%= line.credit %> </div>
           <% else %>
@@ -63,9 +63,9 @@
           <% end %>
           </div>
         <% end %>
-      
+
     </div>
-  
+
   </div>
 
 </div>

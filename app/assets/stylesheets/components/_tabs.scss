@@ -1,7 +1,9 @@
 
 .main-tabs {
-  margin-top: 15px; 
   border-bottom: solid 1px $blue;
+  background-color: white;
+  box-shadow: 0px 2px 4px 0px rgba(200, 198, 198, 0.92);
+  height: 76px;
 }
 
 .tab-title {
