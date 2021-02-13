@@ -1,0 +1,33 @@
+<div class="main-tabs">
+  <div class="row"> 
+
+    <div class="col-lg">
+      <div class="tab-title">
+        <h4> <strong class="highlight"><%=section.to_s.capitalize %></strong></h1>
+      </div>
+    </div>
+
+    <div class="col-lg">
+      <% advice_active = request.original_url.end_with?('advice') ? 'active': '' %>
+      <% section_active = request.original_url.end_with?(section.to_s) ? 'active': '' %>
+      <% comments_active = request.original_url.end_with?('comments') ? 'active': '' %>
+      <% transactions_active = request.original_url.end_with?('transactions') ? 'active': '' %>
+
+      <div class="tabs">
+        <div class="tab <%= section_active %>">
+          <%= link_to 'Highlights', [:report, section] %>
+        </div>
+        <div class="tab <%= advice_active %>">
+          <%= link_to 'Advice', [:report, section, :advice] %>
+        </div>
+        <div class="tab <%= comments_active %>">
+          <%= link_to 'Notes', [:report, section, :comments] %>
+        </div>
+        <div class="tab <%= transactions_active %>">
+          <%= link_to 'All transactions', [:report, section, :transactions] %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

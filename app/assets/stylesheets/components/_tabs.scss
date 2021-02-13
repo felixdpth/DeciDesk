@@ -1,7 +1,14 @@
 
 .main-tabs {
-  margin-top: 15px; 
-  border-bottom: solid 1px $blue;
+  margin-top: 0px;
+  border-bottom: solid 1px #0C2556;
+  background-color: white;
+  padding: 15px;
+  width: 85%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 3000;
 }
 
 .tab-title {
@@ -12,7 +19,7 @@
 
 .tabs {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 .tab {
@@ -20,6 +27,8 @@
   padding: 5px 20px;
   color: $blue;
   font-size: 15px;
+  margin-left: 10px;
+  font-weight: bold;
 }
 
 .tab:hover {
@@ -28,7 +37,6 @@
 
 .active {
   border-bottom: solid 5px $green;
-  font-weight: bold;
 }
 
 .tab a {

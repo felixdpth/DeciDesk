@@ -1,34 +1,5 @@
 <%= render 'shared/side-nav' %>
-
-<div class="main-tabs ml200">
-  <div class="row"> 
-
-    <div class="col-lg">
-      <div class="tab-title">
-        <h4> <strong class="highlight">Treasury</strong></h1>
-      </div>
-    </div>
-
-    <div class="col-lg">
-       <div class="tabs">
-         <div class="tab active">
-           <a href="<%= report_treasury_path %>">Highlights</a>
-         </div>
-         <div class="tab">
-           <a href="<%= report_treasury_advice_path %>">Advice</a>
-         </div>
-         <div class="tab">
-           <a href="<%= report_treasury_comments_path %>">Notes</a>
-         </div>
-         <div class="tab">
-           <a href="<%= report_treasury_transactions_path %>">All transactions</a>
-         </div>
-       </div>
-    </div>
-  </div>
-</div>
-
-<div class="container ml200">
+<%= render 'shared/tabs', section: :treasury %>
 
   <div class="row d-flex justify-content-center mb-5 mt-5">
     <h4>Your cash is at <strong class="highlight">€ <%= number_with_delimiter(@balance_last_day.to_i, :delimiter => ',') %> € </strong>on <%= @treasury_last_day.ecriture_date.strftime("%d %B %Y") %> </h4>
@@ -45,7 +16,7 @@
 
       <div class="divTable">
          <div class="d-flex justify-content-around"> How's your cash on the period ? </div>
-         <div class="DivRow d-flex justify-content-around"> 
+         <div class="DivRow d-flex justify-content-around">
            <div  class="divCell"><strong class="highlight">Date</strong></div>
            <div  class="divCell"><strong class="highlight">Amount</strong></div>
          </div>
@@ -54,7 +25,7 @@
            <div class="divRow d-flex justify-content-around">
              <div class="divCell"> <%= key.strftime("%b %Y") %></div>
              <div class="divCell">€ <%= number_with_delimiter(value.to_i, :delimiter => ',') %> </div>
-           </div> 
+           </div>
          <% end %>
       </div>
     </div>
@@ -71,7 +42,7 @@
            <div class="divRow d-flex justify-content-around">
              <div class="divCell"> <%= key.strftime("%d %B %Y") %></div>
              <div class="divCell">€ <%= number_with_delimiter(value.to_i, :delimiter => ',') %></div>
-           </div> 
+           </div>
          <% end %>
       </div>
     </div>
@@ -92,7 +63,7 @@
              <div class="divCell"><%= line.compte_lib %></div>
              <div class="divCell"> <%= line.ecriture_date.strftime('%d %B %Y') %></div>
              <div class="divCell">€ <%= number_with_delimiter(line.debit.to_i, :delimiter => ',') %></div>
-           </div> 
+           </div>
          <% end %>
       </div>
 
@@ -103,7 +74,7 @@
             <div  class="divCell"><strong class="highlight">Date</strong></div>
             <div  class="divCell"><strong class="highlight">Amount</strong></div>
           </div>
-        
+
           <% @top5_credit.each do |line| %>
           <div class="DivRow d-flex justify-content-around">
             <div class="divCell"><%= line.compte_lib %></div>
@@ -114,5 +85,5 @@
       </div>
 
     </div>
-    
+
 </div>
