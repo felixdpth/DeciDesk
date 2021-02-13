@@ -2,31 +2,36 @@ table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid $blue;
+  // border: 1px solid $blue;
 }
 
 thead th:nth-child(1) {
-  width: 60%;
+  width: 5%;
 }
 
 thead th:nth-child(2) {
-  width: 20%;
+  width: 40%;
 }
 
 thead th:nth-child(3) {
+  width: 35%;
+}
+
+thead th:nth-child(4) {
   width: 20%;
 }
+
 
 th, td {
   padding: 20px;
 }
 
 tbody td {
-  text-align: center;
+  text-align: left;
 }
 
 th {
-  text-align: center;
+  text-align: left;
 }
 
 // zebra stripes in table
