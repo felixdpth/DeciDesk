@@ -17,6 +17,9 @@ before_action :set_report, only: [:show, :transactions, :advice, :comments]
       sum += expenditure.debit
     end
     @total_expenditures = sum.round(0)
+     authorize @report
+    @treasury_balance = (@report.lines.treasury_debit_lines.sum - @report.lines.treasury_credit_lines.sum).to_f
+    @treasury_last_day =  @report.lines.treasury_last_day
   end
 
   def transactions

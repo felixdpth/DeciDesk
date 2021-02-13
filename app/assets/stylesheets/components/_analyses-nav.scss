@@ -1,0 +1,47 @@
+.an-color {
+  justify-content: space-between;
+  background-color: white;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.an-navbar {
+  position: fixed;
+  width: 85%;
+  height: 60px;
+}
+
+.margin-nav {
+  margin-top: 74px
+}
+
+.navbar-title {
+  color: $light-gray;
+}
+
+.an-nav-item {
+  color: #535456;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  color: $green;
+}
+
+.an-top-bar{
+  top: 0;
+  right: 0;
+  box-shadow: 0px 2px 4px 0px rgba(200, 198, 198, 0.92);
+}
+
+.an-navbar-pos{
+  display: flex;
+  padding-left: 80%;
+  list-style: none;
+  vertical-align: middle;
+  text-align: center;
+  margin-bottom: 0 !important
+}
