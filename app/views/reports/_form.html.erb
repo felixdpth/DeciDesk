@@ -1,7 +1,8 @@
  <div class="mt-5">
-   <%= simple_form_for(@report) do |f| %>
-    <%= f.input :name, as: :string, hint: 'We suggest naming your report by time period', require: true %>
-    <%= f.input :csv_file, as: :file, hint: 'Upload your FEC in csv format here', required: true %>
-    <%= f.button :submit, 'Send !', class: 'btn-nav', data: {disable_with: "We are loading your file!"} %>
+  <div></div>
+  <%= form_for @report, html: {class: "d-flex flex-column"} do |f| %>
+      <%= f.text_field :name, required: true %>
+      <%= f.file_field :csv_file, required: true, class: "mt-3" %>
+      <%= f.button 'Send', class: 'btn-bleu mt-3 mw', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading"} %>
   <% end %>
 </div>
