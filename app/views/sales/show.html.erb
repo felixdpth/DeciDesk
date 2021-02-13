@@ -1,17 +1,19 @@
 <%= render 'shared/side-nav' %>
 <%= render 'shared/tabs', section: :sales %>
 
-<div class="container ml200">
+<div class="container ml200 mt-60">
 
   <div class="d-flex justify-content-between p-3">
 
     <div class="d-flex flex-column" style="min-width: 45%">
       <div class="card-dash">
-        <%= column_chart @annual_sales, prefix: "€", thousands: ",", download: true, title: "Monthly Sales" %>
+        <p class="highlight-blue">Monthly Sales</p>
+        <%= column_chart @annual_sales, prefix: "€", thousands: ",", download: true %>
       </div>
 
       <div class="card-dash">
-        <%= column_chart @sales_volume, download: true, title: "Monthly Sales Volume" %>
+        <p class="highlight-blue">Monthly Sales Volume</p>
+        <%= column_chart @sales_volume, download: true %>
       </div>
 
     </div>
@@ -20,32 +22,39 @@
       <div class="d-flex justify-content-between">
 
         <div class="card-dash p-4 text-center" style="min-width: 45%; color: #999">
-          <h4>Total <strong class="highlight">Sales</strong></h4>
+          <h4>Total Sales</h4>
           <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_sales, :delimiter => ',') %></strong></h2>
         </div>
 
         <div class="card-dash p-4 text-center" style="min-width: 45%; color: #999">
-          <h4>Volume of <strong class="highlight">Sales</strong></h4>
+          <h4>Volume of Sales</strong></h4>
           <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> <%= @sales.count %> </strong></h2>
         </div>
       </div>
 
       <div class="card-dash">
-        <div class="divRow"> Top 5 - Sales 💶</div>
-          <table>
-            <tr class="grey_line">
-              <th><strong class="highlight">Sales</strong></th>
-              <th><strong class="highlight">Date</strong></th>
-              <th><strong class="highlight">Amount</strong></th>
-            </tr>
-          <% @top5sales_credit.each_with_index do |line, index| %>
-            <tr class="<%= 'grey_line' if index.odd? %>">
-              <td><%= line.ecriture_lib %></td>
-              <td><%= line.ecriture_date %></td>
-              <td>€ <%= line.credit %></td>
-            </tr>
-          <% end %>
-        </table>
+        <p class="highlight-blue">Top 5 - Sales 💶</p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"><strong class="highlight">Sales</strong></th>
+                <th scope="col"><strong class="highlight">Date</strong></th>
+                <th scope="col"><strong class="highlight">Amount</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @top5sales_credit.each_with_index do |line, index| %>
+                <tr>
+                  <th scope="row" span class="badge bg-secondary" style= "color: white"><%= index + 1 %></th>
+                  <td><%= line.ecriture_lib %></td>
+                  <td><%= line.ecriture_date %></td>
+                  <td>€ <%= line.credit %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <div class="text-center"><%= link_to "Show more", report_sales_transactions_path(@report), class: "btn btn-bleu" %>
       </div>
 
     </div>
