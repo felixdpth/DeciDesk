@@ -1,7 +1,7 @@
 <%= render 'shared/side-nav' %>
 
 <div class="main-tabs ml200">
-  <div class="row"> 
+  <div class="row">
 
     <div class="col-lg">
       <div class="tab-title">
@@ -29,18 +29,20 @@
 </div>
 
 <div class="container ml200">
+  <br>
+  <h2 class="text-center">At a glance: all you need to know abour your expenditures</h2>
 
   <div class="d-flex justify-content-between p-3">
 
     <div class="d-flex flex-column" style="min-width: 45%">
       <div class="card-dash">
-        <h3 style= color:#1E0087>Monthly Expenditures</h3>
+        <h3>Monthly Expenditures</h3>
         <br>
-        <%= column_chart Line.annual_expenditures %>
+        <%= column_chart Line.annual_expenditures, prefix: "€", thousands: ",", download: true %>
       </div>
 
       <div class="card-dash">
-        <h3 style= color:#1E0087>Expenditures per category</h3>
+        <h3>Expenditures per category</h3>
         <br>
         <%= pie_chart Line.top_expenditures_subcategory, prefix: "€", thousands: ",", download: true, donut: true, legend: "right" %>
       </div>
@@ -48,41 +50,47 @@
 
     <div class="d-flex flex-column" style="max-width: 53%">
       <div class="d-flex justify-content-between">
-        <div class="card-dash p-4 text-center" style="min-width: 45%; color: #999">
+        <div class="card-dash p-4 text-center" style="min-width: 45%; color: grey">
           <h4>Total <strong class="highlight">Expenditures</strong></h4>
-          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> 1,585,073 € </strong></h2>
-          <p class="m-0">+6%</p>
+          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_expenditures, :delimiter => ',') %></strong></h2>
+          <p class="m-0">6% higher than sales</p>
         </div>
 
-        <div class="card-dash p-4 text-center" style="min-width: 45%; color: #999">
+        <div class="card-dash p-4 text-center" style="min-width: 45%; color: grey">
           <h4>Total <strong class="highlight">Sales</strong></h4>
-          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> 1,494,955 € </strong></h2>
-          <p class="m-0">-6%</p>
+          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_sales, :delimiter => ',') %></strong></h2>
+          <p class="m-0">6% lower than expenditures</p>
         </div>
       </div>
 
 
+<!--  <h4>🚀 Your total sales for the period are <strong class="highlight">€ <%= number_with_delimiter(@total_sales, :delimiter => ',') %> 🚀</strong></h4> -->
+
       <div class="card-dash">
-        <table class="table">
-          <h3 style= color:#1E0087>Top expenditure items this year</h3>
-           <thead>
+        <table class="table table-hover">
+          <h3>Top expenditure items this year</h3>
+          <br>
+           <thead style= "color: grey">
              <tr>
+              <th scope="col">#</th>
               <th scope="col">Expenditure</th>
               <th scope="col">Date</th>
               <th scope="col">Amount</th>
              </tr>
            </thead>
            <tbody>
-            <% @top5_expenditures.each do |line| %>
+            <% @top5_expenditures.each_with_index do |line, index| %>
               <tr>
-                <th scope="row"><%= line.ecriture_lib %></th>
-                <td><%= line.ecriture_date%></td>
-                <td><%= line.debit%>€</td>
+                <th scope="row" span class="badge bg-secondary" style= "color: white"><%= index + 1 %></th>
+                <td><%= line.ecriture_lib.capitalize %></th>
+                <td><%= line.ecriture_date.strftime("%d %B %Y")%></td>
+                <td> € <%= number_with_delimiter(line.debit.round(0), :delimiter => ',') %></td>
+
               </tr>
             <% end %>
            </tbody>
         </table>
-        <p class = "row justify-content-center"><%= link_to "Show more", report_expenditures_transactions_path(@report), class: "tab-underlined" %></p>
+        <div class="text-center"><%= link_to "Show more", report_expenditures_transactions_path(@report), class: "btn btn-bleu" %>
       </div>
     </div>
   </div>
