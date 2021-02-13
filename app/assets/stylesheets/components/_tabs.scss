@@ -1,8 +1,7 @@
 
 .main-tabs {
-  margin-top: 25px; 
+  margin-top: 15px; 
   border-bottom: solid 1px $blue;
-  width: 100%;
 }
 
 .tab-title {
@@ -13,6 +12,7 @@
 
 .tabs {
   display: flex;
+  justify-content: space-around;
 }
 
 .tab {
