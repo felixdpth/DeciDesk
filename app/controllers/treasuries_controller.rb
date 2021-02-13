@@ -1,4 +1,5 @@
 class TreasuriesController < ApplicationController
+  before_action :set_report, only: [ :index, :show, :edit, :update, :destroy, :advise, :comments ]
 
   def index
     @report = Report.find params[:report_id]
@@ -27,7 +28,6 @@ class TreasuriesController < ApplicationController
   end
 
   def show
-    @report = Report.find params[:report_id]
     @lines = @report.lines.all
     @treasuries = @lines.treasury
     authorize current_user, policy_class: TreasuriesPolicy
@@ -42,6 +42,14 @@ class TreasuriesController < ApplicationController
   private
   def transactions_params
     params.require(:lines).permit(:ecriture_lib, :ecriture_date, :compte_num, :debit, :credit, :compte_lib)
+  end
+
+  def set_report
+    @report = Report.find params[:report_id]
+  end
+
+  def report_params
+    params.require(:report).permit(:name, :csv_file)
   end
 end
 

@@ -1,48 +1,49 @@
-<%= render 'shared/side-nav' %>
+<%= render 'shared/navbar' %>
 
-<div class="container-title mt-5">
-  <h1 class="main-title"><strong class="highlight">Hello you !</strong></h1>
-  <h3 class="sub-title">Welcome to Decidesk, let’s get this accounting party started !</h3>
+<div class="container">
+  <div class="container-index">
 
-<div class="card-page">
-  <div class="col-lg-3 cards-page">
-    <h4> Total <strong class="highlight">Treasury</strong></h4>
-    <h2> <strong class="highlight text-center"><%= number_with_delimiter(@treasury_balance.to_i, :delimiter => ',') %> € </strong></h2>
-    <h5>at <%= @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
-    <div class="text-center"><%= link_to "See details", report_treasury_path(@last_report), class: "btn btn-bleu" %></div>
+    <h1 class="main-title"><strong class="highlight">Hello you !</strong></h1>
+    <h3 class="sub-title">Welcome to Decidesk, let’s get this accounting party started !</h3>
+
+    <div class="card-page">
+      <div class="col-lg-12 cards-page">
+        <h4 class="text-center"><strong class="highlight">New Analysis</strong></h4>
+        <div class="text-center">
+        <%= link_to "Import a FEC !", new_report_path, class: "btn btn-bleu" %></div>
+      </div>
+    </div>
+
+    <div class="card-page">
+      <div class="col-lg-12 cards-page">
+        <h4 class="text-center"><strong class="highlight">Your previous analysis</strong> (<%= @current_user.reports.all.count %>)</h4>
+        <% if @current_user.reports %>
+          <% @current_user.reports.all.each do |report| %>
+            <div class="divRow d-flex justify-content-around">
+              <p class="divCell"><%= report.name %></p>
+              <p class="divCell"><%= report.created_at.strftime("%b %Y") %></p>
+              <p class="divCell"><%= link_to "See details", report_path(report.id), class: "btn btn-small" %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
-   <div class="col-lg-3 cards-page ">
-      <h4>Total <strong class="highlight">Sales</strong></h4>
-      <h2> <strong class="highlight text-center">1,494,955 € </strong></h2>
-    <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
-      <div class="text-center"><%= link_to "See details", report_sales_path(@last_report), class: "btn btn-bleu" %></div>
-   </div>
-
-   <div class="col-lg-3 cards-page">
-      <h4>Total <strong class="highlight">Expenditure</strong></h4>
-      <h2> <strong class="highlight text-center"> 1,585,073 € </strong></h2>
-    <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
-      <div class="text-center"><%= link_to "See details", report_expenditures_path(@last_report), class: "btn btn-bleu" %></div>
-
-   </div>
-</div>
-
-<div class="card-page">
-  <div class="col-lg-3 cards-page">
-    <h4 class="text-center"><strong class="highlight">New Analysis</strong></h4>
-    <div class="text-center">
-    <%= link_to "Import a FEC !", new_report_path, class: "btn btn-bleu" %></div>
+  <div class="card-page mb-5">
+    <div class="col-lg-12 cards-page">
+      <h4 class="text-center mb-5"><strong class="highlight">Your activity on DeciDesk</strong></h4>
+      <div class="row mt-3">
+        <div class="col text-center"><h5><strong class="highlight-blue"><%= number_with_delimiter(@current_user.reports.all.count, :delimiter => ',') %></strong></h5></div>
+        <div class="col text-center"><h5><strong class="highlight-blue"><%= number_with_delimiter(@current_user.lines.all.count, :delimiter => ',') %></strong> </h5></div>
+        <div class="col text-center"><h5><strong class="highlight-blue"><%= number_with_delimiter(@current_user.lines.all.count, :delimiter => ',') %></strong> </h5></div>
+      </div>
+      <div class="row mt-3">
+        <div class="col text-center"><h5>Reports uploaded</h5></div>
+        <div class="col text-center"><h5>Lines Analysed</h5></div>
+        <div class="col text-center"><h5>Lines Analysed</h5></div>
+      </div>
+    </div>
   </div>
 
-  <div class="col-lg-6 cards-page">
-    <h4 class="text-center"><strong class="highlight">Your previous analysis</strong> (<%= @current_user.reports.all.count %>)</h4>
-      <% @current_user.reports.all.each do |report| %>
-        <div class="divRow d-flex justify-content-around">
-          <p class="divCell"><%= report.name %></p>
-          <p class="divCell"><%= report.created_at.strftime("%b %Y") %></p>
-          <p class="divCell"><%= link_to "See details", report_path(report.id), class: "btn btn-small" %></p>
-        </div>
-      <% end %>
-  </div>
-</div>
+ </div>

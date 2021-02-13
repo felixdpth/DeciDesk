@@ -1,27 +1,18 @@
 <%= render 'shared/side-nav' %>
 
-<div class="container">
+<div class="dash-nav">
+  <p><%= link_to "Treasury", report_treasury_path %></p>
+  <p><%= link_to "Advice", report_treasury_advise_path %></p>
+  <p><%= link_to "Notes", report_treasury_comments_path %></p>
+  <p><%= link_to "All Transactions", report_treasury_transactions_path %></p>
+  <select class="form-select" aria-label="Default select example">
+    <option selected>Choose View</option>
+    <option value="1">Monthly</option>
+    <option value="2">Weeekly</option>
+  </select>
+</div>
 
-  <%# <div>
-    <h4>Report name</h4>
-    <p>Start</p>
-    <p>Start</p>
-  </div> %>
-
-
-  <div class="dash-nav">
-    <p><%= link_to "Treasury", report_treasury_path %></p>
-    <p><%= link_to "Advice", report_treasury_advise_path %></p>
-    <p><%= link_to "Notes", report_treasury_comments_path %></p>
-    <p><%= link_to "All Transactions", report_treasury_transactions_path %></p>
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Choose View</option>
-      <option value="1">Monthly</option>
-      <option value="2">Weeekly</option>
-    </select>
-  </div>
-  </div>
-
+<div class="container ml200">
   <h3 class="text-center mb-5 mt-5">All treasury transactions 👎</h3>
  
   <div class="container">
@@ -46,7 +37,7 @@
     
         <% @lines.each do |line| %>
           <div class="divRow d-flex justify-content-around"> 
-          <div class="divCell"> <%= line.compte_num %></div>
+          <div class="divCell"> <%= line.compte_lib %></div>
           <div class="divCell"> <%= line.ecriture_date %></div>
       
           <% if line.debit == 0 %>

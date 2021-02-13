@@ -1,9 +1,38 @@
-<div>
-  <%= current_user.email %>
-  <%= current_user.lines.count %>
-  <% if @reports %>
-    <p>You have <%= current_user.reports.count %> FEC uploaded already !</p>
-  <% else %>
-    <p>You have not imported any FEC yet !</p>
-  <% end %>
+<%= render 'shared/side-nav' %>
+
+<div class="container-title mt-5">
+  <h1 class="main-title"><strong class="highlight">Hello again</strong></h1>
+  <h3 class="sub-title">Let's have a look on what we've analysed for you !</h3>
+
+   <div class="card-page">
+     <div class="col-lg-11">
+      <h5 class="text-left">Name of the report : <strong><%= @report.name %></strong></h5>
+      <h5 class="text-left">Start date : <strong><%= @report.lines.first.ecriture_date.strftime("%d %B %Y") %></strong></h5>
+      <h5 class="text-left">End date : <strong> <%= @report.lines.treasury_last_day.ecriture_date.strftime("%d %B %Y")%></strong></h5>
+    </div>
+  </div>
+
+  <div class="card-page">
+
+    <div class="col-lg-3 cards-page">
+      <h4> Total <strong class="highlight">Treasury</strong></h4>
+      <h2> <strong class="highlight text-center"><%= number_with_delimiter(@treasury_balance.to_i, :delimiter => ',') %> € </strong></h2>
+      <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
+      <div class="text-center"><%= link_to "See details", report_treasury_path(@report), class: "btn btn-bleu" %></div>
+    </div>
+
+   <div class="col-lg-3 cards-page ">
+      <h4>Total <strong class="highlight">Sales</strong></h4>
+      <h2> <strong class="highlight text-center">1,494,955 € </strong></h2>
+    <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
+      <div class="text-center"><%= link_to "See details", report_sales_path(@report), class: "btn btn-bleu" %></div>
+   </div>
+
+   <div class="col-lg-3 cards-page">
+      <h4>Total <strong class="highlight">Expenditure</strong></h4>
+      <h2> <strong class="highlight text-center"> 1,585,073 € </strong></h2>
+      <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
+      <div class="text-center"><%= link_to "See details", report_expenditures_path(@report), class: "btn btn-bleu" %></div>
+
+   </div>
 </div>

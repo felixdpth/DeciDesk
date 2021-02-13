@@ -22,5 +22,14 @@
 
 .navbar-title {
   color: $light-gray;
+}
 
+.nav-item {
+  color: $light-gray;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  color: $green;
 }
