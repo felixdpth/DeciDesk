@@ -8,11 +8,11 @@ Rails.application.routes.draw do
     get '/expenditures/comments', to: 'expenditures#comments'
     get '/expenditures/transactions', to: 'expenditures#transactions'
     get '/treasury', to: 'treasuries#show'
-    get '/treasury/advise', to: 'treasuries#advise'
+    get '/treasury/advice', to: 'treasuries#advice'
     get '/treasury/transactions', to: 'treasuries#transactions'
     get '/treasury/comments', to: 'treasuries#comments'
     get '/sales', to: 'sales#show'
-    get '/sales/advise', to: 'sales#advise'
+    get '/sales/advice', to: 'sales#advice'
     get '/sales/transactions', to: 'sales#transactions'
     get '/sales/comments', to: 'sales#comments'
   end

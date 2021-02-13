@@ -9,7 +9,7 @@ class TreasuriesPolicy < ApplicationPolicy
     return true
   end
 
-  def advise?
+  def advice?
     return true
   end
 

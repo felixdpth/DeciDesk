@@ -9,7 +9,7 @@ class SalePolicy < ApplicationPolicy
     return true
   end
 
-  def advise?
+  def advice?
     return true
   end
 

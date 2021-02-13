@@ -1,5 +1,5 @@
 class TreasuriesController < ApplicationController
-  before_action :set_report, only: [ :index, :show, :edit, :update, :destroy, :advise, :comments ]
+  before_action :set_report, only: [ :index, :show, :edit, :update, :destroy, :advice, :comments ]
 
   def index
     @report = Report.find params[:report_id]
@@ -8,7 +8,7 @@ class TreasuriesController < ApplicationController
     authorize @lines
   end
 
-  def advise
+  def advice
     authorize current_user, policy_class: TreasuriesPolicy
   end
 
@@ -28,6 +28,7 @@ class TreasuriesController < ApplicationController
   end
 
   def show
+    @report = Report.find params[:report_id]
     @lines = @report.lines.all
     @treasuries = @lines.treasury
     authorize current_user, policy_class: TreasuriesPolicy
