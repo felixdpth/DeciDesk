@@ -7,6 +7,7 @@
   </div>
 
   <div class="nav-links">
+
     <p>
       <%= link_to reports_path do %>
         <i class="fas fa-home pr-10"></i> Dashboard
@@ -30,6 +31,20 @@
         <i class="fas fa-coins pr-10"></i> Expenditures
       <% end %>
     </p>
+
+    <div>
+      <p>
+        <%= link_to edit_user_registration_path do %>
+          <i class="fas fa-user-edit pr-10"></i> Edit profile
+        <% end %>
+      </p>
+      <p>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fas fa-sign-out-alt pr-10"></i> Log out
+        <% end %>
+      </p>
+    </div>
   </div>
+
 </div>
 
