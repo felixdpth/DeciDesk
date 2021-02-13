@@ -1,4 +1,6 @@
 class SalesController < ApplicationController
+  before_action :set_report, only: [ :index, :show, :edit, :update, :destroy, :advice, :comments ]
+
   def show
     @report = Report.find params[:report_id]
     @sales = @report.lines.where(category: "Sales")
@@ -13,7 +15,7 @@ class SalesController < ApplicationController
     @total_sales = sum.round(2)
   end
 
-  def advise
+  def advice
     authorize current_user, policy_class: SalePolicy
   end
 
@@ -33,6 +35,10 @@ class SalesController < ApplicationController
   end
 
   private
+  
+  def set_report
+    @report = Report.find params[:report_id]
+  end
 
   def transactions_params
     params.require(:lines).permit(:ecriture_lib, :ecriture_date, :compte_num, :debit, :credit, :compte_lib)

@@ -1,0 +1,35 @@
+
+.main-tabs {
+  margin-top: 25px; 
+  border-bottom: solid 1px $blue;
+}
+
+.tab-title {
+  text-align: left;
+  margin-left: 50px
+}
+
+
+.tabs {
+  display: flex;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 5px 20px;
+  color: $blue;
+  font-size: 15px;
+}
+
+.tab:hover {
+  border-bottom: solid 5px $blue;
+}
+
+.active {
+  border-bottom: solid 5px $green;
+  font-weight: bold;
+}
+
+.tab a {
+  text-decoration: none;
+}

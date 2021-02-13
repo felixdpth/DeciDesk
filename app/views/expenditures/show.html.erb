@@ -1,26 +1,34 @@
 <%= render 'shared/side-nav' %>
+
+<div class="main-tabs ml200">
+  <div class="row"> 
+
+    <div class="col-lg">
+      <div class="tab-title">
+        <h4> <strong class="highlight">Expenditures</strong></h1>
+      </div>
+    </div>
+
+    <div class="col-lg">
+       <div class="tabs">
+         <div class="tab active">
+           <a href="<%= report_expenditures_path %>">Highlights</a>
+         </div>
+         <div class="tab ">
+           <a href="<%= report_expenditures_advice_path %>">Advice</a>
+         </div>
+         <div class="tab">
+           <a href="<%= report_expenditures_comments_path %>">Notes</a>
+         </div>
+         <div class="tab ">
+           <a href="<%= report_expenditures_transactions_path %>">All transactions</a>
+         </div>
+       </div>
+    </div>
+  </div>
+</div>
+
 <div class="container ml200">
-  <div class="row justify-content-center">
-      <h1 class ="mt-4" style= color:#1E0087>At a glance: all you need to know about your expenditures</h1>
-  </div>
-
-  <!-- <div>
-    <h4>Report name</h4>
-    <p>Start</p>
-    <p>Start</p>
-  </div> -->
-
-  <div class="dash-nav">
-    <p><%= link_to "Expenditures", report_expenditures_path, class: "tab-underlined active" %></p>
-    <p><%= link_to "Advice", report_expenditures_advice_path, class: "tab-underlined" %></p>
-    <p><%= link_to "Comments", report_expenditures_comments_path, class: "tab-underlined" %></p>
-    <p><%= link_to "All Transactions", report_expenditures_transactions_path(@report) %></p>
-     <select class="form-select" aria-label="Default select example">
-      <option selected>Choose View</option>
-      <option value="1">Monthly</option>
-      <option value="2">Weeekly</option>
-    </select>
-  </div>
 
   <div class="row d-flex justify-content-center mb-5 mt-5">
      <h4>Your total expenditures for the period are <strong class="highlight">€ <%= number_with_delimiter(@total_expenditures, :delimiter => ',') %></strong></h4>
