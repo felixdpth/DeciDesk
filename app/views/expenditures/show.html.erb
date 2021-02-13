@@ -14,7 +14,7 @@
       <div class="card-dash">
         <h3>Monthly Expenditures</h3>
         <br>
-        <%= column_chart Line.annual_expenditures, prefix: "€", thousands: ",", download: true %>
+        <%= column_chart @report.lines.annual_expenditures, prefix: "€", thousands: ",", download: true %>
       </div>
 
       <div class="card-dash">
