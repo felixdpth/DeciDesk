@@ -15,6 +15,11 @@ class ReportsController < ApplicationController
     authorize @report
     @treasury_balance = (@report.lines.treasury_debit_lines.sum - @report.lines.treasury_credit_lines.sum).to_f
     @treasury_last_day =  @report.lines.treasury_last_day
+
+    @total_sales = @report.lines.sales_credit.sum
+    @total_expenditures = @report.lines.expenditures_debit.sum
+
+    @margin = (@total_sales - @total_expenditures)/@total_sales
   end
 
   def new

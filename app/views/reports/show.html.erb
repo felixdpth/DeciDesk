@@ -1,9 +1,11 @@
 <%= render 'shared/side-nav' %>
 
-<div class="container-title pt76 mt-5">
+<div class="container-title ml200 mt-5">
 
-  <h1 class="main-title"><strong class="highlight">Hello again</strong></h1>
-  <h3 class="sub-title">Let's have a look on what we've analysed for you !</h3>
+  <div class="show-report-title">
+    <h1 class="main-title"><strong class="highlight">Report Analysis</strong></h1>
+    <h3 class="sub-title">Let's have a look on what we've analysed for you !</h3>
+  </div>
 
   <div class="card-page">
     <div class="col-lg-11">
@@ -27,8 +29,6 @@
     <div class="col-lg-3 cards-page ">
       <h4>Total <strong class="highlight">Sales</strong></h4>
       <h2> <strong class="highlight text-center">1,494,955 € </strong></h2>
-      <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
-
       <div class="text-center"><%= link_to "See details", report_sales_path(@report), class: "btn btn-bleu" %>
       </div>
     </div>
@@ -36,12 +36,29 @@
     <div class="col-lg-3 cards-page">
       <h4>Total <strong class="highlight">Expenditure</strong></h4>
       <h2> <strong class="highlight text-center"> 1,585,073 € </strong></h2>
-      <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
-
       <div class="text-center"><%= link_to "See details", report_expenditures_path(@report), class: "btn btn-bleu" %>
       </div>
     </div>
   </div>
+
+  <div class="card-page">
+    <div class="col-lg-10 cards-page">
+      <h4><strong class="highlight">Main ratios</strong></h4>
+        <div class="text-left ml-5">
+          <%= number_to_percentage(@margin, precision: 2) %>
+          <h5 class="text-left">Margin</h5>
+        </div>
+        <div class="text-left ml-5">
+          <%= number_to_percentage(@margin, precision: 2) %>
+          <h5 class="text-left">Margin</h5>
+        </div>        
+        <div class="text-left ml-5">
+          <%= number_to_percentage(@margin, precision: 2) %>
+          <h5 class="text-left">Margin</h5>
+        </div>
+    </div>
+  </div>
+
 
 </div>
 
