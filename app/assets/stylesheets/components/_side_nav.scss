@@ -1,6 +1,6 @@
 .sidenav {
   height: 100%;
-  width: 15%;
+  width: 15vw;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -56,3 +56,8 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+
+
+.separator {
+  margin-top: 50px;
+}

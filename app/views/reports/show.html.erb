@@ -1,9 +1,11 @@
 <%= render 'shared/side-nav' %>
 
-<div class="container-title pt76 mt-5">
+<div class="container-title ml200 mt-5">
 
-  <h1 class="main-title"><strong class="highlight">Hello again</strong></h1>
-  <h3 class="sub-title">Let's have a look on what we've analysed for you !</h3>
+  <div class="show-report-title">
+    <h1 class="main-title"><strong class="highlight">Report Analysis</strong></h1>
+    <h3 class="sub-title">Let's have a look on what we've analysed for you !</h3>
+  </div>
 
   <div class="card-page">
     <div class="col-lg-11">
@@ -27,8 +29,6 @@
     <div class="col-lg-3 cards-page ">
       <h4>Total <strong class="highlight">Sales</strong></h4>
       <h2> <strong class="highlight text-center">1,494,955 € </strong></h2>
-      <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
-
       <div class="text-center"><%= link_to "See details", report_sales_path(@report), class: "btn btn-bleu" %>
       </div>
     </div>
@@ -36,12 +36,43 @@
     <div class="col-lg-3 cards-page">
       <h4>Total <strong class="highlight">Expenditure</strong></h4>
       <h2> <strong class="highlight text-center"> 1,585,073 € </strong></h2>
-      <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
-
       <div class="text-center"><%= link_to "See details", report_expenditures_path(@report), class: "btn btn-bleu" %>
       </div>
     </div>
   </div>
 
+  <div class="card-page">
+    <div class="col-lg-10 cards-page">
+      <h4><strong class="highlight">Main ratios</strong></h4>
+        <div class="row d-flex justify-content-center mt-5">
+          <div class="col text-center">
+            <% if @margin > 0 %>
+              <h3 class="text-success font-weight-bold"><%= number_to_percentage(@margin, precision: 2) %></h3>
+            <% else %>
+              <h3 class="text-danger font-weight-bold"><%= number_to_percentage(@margin, precision: 2) %></h3>
+            <% end %>
+              <h4>Margin</h4>
+          </div>
+
+          <div class="col text-center">
+            <% if @cash_ratio > 0 %>
+              <h3 class="text-success font-weight-bold"><%= number_to_percentage(@cash_ratio, precision: 2) %></h3>
+            <% else %>
+              <h3 class="text-danger font-weight-bold"><%= number_to_percentage(@cash_ratio, precision: 2) %></h3>
+            <% end %>
+              <h4>Cash to expenditures</h4>
+          </div>
+
+          <div class="col text-center">
+            <% if @sales_ratio > 0 %>
+              <h3 class="text-success font-weight-bold"><%= number_to_percentage(@sales_ratio, precision: 2) %></h3>
+            <% else %>
+              <h3 class="text-danger font-weight-bold"><%= number_to_percentage(@sales_ratio, precision: 2) %></h3>
+            <% end %>
+              <h4>Cash to sales</h4>
+          </div>
+        </div>
+    </div>
+  </div>
 </div>
 

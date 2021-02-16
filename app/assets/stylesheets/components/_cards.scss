@@ -38,11 +38,10 @@
 
 .cards {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 50px;
   margin-top: 50px;
   transition: width 0.1s, transform 0.1s;
-
 }
 
 .card:hover{
