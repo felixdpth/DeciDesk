@@ -2,34 +2,46 @@
 
 <div class="container">
   <div class="container-index">
-
-    <h1 class="main-title"><strong class="highlight">Hello you !</strong></h1>
-    <h3 class="sub-title">Welcome to Decidesk, let’s get this accounting party started !</h3>
-    <br>
-
-  </div>
-
-  <div class="container">
-    <div class= "row">
+    <div class="row">
       <div class="col-lg-12">
         <div class="card-dash">
+          <h1 class="main-title"><strong class="highlight">👋 Welcome to Decidesk !</strong></h1>
+          <h4 class="sub-title">Tired of Excel? Need to quickly understand your business? Well you've come to the right place. Load your FEC file below and let's get this party started!</h4>
+        </div>
+      </div>
+    </div>
+ </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card-home">
+          <%= image_tag ("idea.png") %>
+          <div class="card-home-infos">
+            <h3 class="text-center mb-5"><strong class="highlight">New to Decidesk?</strong></h3>
+            <p>Decidesk is designed to be as simple as possible to use. Simply upload a new report in CSV format using the form below 👇 or view a report that you've previously uploaded to visualize your data.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card-dash h289">
           <h3 class="text-center mb-5"><strong class="highlight">Your activity on DeciDesk</strong></h3>
           <div class="row mt-3">
             <div class="col text-center"><h3><strong class="highlight-blue"><%= number_with_delimiter(@current_user.reports.all.count, :delimiter => ',') %></strong></h3></div>
             <div class="col text-center"><h3><strong class="highlight-blue"><%= number_with_delimiter(@current_user.lines.all.count, :delimiter => ',') %></strong> </h3></div>
           </div>
           <div class="row mt-3">
-            <div class="col text-center"><h5>Reports uploaded</h5></div>
-            <div class="col text-center"><h5>Lines Analysed</h5></div>
+            <div class="col text-center"><p>Reports uploaded</p></div>
+            <div class="col text-center"><p>Lines Analysed</p></div>
           </div>
         </div>
       </div>
     </div>
 
+
     <div class="row">
       <div class="col">
         <div class="card-dash">
-          <h4 class="text-center"><strong class="highlight">Upload a new FEC for analysis</strong></h4>
+          <h3 class="text-center"><strong class="highlight">Upload a new FEC for analysis</strong></h3>
           <div>
             <%= render 'reports/form' %>
           </div>
@@ -38,7 +50,7 @@
 
       <div class="col">
         <div class="card-dash">
-          <h4 class="text-center"><strong class="highlight">Your previous analysis</strong></h4>
+          <h3 class="text-center"><strong class="highlight">Your previous analysis</strong></h3>
           <% if @current_user.reports %>
             <% @current_user.reports.all.each do |report| %>
               <div class="divRow d-flex justify-content-around">

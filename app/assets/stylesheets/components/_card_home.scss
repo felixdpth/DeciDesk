@@ -1,0 +1,21 @@
+.card-home {
+  background-color: white;
+  border-radius: 5px;
+  color: $black;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 20px 10px;
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.card-home img {
+  height: 80%;
+  width: 150px;
+  object-fit: cover;
+}
+
+.card-home .card-home-infos {
+  padding: 16px;
+}
