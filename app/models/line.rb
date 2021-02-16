@@ -7,7 +7,7 @@ class Line < ApplicationRecord
 
   ##Expenditures
   scope :expenditures, -> { where(category: "Expenditures") }
-  scope :expenditures_debit, -> { where(credit: "0", category: "Expenditures").pluck(:credit) }
+  scope :expenditures_debit, -> { where(credit: "0", category: "Expenditures").pluck(:debit) }
   scope :expenditures_credit, -> { where(debit: "0", category: "Expenditures").pluck(:credit) }
   scope :expenditures_debit_date, -> (date) { expenditures_debit.where("ecriture_date < ?", date) }
   scope :expenditures_top5_debit, -> { where(category: "Expenditures").sort_by { |line| line.debit }.reverse.first(5) }

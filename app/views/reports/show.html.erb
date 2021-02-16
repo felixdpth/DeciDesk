@@ -44,21 +44,35 @@
   <div class="card-page">
     <div class="col-lg-10 cards-page">
       <h4><strong class="highlight">Main ratios</strong></h4>
-        <div class="text-left ml-5">
-          <%= number_to_percentage(@margin, precision: 2) %>
-          <h5 class="text-left">Margin</h5>
-        </div>
-        <div class="text-left ml-5">
-          <%= number_to_percentage(@margin, precision: 2) %>
-          <h5 class="text-left">Margin</h5>
-        </div>        
-        <div class="text-left ml-5">
-          <%= number_to_percentage(@margin, precision: 2) %>
-          <h5 class="text-left">Margin</h5>
+        <div class="row d-flex justify-content-center mt-5">
+          <div class="col text-center">
+            <% if @margin > 0 %>
+              <h3 class="text-success font-weight-bold"><%= number_to_percentage(@margin, precision: 2) %></h3>
+            <% else %>
+              <h3 class="text-danger font-weight-bold"><%= number_to_percentage(@margin, precision: 2) %></h3>
+            <% end %>
+              <h4>Margin</h4>
+          </div>
+
+          <div class="col text-center">
+            <% if @cash_ratio > 0 %>
+              <h3 class="text-success font-weight-bold"><%= number_to_percentage(@cash_ratio, precision: 2) %></h3>
+            <% else %>
+              <h3 class="text-danger font-weight-bold"><%= number_to_percentage(@cash_ratio, precision: 2) %></h3>
+            <% end %>
+              <h4>Cash to expenditures</h4>
+          </div>
+
+          <div class="col text-center">
+            <% if @sales_ratio > 0 %>
+              <h3 class="text-success font-weight-bold"><%= number_to_percentage(@sales_ratio, precision: 2) %></h3>
+            <% else %>
+              <h3 class="text-danger font-weight-bold"><%= number_to_percentage(@sales_ratio, precision: 2) %></h3>
+            <% end %>
+              <h4>Cash to sales</h4>
+          </div>
         </div>
     </div>
   </div>
-
-
 </div>
 
