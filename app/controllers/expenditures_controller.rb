@@ -10,6 +10,8 @@ before_action :set_report, only: [:show, :transactions, :advice, :comments]
 
   def show
     @expenditures = @report.lines.where(category: "Expenditures")
+    authorize current_user, policy_class: ExpenditurePolicy
+    @top5_expenditures = @report.expenditures_top5_debit
     sum = 0
     @total_expenditures = @expenditures.each do |expenditure|
       sum += expenditure.debit
