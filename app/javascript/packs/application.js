@@ -26,13 +26,14 @@ require("chartkick")
 
 // External imports
 import "bootstrap";
+import initTooltip from "../plugins/init_tooltip"
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // initSelect2();
+  initTooltip();
 });
 
 import "controllers"

@@ -28,11 +28,26 @@
     padding-left: 12px;
   }
 
+  .ratio-card {
+    empty-cells: show;
+    background-position: center;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: $light-gray;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: solid 2px $blue;
+    padding: 18px;
+    padding-left: 12px;
+  }
+
 .card-page h4{
   color: black;
   text-align: center;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-bottom: 15px;
 }
 
@@ -55,8 +70,8 @@
 }
 
 .main-title {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
