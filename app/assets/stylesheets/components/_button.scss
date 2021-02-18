@@ -7,6 +7,16 @@
   margin-top: 12px;
 }
 
+.btn-flat-search{
+  height: calc(1.5em + 0.75rem + 2px);
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #1EDD88;
+  transition: background 0.3s ease;
+  margin-top: 12px;
+}
+
 .btn-flat:hover {
   background: #1BCB7F;
   color: white;
