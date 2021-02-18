@@ -1,74 +1,104 @@
 <%= render 'shared/side-nav' %>
 <%= render 'shared/tabs', section: :expenditures %>
+<div class="container-decidesk">
 
-<div class="container ml200">
-  <br>
-  <br>
-  <br>
-  <br>
+
+<div class="container-index">
   <h2 class="text-center">At a glance: all you need to know about your expenditures</h2>
+  <br>
+  <br>
 
-  <div class="d-flex justify-content-between p-3">
 
-    <div class="d-flex flex-column" style="min-width: 45%">
-      <div class="card-dash">
-        <h3>Monthly Expenditures</h3>
-        <br>
-        <%= column_chart @report.lines.annual_expenditures, prefix: "€", thousands: ",", download: true %>
-      </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <div class="d-flex flex-column" style="max-width: 100%">
+          <div class="d-flex justify-content-between">
 
-      <div class="card-dash">
-        <h3>Expenditures per category</h3>
-        <br>
-        <%= pie_chart Line.top_expenditures_subcategory, prefix: "€", thousands: ",", download: true, donut: true, legend: "right" %>
+            <div class="card-dash p-4 text-center" style="min-width: 50%; color: grey">
+            <h4>Total <strong class="highlight">Expenditures</strong></h4>
+            <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_expenditures, :delimiter => ',') %></strong></h2>
+            <p class="m-0">6% higher than sales</p>
+          </div>
+
+          <div class="card-dash p-4 text-center" style="min-width: 50%; color: grey">
+            <h4>Total <strong class="highlight">Sales</strong></h4>
+            <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_sales, :delimiter => ',') %></strong></h2>
+            <p class="m-0">6% lower than expenditures</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="d-flex flex-column" style="max-width: 53%">
-      <div class="d-flex justify-content-between">
-        <div class="card-dash p-4 text-center" style="min-width: 45%; color: grey">
-          <h4>Total <strong class="highlight">Expenditures</strong></h4>
-          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_expenditures, :delimiter => ',') %></strong></h2>
-          <p class="m-0">6% higher than sales</p>
+
+      <div class="col-12">
+        <div class="card-dash">
+          <h3>Monthly Expenditures</h3>
+          <br>
+            <%= column_chart @report.lines.annual_expenditures, prefix: "€", thousands: ",", download: true %>
         </div>
 
-        <div class="card-dash p-4 text-center" style="min-width: 45%; color: grey">
-          <h4>Total <strong class="highlight">Sales</strong></h4>
-          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_sales, :delimiter => ',') %></strong></h2>
-          <p class="m-0">6% lower than expenditures</p>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-6">
+        <div class="card-dash">
+          <h3>Expenditures per category</h3>
+          <br>
+          <%= pie_chart Line.top_expenditures_subcategory, prefix: "€", thousands: ",", download: true, donut: true, legend: "bottom" %>
+        </div>
+
+      </div>
+
+      <div class="col-6">
+        <div class="card-dash">
+          <table class="table table-hover">
+            <h3>Top expenditure items this year</h3>
+            <br>
+             <thead style= "color: grey">
+               <tr>
+                <th scope="col">#</th>
+                <th scope="col">Expenditure</th>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+               </tr>
+             </thead>
+             <tbody>
+              <% @top5_expenditures.each_with_index do |line, index| %>
+                <tr>
+                  <th scope="row" span class="badge bg-secondary" style= "color: white"><%= index + 1 %></th>
+                  <td><%= line.ecriture_lib.capitalize %></th>
+                  <td><%= line.ecriture_date.strftime("%d %B %Y")%></td>
+                  <td> € <%= number_with_delimiter(line.debit.round(0), :delimiter => ',') %></td>
+
+                </tr>
+              <% end %>
+             </tbody>
+          </table>
+          <div class="text-center"><%= link_to "Show more", report_expenditures_transactions_path(@report), class: "btn btn-bleu" %></div>
         </div>
       </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!-- <div class="container ml200"> -->
+
+
+
+
+
+
+    <!-- <div class="d-flex flex-column" style="min-width: 45%"> -->
 
 
 <!--  <h4>🚀 Your total sales for the period are <strong class="highlight">€ <%= number_with_delimiter(@total_sales, :delimiter => ',') %> 🚀</strong></h4> -->
 
-      <div class="card-dash">
-        <table class="table table-hover">
-          <h3>Top expenditure items this year</h3>
-          <br>
-           <thead style= "color: grey">
-             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Expenditure</th>
-              <th scope="col">Date</th>
-              <th scope="col">Amount</th>
-             </tr>
-           </thead>
-           <tbody>
-            <% @top5_expenditures.each_with_index do |line, index| %>
-              <tr>
-                <th scope="row" span class="badge bg-secondary" style= "color: white"><%= index + 1 %></th>
-                <td><%= line.ecriture_lib.capitalize %></th>
-                <td><%= line.ecriture_date.strftime("%d %B %Y")%></td>
-                <td> € <%= number_with_delimiter(line.debit.round(0), :delimiter => ',') %></td>
 
-              </tr>
-            <% end %>
-           </tbody>
-        </table>
-        <div class="text-center"><%= link_to "Show more", report_expenditures_transactions_path(@report), class: "btn btn-bleu" %>
-      </div>
-    </div>
-  </div>
-
-</div>
