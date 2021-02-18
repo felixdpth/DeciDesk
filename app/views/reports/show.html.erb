@@ -1,26 +1,110 @@
 <%= render 'shared/side-nav' %>
 
-<div class="container-title ml200 mt-5">
+<div class="container-decidesk">
+  <div class="container-index">
+    <div class="show-report-title">
+      <h1 class="main-title"><strong class="highlight">Report Analysis</strong></h1>
+    </div>
 
-  <div class="show-report-title">
-    <h1 class="main-title"><strong class="highlight">Report Analysis</strong></h1>
-    <h3 class="sub-title">Let's have a look on what we've analysed for you !</h3>
+    <div class="row">
+      <div class="col-lg-3">
+        <h6>Name of the report : <strong><%= @report.name %></strong> </h6>
+      </div>
+      <div class="col-lg-3">
+        <h6>From : <strong><%= @report.lines.first.ecriture_date.strftime("%d %B %Y") %></strong></h6>
+      </div>
+      <div class="col-lg-3">
+        <h6>To: <strong> <%= @report.lines.treasury_last_day.ecriture_date.strftime("%d %B %Y")%></strong></h6>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <div class="cards-page">
+          <h4> Total <strong class="highlight">Treasury</strong></h4>
+          <h2> <strong class="highlight text-center"><%= number_with_delimiter(@treasury_balance.to_i, :delimiter => ',') %> € </strong></h2>
+          <div class="text-center"><%= link_to "See details", report_treasury_path(@report), class: "btn btn-bleu" %></div>
+        </div>
+      </div>      
+      <div class="col-4">
+        <div class="cards-page">
+          <h4>Total <strong class="highlight">Sales</strong></h4>
+          <h2> <strong class="highlight text-center"><%= number_with_delimiter(@total_sales.to_i, :delimiter => ',') %> € </strong></h2>
+          <div class="text-center"><%= link_to "See details", report_sales_path(@report), class: "btn btn-bleu" %></div>
+        </div>
+      </div>      
+      <div class="col-4">
+        <div class="cards-page">
+          <h4>Total <strong class="highlight">Expenditure</strong></h4>
+          <h2> <strong class="highlight text-center"> <%= number_with_delimiter(@total_expenditures.to_i, :delimiter => ',') %> € </strong></h2>
+          <div class="text-center"><%= link_to "See details", report_expenditures_path(@report), class: "btn btn-bleu" %></div>
+        </div>
+      </div>      
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="cards-page">
+          <h4><strong class="highlight-blue text-center">Main ratios</strong></h4>
+          <div class="row d-flex justify-content-center mt-3">
+            <div class="col text-center">
+              <% if @margin > 0 %>
+                <h3 class="text-success font-weight-bold"><%= number_to_percentage(@margin, precision: 2) %></h3>
+              <% else %>
+                <h3 class="text-danger font-weight-bold"><%= number_to_percentage(@margin, precision: 2) %></h3>
+              <% end %>
+            <h4>Margin</h4>
+            </div>
+            <div class="col text-center">
+              <% if @cash_ratio > 0 %>
+                <h3 class="text-success font-weight-bold"><%= number_to_percentage(@cash_ratio, precision: 2) %></h3>
+              <% else %>
+                <h3 class="text-danger font-weight-bold"><%= number_to_percentage(@cash_ratio, precision: 2) %></h3>
+              <% end %>
+                <h4>Cash to expenditures</h4>
+            </div>
+            <div class="col text-center">
+              <% if @sales_ratio > 0 %>
+                <h3 class="text-success font-weight-bold"><%= number_to_percentage(@sales_ratio, precision: 2) %></h3>
+              <% else %>
+                <h3 class="text-danger font-weight-bold"><%= number_to_percentage(@sales_ratio, precision: 2) %></h3>
+              <% end %>
+              <h4>Cash to sales</h4>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>    
   </div>
+</div>
 
+
+
+
+
+<div class="ml15vw">
+  <div class="container">
+    <div class="container-index">
+    </div>
+  </div>
+</div>
+
+
+<div class="container ml200">
   <div class="card-page">
     <div class="col-lg-11">
-      <h5 class="text-left">Name of the report : <strong><%= @report.name %></strong></h5>
-      <h5 class="text-left">Start date : <strong><%= @report.lines.first.ecriture_date.strftime("%d %B %Y") %></strong></h5>
-      <h5 class="text-left">End date : <strong> <%= @report.lines.treasury_last_day.ecriture_date.strftime("%d %B %Y")%></strong></h5>
+      <div class="row ml-3"> 
+      <h6 class="text-left mr-5">Name of the report : <strong><%= @report.name %></strong> </h6>
+      <h6 class="text-left mr-5">From : <strong><%= @report.lines.first.ecriture_date.strftime("%d %B %Y") %></strong></h6>
+      <h6  class="text-left mr-5">To: <strong> <%= @report.lines.treasury_last_day.ecriture_date.strftime("%d %B %Y")%></strong></h6>
+    </div>
     </div>
   </div>
 
   <div class="card-page">
-
     <div class="col-lg-3 cards-page">
       <h4> Total <strong class="highlight">Treasury</strong></h4>
       <h2> <strong class="highlight text-center"><%= number_with_delimiter(@treasury_balance.to_i, :delimiter => ',') %> € </strong></h2>
-      <h5>at <%=  @treasury_last_day.ecriture_date.strftime("%d %B %Y")%></h5>
 
       <div class="text-center"><%= link_to "See details", report_treasury_path(@report), class: "btn btn-bleu" %>
       </div>
@@ -28,23 +112,23 @@
 
     <div class="col-lg-3 cards-page ">
       <h4>Total <strong class="highlight">Sales</strong></h4>
-      <h2> <strong class="highlight text-center">1,494,955 € </strong></h2>
+      <h2> <strong class="highlight text-center"><%= number_with_delimiter(@total_sales.to_i, :delimiter => ',') %> € </strong></h2>
       <div class="text-center"><%= link_to "See details", report_sales_path(@report), class: "btn btn-bleu" %>
       </div>
     </div>
 
     <div class="col-lg-3 cards-page">
       <h4>Total <strong class="highlight">Expenditure</strong></h4>
-      <h2> <strong class="highlight text-center"> 1,585,073 € </strong></h2>
+      <h2> <strong class="highlight text-center"> <%= number_with_delimiter(@total_expenditures.to_i, :delimiter => ',') %> € </strong></h2>
       <div class="text-center"><%= link_to "See details", report_expenditures_path(@report), class: "btn btn-bleu" %>
       </div>
     </div>
   </div>
 
   <div class="card-page">
-    <div class="col-lg-10 cards-page">
-      <h4><strong class="highlight">Main ratios</strong></h4>
-        <div class="row d-flex justify-content-center mt-5">
+    <div class="col-lg-11 cards-page">
+      <h4><strong class="highlight-blue">Main ratios</strong></h4>
+        <div class="row d-flex justify-content-center mt-3">
           <div class="col text-center">
             <% if @margin > 0 %>
               <h3 class="text-success font-weight-bold"><%= number_to_percentage(@margin, precision: 2) %></h3>
@@ -75,4 +159,4 @@
     </div>
   </div>
 </div>
-
+</div>
