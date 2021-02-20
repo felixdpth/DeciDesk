@@ -12,7 +12,7 @@ class SalesController < ApplicationController
     @total_sales = @sales.each do |sale|
       sum += sale.credit
     end
-    @total_sales = sum.round(2)
+    @total_sales = sum.round(0)
   end
 
   def advice

@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 const initTooltip = () => {
   const tooltip = document.querySelector('[data-toggle="tooltip"]')
   if (tooltip) {
@@ -8,3 +10,4 @@ const initTooltip = () => {
 }
 
 export default initTooltip;
+

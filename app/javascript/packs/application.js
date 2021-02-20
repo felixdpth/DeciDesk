@@ -28,6 +28,8 @@ require("chartkick")
 import "bootstrap";
 import initTooltip from "../plugins/init_tooltip";
 import initSortable from "../plugins/init_sortable";
+import $ from 'jquery';
+
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';

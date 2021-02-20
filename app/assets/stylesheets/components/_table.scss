@@ -19,6 +19,7 @@ thead th:nth-child(3) {
 
 thead th:nth-child(4) {
   width: 20%;
+
 }
 
 
@@ -40,5 +41,73 @@ th {
 }
 
 table {
-  background-color: white;
+  // background-color: white;
+}
+
+
+
+.table-row {
+  display: flex;
+  align-items: center;
+
+  &.top-table-row {
+    color: grey;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+
+  .table-number {
+      width: 8%;
+  }
+
+  .table-date {
+      width: 20%;
+  }
+
+  .table-exp {
+      flex-grow: 1;
+  }
+
+  .table-amount {
+    width: 12%;
+  }
+
+  .table-amount-tr {
+    width: 20%;
+  }
+
+  &.content-table-row {
+    font-size: 15px;
+    border-bottom: 1px solid lightgrey;
+    height: 50px;
+
+    .table-number {
+
+      span {
+        background: #c4eae0;
+        color: #169065;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+      }
+    }
+
+    .table-amount {
+      font-weight: 900;
+      font-size: 18px;
+      color: $blue;
+    }
+
+    .table-amount-tr {
+      font-weight: 900;
+      font-size: 18px;
+      color: $blue;
+  }
+
+  }
 }
