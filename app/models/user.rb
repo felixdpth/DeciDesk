@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :reports, dependent: :destroy
   has_many :lines, through: :reports
   has_many :comments, through: :reports
+  has_one_attached :photo, dependent: :destroy
 end
