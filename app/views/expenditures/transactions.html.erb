@@ -8,19 +8,19 @@
   <div class="container">
     <div class="container-equal-margin mb-4 p-0">
       <%= form_tag report_expenditures_path, method: :get do %>
-      <div class="d-flex align-items-center m-3">
-      <%= text_field_tag :query,
-      params[:query],
-      class: "form-control mr-1",
-      placeholder: "Search a date, an amount, a transaction..."
-      %>
-      <%= submit_tag "Search", class: "btn btn-flat m-0" %>
-      <% end %>
+        <div class="d-flex align-items-center m-3">
+          <%= text_field_tag :query,
+          params[:query],
+          class: "form-control mr-1",
+          placeholder: "Search a date, an amount, a transaction..."
+          %>
+          <%= submit_tag "Search", class: "btn btn-flat m-0" %>
+          <% end %>
+        </div>
     </div>
-  </div>
 
-   <div class="col-12">
-    <div class="card-dash-bis">
+    <div class="col-12">
+      <div class="card-dash-bis">
         <div class="top-table">
 
           <div class="top-table-row table-row">
@@ -42,13 +42,10 @@
               <% end %>
             </div>
           <% end %>
-
         </div>
+      </div>
     </div>
-
   </div>
-
-
 </div>
 
 
