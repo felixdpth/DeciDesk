@@ -2,6 +2,7 @@ class Report < ApplicationRecord
   belongs_to :user
   has_one_attached :csv_file
   has_many :lines, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def sales_top5sales_credit
     lines.where(category: "Sales").sort_by { |line| line.credit }.reverse.first(5)
