@@ -32,6 +32,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user
+    return true
   end
 end

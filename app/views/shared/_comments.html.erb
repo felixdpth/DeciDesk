@@ -10,6 +10,7 @@
           <%= simple_form_for([ report, comment], remote: true) do |f| %>
             <%= f.input :title, as: :string, required: true %>
             <%= f.input :comment, as: :text, required: true, placeholder: "Type your reminder here" %>
+            <%= f.input :status, collection: Comment::STATUS, include_blank: false %>
             <%= f.hidden_field :category, value: params[:controller] %>
             <%= f.button :submit, class: 'btn-bleu mt-3 mw' %>
           <% end %>
@@ -17,7 +18,7 @@
         <div class="todo-list list">
           <% report.comments.where(category: params[:controller]).each do |comment| %>
             <div class="card-dash">
-              <h4><i class="far fa-comment-dots"></i><strong> <%= comment.title %></strong></h4>
+              <h4><i class="fas fa-circle"></i></i><strong> <%= comment.title %></strong></h4>
               <p><%= comment.comment %></p>
               <%= link_to comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } do %>
                 <i class="fas fa-trash-alt"></i>
