@@ -3,13 +3,13 @@
 <div class="container-decidesk">
 
   <div class="container-index">
+
     <div class="row">
       <div class="col-12 d-flex justify-content-start">
         <div class="d-flex flex-column" style="max-width: 100%">
-          <div class="d-flex justify-content-between" style="margin-bottom: -50px; margin-top: -30px">
+        <div class="d-flex justify-content-between" style="margin-bottom: -50px; margin-top: -30px">
 
-
-   <div class="card-dash-bis p-4 text-start" style="min-width: 70%; color: grey">
+          <div class="card-dash-bis p-4 text-start" style="min-width: 70%; color: grey">
             <h4 style="font-size: 1rem">Total Sales</h4>
             <h2 style="font-size: 2rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_sales, :delimiter => ',') %></strong></h2>
           </div>
@@ -19,36 +19,40 @@
             <h2 style="font-size: 2rem; color: red"> <strong> <%= @sales.count %> </strong></h2>
           </div>
         </div>
+        </div>
       </div>
-    </div>
 
       <div class="col-12">
         <div class="card-dash-bis">
-          <h3>Monthly Sales</h3>
+          <div class="d-flex justify-content-between" style="margin-bottom: 20px">
+            <h3>Monthly Sales</h3>
+            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Hello!"></i>
+          </div>
           <br>
         <%= column_chart @annual_sales, prefix: "€", thousands: ",", download: true, colors: ["#04C586", "#04C586"] %>
+        </div>
       </div>
-
-    </div>
-
   </div>
 
-
-  <div class="row">
-    <div class="col-5">
-      <div class="card-dash-bis">
-        <h3>Monthly Sales Volume</h3>
-        <br>
-        <%= bar_chart @sales_volume, download: true, colors: ["#1B21B6", "#1B21B6"]%>
+    <div class="row">
+      <div class="col-5">
+        <div class="card-dash-bis">
+          <div class="d-flex justify-content-between" style="margin-bottom: 20px">
+            <h3>Monthly Sales Volume</h3>
+            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Hello!"></i>
+          </div>
+          <%= bar_chart @sales_volume, download: true, colors: ["#1B21B6", "#1B21B6"]%>
+        </div>
       </div>
 
-    </div>
+      <div class="col-7">
+        <div class="card-dash-bis">
+          <div class="d-flex justify-content-between" style="margin-bottom: 20px">
+            <h3>Top 5 sales this year</h3>
+            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Hello!"></i>
+          </div>
 
-    <div class="col-7">
-      <div class="card-dash-bis">
-        <h3 style="margin-bottom: 30px">Top 5 sales this year</h3>
           <div class="top-table">
-
             <div class="top-table-row table-row">
               <div class="table-number">No.</div>
               <div class="table-exp">Sales</div>
@@ -63,17 +67,13 @@
                 <div class="table-date"><%= line.ecriture_date%></div>
                 <div class="table-amount">€ <%= number_with_delimiter(line.credit.round(0), :delimiter => ',') %></div>
               </div>
-
             <% end %>
-
           </div>
 
-          <div class="text-center"><%= link_to "Show more", report_sales_transactions_path(@report), class: "btn btn-bleu" %></div>
-        </div>
+        <div class="text-center"><%= link_to "Show more", report_sales_transactions_path(@report), class: "btn btn-bleu" %></div>
       </div>
-
     </div>
-
+  </div>
   </div>
 </div>
 
