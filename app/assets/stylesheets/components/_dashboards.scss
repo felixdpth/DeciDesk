@@ -48,11 +48,15 @@
 }
 
 
-.catio-card p{
+.ratio-card p{
   text-align: center;
   align-items: center;
   color: black;
   font-size: 15px;
+}
+
+.ratio-card h2{
+  font-size: 20px;
 }
   
 
@@ -170,4 +174,10 @@
 
 .cards-page-show h1{
   font-size: 2rem;
+}
+
+.div-logo {
+  position: absolute;
+  top: 30px;
+  right: 60px;
 }
