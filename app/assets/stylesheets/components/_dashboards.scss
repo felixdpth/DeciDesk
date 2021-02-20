@@ -77,7 +77,11 @@
 }
 
 .show-report-title {
-  margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  width: calc(100vw - 15vw);
+  margin-left: auto;
+  padding: 0 20px
 }
 
 .sub-title {
@@ -102,4 +106,8 @@
 
 .four-cards {
   margin-top: 45px;
+}
+
+.report-info {
+  margin-left: 40px;
 }
