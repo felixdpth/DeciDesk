@@ -32,17 +32,29 @@
   .ratio-card {
     empty-cells: show;
     background-position: center;
-    height: auto;
     justify-content: center;
     align-items: center;
-    background-color: $light-gray;
     font-size: 24px;
     font-weight: bold;
     border-radius: 5px;
-    border: solid 2px $blue;
     padding: 18px;
-    padding-left: 12px;
+    width: 33vw;
+    height: auto;
   }
+
+.border-ratio {
+  border-left: dashed 1px $green;
+  border-right: dashed 1px $green;
+}
+
+
+.catio-card p{
+  text-align: center;
+  align-items: center;
+  color: black;
+  font-size: 15px;
+}
+  
 
 .card-page h4{
   color: black;
@@ -74,12 +86,12 @@
   margin-top: 15px;
   margin-bottom: 15px;
   text-align: center;
+  margin-left: 16px;
 }
 
 .show-report-title {
   margin-top: 50px;
   margin-bottom: 30px;
-  width: calc(100vw - 15vw);
   margin-left: auto;
   padding: 0 20px
 }
@@ -110,4 +122,52 @@
 
 .report-info {
   margin-left: 40px;
+}
+
+.svg-show {
+  position: absolute;
+  bottom: -19px;
+  right: -88px;
+}
+
+.svg-show-left {
+  position: absolute;
+  right: 89px;
+  bottom: -12px;
+}
+
+.ratio-title {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.search {
+  color: grey;
+  font-size: 16px;
+}
+
+.cards-page-show {
+  empty-cells: show;
+  background-position: center;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 40px;
+  padding: 18px;
+  padding-left: 12px;
+  text-align: center;
+}
+
+.cards-page-show h4{
+  font-size: 1,5rem;
+}
+
+.cards-page-show h1{
+  font-size: 2rem;
 }

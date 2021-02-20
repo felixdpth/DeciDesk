@@ -1,0 +1,37 @@
+.navbar-lewagon-white {
+    justify-content: space-between;
+    background-color: white;
+  }
+  
+.navbar-lewagon-white .navbar-collapse-white {
+  flex-grow: 0;
+}
+
+.navbar-lewagon-white .navbar-brand-white img {
+  width: 50px;
+}
+
+.navbar-white {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.margin-nav-white {
+  margin-top: 74px
+}
+
+.navbar-title-white {
+  color: $blue;
+}
+
+.nav-item-white {
+  color: $light-gray;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.nav-item-white:hover {
+  color: $green;
+}
+  
