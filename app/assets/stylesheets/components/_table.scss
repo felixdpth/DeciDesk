@@ -57,11 +57,11 @@ table {
   }
 
   .table-number {
-      width: 5%;
+      width: 8%;
   }
 
   .table-date {
-      width: 20%;
+      width: 25%;
   }
 
   .table-exp {
@@ -70,6 +70,10 @@ table {
 
   .table-amount {
     width: 12%;
+  }
+
+  .table-amount-tr {
+    width: 20%;
   }
 
   &.content-table-row {
@@ -82,8 +86,8 @@ table {
       span {
         background: #c4eae0;
         color: #169065;
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         text-align: center;
         display: flex;
@@ -98,5 +102,12 @@ table {
       font-size: 18px;
       color: $blue;
     }
+
+    .table-amount-tr {
+      font-weight: 900;
+      font-size: 18px;
+      color: $blue;
+  }
+
   }
 }

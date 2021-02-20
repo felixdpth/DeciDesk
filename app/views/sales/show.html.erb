@@ -1,65 +1,80 @@
 <%= render 'shared/side-nav' %>
 <%= render 'shared/tabs', section: :sales %>
+<div class="container-decidesk">
 
-<div class="container ml200 mt-60">
+  <div class="container-index">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-start">
+        <div class="d-flex flex-column" style="max-width: 100%">
+          <div class="d-flex justify-content-between" style="margin-bottom: -50px; margin-top: -30px">
 
-  <div class="d-flex justify-content-between p-3">
 
-    <div class="d-flex flex-column" style="min-width: 45%">
-      <div class="card-dash">
-        <p class="highlight-blue">Monthly Sales</p>
-        <%= column_chart @annual_sales, prefix: "€", thousands: ",", download: true %>
+   <div class="card-dash-bis p-4 text-start" style="min-width: 70%; color: grey">
+            <h4 style="font-size: 1rem">Total Sales</h4>
+            <h2 style="font-size: 2rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_sales, :delimiter => ',') %></strong></h2>
+          </div>
+
+          <div class="card-dash-bis p-4 text-start" style="min-width: 60%; color: grey">
+            <h4 style="font-size: 1rem">Volume of Sales</strong></h4>
+            <h2 style="font-size: 2rem; color: red"> <strong> <%= @sales.count %> </strong></h2>
+          </div>
+        </div>
       </div>
-
-      <div class="card-dash">
-        <p class="highlight-blue">Monthly Sales Volume</p>
-        <%= column_chart @sales_volume, download: true %>
-      </div>
-
     </div>
 
-    <div class="d-flex flex-column" style="max-width: 53%">
-      <div class="d-flex justify-content-between">
-
-        <div class="card-dash p-4 text-center" style="min-width: 45%; color: #999">
-          <h4>Total Sales</h4>
-          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@total_sales, :delimiter => ',') %></strong></h2>
-        </div>
-
-        <div class="card-dash p-4 text-center" style="min-width: 45%; color: #999">
-          <h4>Volume of Sales</strong></h4>
-          <h2 style="font-size: 1.5rem"> <strong class="highlight text-center"> <%= @sales.count %> </strong></h2>
-        </div>
-      </div>
-
-      <div class="card-dash">
-        <p class="highlight-blue">Top 5 - Sales 💶</p>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col"><strong class="highlight">Sales</strong></th>
-                <th scope="col"><strong class="highlight">Date</strong></th>
-                <th scope="col"><strong class="highlight">Amount</strong></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @top5sales_credit.each_with_index do |line, index| %>
-                <tr>
-                  <th scope="row" span class="badge bg-secondary" style= "color: white"><%= index + 1 %></th>
-                  <td><%= line.ecriture_lib %></td>
-                  <td><%= line.ecriture_date %></td>
-                  <td>€ <%= line.credit %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        <div class="text-center"><%= link_to "Show more", report_sales_transactions_path(@report), class: "btn btn-bleu" %>
+      <div class="col-12">
+        <div class="card-dash-bis">
+          <h3>Monthly Sales</h3>
+          <br>
+        <%= column_chart @annual_sales, prefix: "€", thousands: ",", download: true, colors: ["#04C586", "#04C586"] %>
       </div>
 
     </div>
 
   </div>
 
+
+  <div class="row">
+    <div class="col-5">
+      <div class="card-dash-bis">
+        <h3>Monthly Sales Volume</h3>
+        <br>
+        <%= bar_chart @sales_volume, download: true, colors: ["#1B21B6", "#1B21B6"]%>
+      </div>
+
+    </div>
+
+    <div class="col-7">
+      <div class="card-dash-bis">
+        <h3 style="margin-bottom: 30px">Top 5 sales this year</h3>
+          <div class="top-table">
+
+            <div class="top-table-row table-row">
+              <div class="table-number">No.</div>
+              <div class="table-exp">Sales</div>
+              <div class="table-date">Date</div>
+              <div class="table-amount">Amount</div>
+            </div>
+
+            <% @top5sales_credit.each_with_index do |line, index| %>
+              <div class="content-table-row table-row">
+                <div class="table-number"><span><%= index + 1 %></span></div>
+                <div class="table-exp"><%= line.ecriture_lib.capitalize %></div>
+                <div class="table-date"><%= line.ecriture_date%></div>
+                <div class="table-amount">€ <%= number_with_delimiter(line.credit.round(0), :delimiter => ',') %></div>
+              </div>
+
+            <% end %>
+
+          </div>
+
+          <div class="text-center"><%= link_to "Show more", report_sales_transactions_path(@report), class: "btn btn-bleu" %></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
+
 
