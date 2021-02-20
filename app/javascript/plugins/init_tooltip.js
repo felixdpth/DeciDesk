@@ -1,10 +1,10 @@
-// import 'chartkick'
-// import 'chart.js'
-
 const initTooltip = () => {
+  const tooltip = document.querySelector('[data-toggle="tooltip"]')
+  if (tooltip) {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
-      })      
+      })
   }
-  
-  export default initTooltip;
+}
+
+export default initTooltip;

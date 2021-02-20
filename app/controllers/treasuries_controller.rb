@@ -14,6 +14,7 @@ class TreasuriesController < ApplicationController
 
   def comments
     authorize current_user, policy_class: TreasuriesPolicy
+    @comment = Comment.new
   end
 
   def transactions

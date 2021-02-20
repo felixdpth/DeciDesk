@@ -21,6 +21,7 @@ class SalesController < ApplicationController
 
   def comments
     authorize current_user, policy_class: SalePolicy
+    @comment = Comment.new
   end
 
   def transactions
@@ -35,7 +36,7 @@ class SalesController < ApplicationController
   end
 
   private
-  
+
   def set_report
     @report = Report.find params[:report_id]
   end
