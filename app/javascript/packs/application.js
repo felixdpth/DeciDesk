@@ -26,6 +26,7 @@ require("chartkick")
 
 // External imports
 import "bootstrap";
+import $ from 'jquery';
 import initTooltip from "../plugins/init_tooltip"
 
 // Internal imports, e.g:

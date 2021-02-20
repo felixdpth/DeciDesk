@@ -1,5 +1,7 @@
 // import 'chartkick'
 // import 'chart.js'
+import $ from 'jquery';
+
 
 const initTooltip = () => {
     $(function () {
@@ -8,3 +10,4 @@ const initTooltip = () => {
   }
   
   export default initTooltip;
+  
