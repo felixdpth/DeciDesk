@@ -2,82 +2,97 @@
 
 <div class="container-decidesk">
 
-    <div class="show-report-title">
+  <div class="show-report-title">
       <h1 class="main-title text-left"><strong class="highlight">Report Analysis</strong></h1>
-    </div>
+  </div>
 
-
-    <div class="report-info">
+  <div class="report-info">
       <div class="row">
-        <div class="col-lg-4">
-          <h6>Name of the report : <strong><%= @report.name %></strong> </h6>
+        <div class="col">
+          <p>Name of the report : <strong><%= @report.name %></strong> </p>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-lg-4">
-          <h6>From <strong><%= @report.lines.first.ecriture_date.strftime("%d %B %Y") %></strong> to<strong> <%= @report.lines.treasury_last_day.ecriture_date.strftime("%d %B %Y")%></strong> </h6>
+        <div class="col">
+          <p>From <strong><%= @report.lines.first.ecriture_date.strftime("%d %B %Y") %></strong> to<strong> <%= @report.lines.treasury_last_day.ecriture_date.strftime("%d %B %Y")%></strong> </p>
         </div>
       </div>
-    </div>
+  </div>
   
-    <div class="row">
-      <div class="col-4">
-        <div class="cards-page">
-          <h4> Total <strong class="highlight">Treasury</strong></h4>
-          <h2> <strong class="highlight text-center"><%= number_with_delimiter(@treasury_balance.to_i, :delimiter => ',') %> € </strong></h2>
-          <div class="text-center"><%= link_to "See details", report_treasury_path(@report), class: "btn btn-bleu" %></div>
-        </div>
-      </div>      
-      <div class="col-4">
-        <div class="cards-page">
-          <h4>Total <strong class="highlight">Sales</strong></h4>
-          <h2> <strong class="highlight text-center"><%= number_with_delimiter(@total_sales.to_i, :delimiter => ',') %> € </strong></h2>
-          <div class="text-center"><%= link_to "See details", report_sales_path(@report), class: "btn btn-bleu" %></div>
-        </div>
-      </div>      
-      <div class="col-4">
-        <div class="cards-page">
-          <h4>Total <strong class="highlight">Expenditure</strong></h4>
-          <h2> <strong class="highlight text-center"> <%= number_with_delimiter(@total_expenditures.to_i, :delimiter => ',') %> € </strong></h2>
-          <div class="text-center"><%= link_to "See details", report_expenditures_path(@report), class: "btn btn-bleu" %></div>
-        </div>
-      </div>      
-    </div>
-  
-    <div class="row">
+  <div class="row">
       <div class="col-lg-12">
-        <div class="cards-page">
-          <h4><strong class="highlight-blue text-center">Main ratios</strong></h4>
+        <div class="cards-page-show">
           <div class="row d-flex justify-content-center mt-3">
+
             <div class="col text-center">
-              <% if @margin > 0 %>
-                <h3 class="text-success font-weight-bold" data-toggle="tooltip" data-placement="top" title="This ratio shows the ability of your business to generate profits. It's positive here 🥳 Keep it up !"><%= number_to_percentage(@margin, precision: 2) %></h3>
-              <% else %>
-                <h3 class="text-danger font-weight-bold" data-toggle="tooltip" data-placement="top" title="This ratio shows the ability of your business to generate profits. It's below O here 😢 You should conduct a cost analysis and take action to improve your profitability !"><%= number_to_percentage(@margin, precision: 2) %></h3>
+              <h4 class="text-center"> Total <strong class="text-info">Treasury</strong>
+              <%= link_to report_treasury_path(@report) do %>
+                <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more"></i>
               <% end %>
-            <h5>Margin</h5>
+              </h4>
+              <h1 class="text-center"><strong class="text-info"><%= number_with_delimiter(@treasury_balance.to_i, :delimiter => ',') %> € </strong></h1>
             </div>
+  
             <div class="col text-center">
-              <% if @cash_ratio > 0 %>
-                <h3 class="text-success font-weight-bold" data-toggle="tooltip" data-placement="top" title="This ratio indicates your ability to pay expenditures with the existing cash ! It's above 0 so it's good news 🥳 Keep it up!"><%= number_to_percentage(@cash_ratio, precision: 2) %></h3>
-                <h5>Cash to expenditures</h5>
-                <h6>This ratio indicates your ability to pay expenditures with the existing cash ! It's above 0 so it's good news 🥳 Keep it up!</h6>
-              <% else %>
-                <h3 class="text-danger font-weight-bold"data-toggle="tooltip" data-placement="top" title="This ratio indicates your ability to pay expenditures with the existing cash ! It's below 0 😢 You have to make sure you have enough cash to run the business and pay all expenditures !"><%= number_to_percentage(@cash_ratio, precision: 2) %></h3>
+              <h4 class="text-center">Total <strong class="highlight">Sales</strong>
+              <%= link_to report_sales_path(@report) do %>
+                <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more"></i>
               <% end %>
-            </div>
-            <div class="col text-center">
-              <% if @sales_ratio > 0 %>
-                <h3 class="text-success font-weight-bold" data-toggle="tooltip" data-placement="top" title="This ratio show the amount of cash generated by sales (vs. cash investments). It's positive so you most of your cash is genarated by sales which is good 🥳 Keep it up !"><%= number_to_percentage(@sales_ratio, precision: 2) %></h3>
-              <% else %>
-                <h3 class="text-danger font-weight-bold" data-toggle="tooltip" data-placement="top" title="This ratio show the amount of cash generated by sales (vs. cash investments). It's negative so you most of your cash is genarated by investment 😢 This investment will hopefully generated more sales and contribute to your cash level in the future !"><%= number_to_percentage(@sales_ratio, precision: 2) %></h3>
+              </h4>            
+              <h1 class="text-center"> <strong class="highlight"><%= number_with_delimiter(@total_sales.to_i, :delimiter => ',') %> € </strong></h1>
+            </div>          
+  
+            <div class="col text-center mb-4">
+              <h4 class="text-center">Total <strong class="text-primary">Expenditures</strong>
+              <%= link_to report_expenditures_path(@report) do %>
+                <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more"></i>
               <% end %>
-              <h5>Cash to sales</h5>
+              </h4>                 
+              <h1 class="text-center"> <strong class="text-primary"> <%= number_with_delimiter(@total_expenditures.to_i, :delimiter => ',') %> € </strong></h1>
             </div>
-          </div>  
+
+          </div>
         </div>
       </div>
-    </div>
+  </div>
 
-</div>
+  <div class="row">
+    <div class="col-lg-12 mt-3">
+      <div class="card-page">
+        <div class="ratio-card text-center">
+                <h3 class="ratio-title">Margin</h3>
+                <% if @margin > 0 %>
+                  <h2 class="text-success font-weight-bold mb-4"><%= number_to_percentage(@margin, precision: 2) %></h2>
+                  <p>This ratio shows the ability of your business to generate profits. It's positive here 🥳 Keep it up !</p>                               
+                <% else %>
+                  <h2 class="text-danger font-weight-bold mb-4"><%= number_to_percentage(@margin, precision: 2) %></h2>
+                  <p>This ratio shows the ability of your business to generate profits. It's below O here 😢 You should conduct a cost analysis and take action to improve your profitability !</p>                                
+                <% end %>
+        </div>
+
+        <div class="ratio-card text-center border-ratio">
+                <h3 class="ratio-title">Cash to expenditures</h3>
+                <% if @cash_ratio > 0 %>
+                  <h2 class="text-success font-weight-bold mb-4"><%= number_to_percentage(@cash_ratio, precision: 2) %></h2>
+                  <p>This ratio indicates your ability to pay expenditures with the existing cash ! It's above 0 so it's good news 🥳 Keep it up!</p>
+                <% else %>
+                  <h2 class="text-danger font-weight-bold mb-4"><%= number_to_percentage(@cash_ratio, precision: 2) %></h2>
+                  <p>This ratio indicates your ability to pay expenditures with the existing cash ! It's below 0 😢 You have to make sure you have enough cash to run the business and pay all expenditures !</p>                
+                <% end %>
+        </div>
+
+        <div class="ratio-card text-center">
+                <h3 class="ratio-title">Cash to sales</h3>
+                <% if @sales_ratio > 0 %>
+                  <h2 class="text-success font-weight-bold mb-4"><%= number_to_percentage(@sales_ratio, precision: 2) %></h2>
+                  <p>This ratio indicates your ability to pay expenditures with the existing cash ! It's below 0 😢 You have to make sure you have enough cash to run the business and pay all expenditures !</p>                                
+                <% else %>
+                  <h2 class="text-danger font-weight-bold mb-4"><%= number_to_percentage(@sales_ratio, precision: 2) %></h2>
+                  <p>This ratio show the amount of cash generated by sales (vs. cash investments). It's negative so you most of your cash is genarated by investment 😢 This investment will hopefully generated more sales and contribute to your cash level in the future !</p>                
+                <% end %>
+        </div>
+      </div>  
+    </div>  
+  </div>
+</div> 
