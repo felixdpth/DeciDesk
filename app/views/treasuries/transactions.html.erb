@@ -1,8 +1,9 @@
 <%= render 'shared/side-nav' %>
 <%= render 'shared/tabs', section: :treasury %>
 
-<div class="container ml200 mt100">
-  <h3 class="text-center mb-5 mt-5">All treasury transactions 👎</h3>
+<div class="container-decidesk">
+
+  <h3 class="text-center" style= "margin-top: 100px; margin-bottom: 30px">All treasury transactions 👎</h3>
 
   <div class="container">
     <div class="container-equal-margin mb-4 p-0">
@@ -13,32 +14,42 @@
       class: "form-control mr-1",
       placeholder: "Search a date, an amount, a transaction..."
       %>
-      <%= submit_tag "Search", class: "btn btn-flat-search m-0" %>
+      <%= submit_tag "Search", class: "btn btn-flat m-0" %>
       <% end %>
+      </div>
     </div>
 
-    <div class="divTableAll mt-3">
-      <div class="divRow d-flex justify-content-around">
-        <div class="divCell mb-3"><h5><strong class="highlight">Ecriture</strong></h5></div>
-        <div class="divCell mb-3"><h5><strong class="highlight">Date</strong></h5></div>
-        <div class="divCell mb-3"><h5><strong class="highlight">Amount</strong></h5></div>
+    <div class="col-12">
+      <div class="card-dash-bis">
+        <div class="top-table">
+
+          <div class="top-table-row table-row">
+            <div class="table-number">No.</div>
+            <div class="table-exp">Ecriture</div>
+            <div class="table-date">Date</div>
+            <div class="table-amount">Amount</div>
+          </div>
+
+          <% @lines.each_with_index do |line, index| %>
+            <div class="content-table-row table-row">
+              <div class="table-number"><span><%= index + 1 %></span></div>
+              <div class="table-exp"><%= line.compte_lib.capitalize %></div>
+              <div class="table-date"><%= line.ecriture_date%></div>
+              <% if line.debit == 0 %>
+                <div class="table-amount" style="color: red">- € <%= number_with_delimiter(line.credit.round(0), :delimiter => ',') %></div>
+              <% else %>
+                <div class="table-amount">€ <%= number_with_delimiter(line.debit.round(0), :delimiter => ',') %></div>
+              <% end %>
+            </div>
+          <% end %>
+
+        </div>
       </div>
 
-        <% @lines.each do |line| %>
-          <div class="divRow d-flex justify-content-around">
-          <div class="divCell"> <%= line.compte_lib %></div>
-          <div class="divCell"> <%= line.ecriture_date %> </div>
-
-          <% if line.debit == 0 %>
-            <div class="divCell">- <%= number_with_delimiter(line.credit.to_i, :delimiter => ',') %> €</div>
-          <% else %>
-            <div class="divCell"><%= number_with_delimiter(line.debit.to_i, :delimiter => ',') %> €</div>
-          <% end %>
-          </div>
-        <% end %>
-
     </div>
 
-  </div>
 
+  </div>
 </div>
+
+

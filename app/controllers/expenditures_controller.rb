@@ -47,6 +47,7 @@ before_action :set_report, only: [:show, :transactions, :advice, :comments]
 
   def comments
     authorize current_user, policy_class: ExpenditurePolicy
+    @comment = Comment.new
   end
 
   private

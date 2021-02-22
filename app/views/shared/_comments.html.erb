@@ -1,0 +1,43 @@
+<div class="container-decidesk">
+  <div class="container-index">
+    <div class="row sortable">
+      <div class="col-4">
+        <h3>To Do</h3>
+        <div>
+          <button class="btn-bleu" data-toggle="collapse" data-target="#addNew" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus-circle"></i> New task</button>
+        </div>
+        <div class="collapse" id="addNew">
+          <%= simple_form_for([ report, comment], remote: true) do |f| %>
+            <%= f.input :title, as: :string, required: true %>
+            <%= f.input :comment, as: :text, required: true, placeholder: "Type your reminder here" %>
+            <%= f.input :status, collection: Comment::STATUS, include_blank: false %>
+            <%= f.hidden_field :category, value: params[:controller] %>
+            <%= f.button :submit, class: 'btn-bleu mt-3 mw' %>
+          <% end %>
+        </div>
+        <div class="todo-list list">
+          <% report.comments.where(category: params[:controller]).each do |comment| %>
+            <div class="card-dash">
+              <h4><i class="fas fa-circle"></i></i><strong> <%= comment.title %></strong></h4>
+              <p><%= comment.comment %></p>
+              <%= link_to comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="fas fa-trash-alt"></i>
+             <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-4">
+        <h3 class="mb-84">In Progress</h3>
+        <div class="progress-list list">
+        </div>
+      </div>
+      <div class="col-4">
+        <h3 class="mb-84">Done</h3>
+        <div class="done-list list">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
