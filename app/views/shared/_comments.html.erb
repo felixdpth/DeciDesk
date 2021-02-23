@@ -7,22 +7,33 @@
           <button class="btn-bleu" data-toggle="collapse" data-target="#addNew" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus-circle"></i> New task</button>
         </div>
         <div class="collapse" id="addNew">
-          <%= simple_form_for([ report, comment], remote: true) do |f| %>
-            <%= f.input :title, as: :string, required: true %>
-            <%= f.input :comment, as: :text, required: true, placeholder: "Type your reminder here" %>
-            <%= f.input :status, collection: Comment::STATUS, include_blank: false %>
-            <%= f.hidden_field :category, value: params[:controller] %>
-            <%= f.button :submit, class: 'btn-bleu mt-3 mw' %>
-          <% end %>
+          <div class="card-dash">
+            <%= simple_form_for([ report, comment], remote: true) do |f| %>
+              <%= f.input :title, as: :string, required: true %>
+              <%= f.input :comment, as: :text, required: true, placeholder: "Type your reminder here" %>
+              <%= f.input :status, collection: Comment::STATUS, include_blank: false %>
+              <%= f.hidden_field :category, value: params[:controller] %>
+              <%= f.button :submit, class: 'btn-bleu mt-3 mw' %>
+            <% end %>
+          </div>
         </div>
         <div class="todo-list list">
           <% report.comments.where(category: params[:controller]).each do |comment| %>
             <div class="card-dash">
-              <h4><i class="fas fa-circle"></i></i><strong> <%= comment.title %></strong></h4>
+              <% if comment.status == "Urgent" %>
+                <h4><i class="fas fa-circle" style="color: red"></i></i><strong> <%= comment.title %></strong></h4>
+              <% elsif comment.status == "Medium" %>
+                <h4><i class="fas fa-circle" style="color: yellow"></i></i><strong> <%= comment.title %></strong></h4>
+              <% else %>
+                <h4><i class="fas fa-circle" style="color: green"></i></i><strong> <%= comment.title %></strong></h4>
+              <% end %>
               <p><%= comment.comment %></p>
-              <%= link_to comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } do %>
-                <i class="fas fa-trash-alt"></i>
-             <% end %>
+              <div class="comment-infos">
+                <%= cl_image_tag current_user.photo.key, class: "avatar-small" %>
+                <%= link_to comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </div>
             </div>
           <% end %>
         </div>
