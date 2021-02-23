@@ -55,7 +55,7 @@
               <h1 class="text-center"> <strong class="highlight"> € <%= number_with_delimiter(@total_sales.to_i, :delimiter => ',') %></strong></h1>
             </div>          
   
-            <div class="col text-center mb-4">
+            <div class="col text-center">
               <h4 class="text-center">Total <strong class="text-primary">Expenditures</strong>
               <%= link_to report_expenditures_path(@report) do %>
                 <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more"></i>
