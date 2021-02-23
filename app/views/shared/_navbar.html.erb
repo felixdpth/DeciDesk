@@ -1,5 +1,5 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "/", class: "navbar-brand" do %>
+  <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo-white.png" %>
     <% end %>
 
@@ -13,9 +13,9 @@
       <% if user_signed_in? %>
         <li><%= link_to "My Dashboard", reports_path, class: "nav-item" %></li>
         <% if current_user.business? %>
-          <li class="nav-item active"><%= current_user.business %></li>
+          <li class="nav-item"><%= current_user.business %></li>
         <% else %>
-          <li class="nav-item active"><%= current_user.email %></li>
+          <li class="nav-item"><%= current_user.email %></li>
         <% end %>
         <li class="nav-item dropdown">
           <% if current_user.photo.attached? %>

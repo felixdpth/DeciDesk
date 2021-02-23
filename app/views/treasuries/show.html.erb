@@ -9,12 +9,12 @@
           <div class="d-flex justify-content-between" style="margin-bottom: -50px; margin-top: -30px">
 
             <div class="card-dash-bis p-4 text-start" style="min-width: 60%; color: grey">
-              <h4 style="font-size: 1rem">Total CashIn</h4>
+              <h4 style="font-size: 1rem">Total Cash-in</h4>
               <h2 style="font-size: 2rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@cash_in.to_i, :delimiter => ',') %></strong></h2>
             </div>
 
             <div class="card-dash-bis p-4 text-start" style="min-width: 70%; color: grey">
-              <h4 style="font-size: 1rem">Total Cashout</h4>
+              <h4 style="font-size: 1rem">Total Cash-out</h4>
               <h2 style="font-size: 2rem; color: red"> <strong> € <%= number_with_delimiter(@cash_out.to_i, :delimiter => ',') %></strong></h2>
             </div>
           </div>
@@ -25,7 +25,7 @@
         <div class="card-dash-bis">
           <div class="d-flex justify-content-between" style="margin-bottom: 45px">
             <h3>Monthly Cash</h3>
-            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Hello!"></i>
+            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="left" title="You love your cash right 🤑 This view is really handy to visualise your cash level during the period ! Make sure you corroborate those figures with sales, expenditures and investments to understand what's behind !"></i>
           </div>
             <%= column_chart @treasuries.monthly_cash, prefix: "€", thousands: ",", download: true, colors: ["#04C586", "#04C586"] %>
         </div>
@@ -36,8 +36,8 @@
       <div class="col-6">
         <div class="card-dash-bis">
           <div class="d-flex justify-content-between" style="margin-bottom: 20px">
-            <h3>Top 5 cashin items this year</h3>
-            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Hello!"></i>
+            <h3>Top 5 cash-in items this year</h3>
+            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Cash lovers, this is for you ! Look at those big figures down here !"></i>
           </div>
 
           <div class="top-table">
@@ -51,7 +51,7 @@
             <% @top5_debit.each_with_index do |line, index| %>
               <div class="content-table-row table-row">
                 <div class="table-number"><span><%= index + 1 %></span></div>
-                <div class="table-exp"><%= line.compte_lib.capitalize %></div>
+                <div class="table-exp"><%= line.ecriture_lib.capitalize %></div>
                 <div class="table-date"><%= line.ecriture_date%></div>
                 <div class="table-amount-tr">€ <%= number_with_delimiter(line.debit.round(0), :delimiter => ',') %></div>
               </div>
@@ -65,8 +65,8 @@
       <div class="col-6">
         <div class="card-dash-bis">
           <div class="d-flex justify-content-between" style="margin-bottom: 20px">
-            <h3>Top 5 cashout items this year</h3>
-            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Hello!"></i>
+            <h3>Top 5 cash-out items this year</h3>
+            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="left" title="Those figures look like bad news to you ? Maybe not, those can be investments or necessary expenditures to run the business !!"></i>
           </div>
 
           <div class="top-table">
@@ -80,7 +80,7 @@
             <% @top5_credit.each_with_index do |line, index| %>
               <div class="content-table-row table-row">
                 <div class="table-number"><span><%= index + 1 %></span></div>
-                <div class="table-exp"><%= line.compte_lib.capitalize %></div>
+                <div class="table-exp"><%= line.ecriture_lib.capitalize %></div>
                 <div class="table-date"><%= line.ecriture_date%></div>
                 <div class="table-amount-tr" style="color: red">- € <%= number_with_delimiter(line.credit.round(0), :delimiter => ',') %></div>
               </div>

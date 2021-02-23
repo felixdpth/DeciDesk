@@ -9,13 +9,13 @@
     <div class="container-equal-margin mb-4 p-0">
       <%= form_tag report_treasury_transactions_path, method: :get do %>
       <div class="d-flex align-items-center m-3">
-      <%= text_field_tag :query,
-      params[:query],
-      class: "form-control mr-1",
-      placeholder: "Search a date, an amount, a transaction..."
-      %>
-      <%= submit_tag "Search", class: "btn btn-flat m-0" %>
-      <% end %>
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control mr-1",
+        placeholder: "Search a date, an amount, a transaction..."
+        %>
+        <%= submit_tag "Search", class: "btn btn-flat m-0" %>
+        <% end %>
       </div>
     </div>
 
@@ -33,7 +33,7 @@
           <% @lines.each_with_index do |line, index| %>
             <div class="content-table-row table-row">
               <div class="table-number"><span><%= index + 1 %></span></div>
-              <div class="table-exp"><%= line.compte_lib.capitalize %></div>
+              <div class="table-exp"><%= line.ecriture_lib.capitalize %></div>
               <div class="table-date"><%= line.ecriture_date%></div>
               <% if line.debit == 0 %>
                 <div class="table-amount" style="color: red">- € <%= number_with_delimiter(line.credit.round(0), :delimiter => ',') %></div>
