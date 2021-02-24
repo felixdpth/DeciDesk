@@ -27,10 +27,16 @@
 
 .nav-item {
   color: $light-gray;
-  margin-left: 20px;
+  margin-left: 40px;
   text-decoration: none;
 }
 
-.nav-item:hover {
-  color: $green;
+#dash-tab a {
+  color: $light-gray;
+  text-decoration: none;
+  text-align: center;
+}
+
+#dash-tab:hover {
+  border-bottom: solid 5px $green;
 }
