@@ -1,0 +1,27 @@
+.comments-main {
+  text-align: center;
+  align-items: center;
+}
+
+.add-task {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.border-todo {
+  border-left: dashed 2px #04C586;
+  height: 100%;  
+}
+
+.list {
+  height: 100%;
+}
+
+.card-dash-todo {
+    background-color: white;
+    border-radius: 5px;
+    color: $black;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    margin: 20px;
+    padding: 20px;
+  }
