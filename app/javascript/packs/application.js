@@ -29,6 +29,8 @@ import "bootstrap";
 import initTooltip from "../plugins/init_tooltip";
 import initSortable from "../plugins/init_sortable";
 import $ from 'jquery';
+import fileName from "../plugins/file_name";
+import { loadDynamicBannerText } from "../plugins/banner";
 
 
 // Internal imports, e.g:
@@ -36,8 +38,10 @@ import $ from 'jquery';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
+  loadDynamicBannerText();
   initTooltip();
   initSortable();
+  fileName();
 });
 
 import "controllers"
