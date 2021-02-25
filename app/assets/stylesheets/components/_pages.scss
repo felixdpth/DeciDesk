@@ -112,7 +112,7 @@
 .divRow
 {
   display: table-row;
-  display: felx;
+  display: flex;
   justify-content: around;
   width: 100%;
   text-align: center;
@@ -122,7 +122,7 @@
 .divCell {
   float:left;/*fix for  buggy browsers*/
   display:table-column;
-  width:150px;
+  width:100px;
   background-color:rgb(255, 255, 255);
   text-align: center;
   margin-top: 2px;

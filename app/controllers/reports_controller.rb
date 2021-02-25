@@ -51,9 +51,9 @@ class ReportsController < ApplicationController
   end
 
   def destroy
+    authorize @report
     @report.destroy
-    authorize @reports
-    redirect_to report_path
+    redirect_to reports_path
   end
 
   private
