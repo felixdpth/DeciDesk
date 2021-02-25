@@ -1,9 +1,9 @@
 <div class="container-decidesk">
   <div class="container-index">
     <div class="row sortable">
-      <div class="col-4">
+      <div class="col-4 comments-main">
         <h3>To Do</h3>
-        <div>
+        <div class="add-task">
           <button class="btn-bleu" data-toggle="collapse" data-target="#addNew" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus-circle"></i> New task</button>
         </div>
         <div class="collapse" id="addNew">
@@ -38,17 +38,16 @@
           <% end %>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4 comments-main">
         <h3 class="mb-84">In Progress</h3>
-        <div class="progress-list list">
+        <div class="progress-list list border-todo">
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4 comments-main">
         <h3 class="mb-84">Done</h3>
-        <div class="done-list list">
+        <div class="done-list list border-todo">
         </div>
       </div>
     </div>
   </div>
 </div>
-

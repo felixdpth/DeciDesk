@@ -8,12 +8,12 @@
         <div class="d-flex flex-column" style="max-width: 100%">
           <div class="d-flex justify-content-between" style="margin-bottom: -50px; margin-top: -30px">
 
-            <div class="card-dash-bis p-4 text-start" style="min-width: 60%; color: grey">
+            <div class="card-dash-bis p-4 text-start" style="min-width: 70%; color: grey">
               <h4 style="font-size: 1rem">Total Cash-in</h4>
               <h2 style="font-size: 2rem"> <strong class="highlight text-center"> € <%= number_with_delimiter(@cash_in.to_i, :delimiter => ',') %></strong></h2>
             </div>
 
-            <div class="card-dash-bis p-4 text-start" style="min-width: 70%; color: grey">
+            <div class="card-dash-bis p-4 text-start" style="min-width: 60%; color: grey">
               <h4 style="font-size: 1rem">Total Cash-out</h4>
               <h2 style="font-size: 2rem; color: red"> <strong> € <%= number_with_delimiter(@cash_out.to_i, :delimiter => ',') %></strong></h2>
             </div>

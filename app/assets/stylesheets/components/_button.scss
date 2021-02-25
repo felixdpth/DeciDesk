@@ -1,5 +1,6 @@
 .btn-flat {
   color: white;
+  font-weight: bold;
   padding: 8px 24px;
   border-radius: 4px;
   background: $green;
@@ -50,8 +51,7 @@
 
 .btn-bleu:hover {
   background: #1BCB7F;
-  color: white;
-  border: none;
+  border-color: #1BCB7F;
 }
 
 .btn-small {

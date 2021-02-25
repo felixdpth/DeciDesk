@@ -1,5 +1,5 @@
 class ExpendituresController < ApplicationController
-before_action :set_report, only: [:show, :advice, :comments]
+before_action :set_report, only: [:show, :advice, :transactions, :comments]
 
   def index
     @lines = Line.all
@@ -32,9 +32,8 @@ before_action :set_report, only: [:show, :advice, :comments]
 
   def transactions
     authorize current_user, policy_class: ExpenditurePolicy
-    @report = Report.find params[:report_id]
     if params[:query].present?
-      sql_query = "compte_num ILIKE :query OR ecriture_lib ILIKE :query OR debit ILIKE :query OR credit ILIKE :query"
+      sql_query = "compte_num::text ILIKE :query OR ecriture_lib::text ILIKE :query OR debit::text ILIKE :query OR credit::text ILIKE :query"
       @lines = @report.lines.expenditures.where(sql_query, query: "%#{params[:query]}%")
     else
       @lines = @report.lines.expenditures
