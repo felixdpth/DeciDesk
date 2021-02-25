@@ -59,8 +59,8 @@ text-decoration: none;
   transform: skewY(-2deg);
   -ms-transform: skewY(-2deg);
   -webkit-transform: skewY(-2deg);
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 40px;
+  padding-bottom: 35px;
   margin-bottom: 10px;
 }
 
@@ -70,4 +70,9 @@ text-decoration: none;
   text-align: center;
   margin: 4px;
   margin-top: 10px;
+}
+
+.svg-how {
+  margin-bottom: 20px;
+  margin-top: 15px;
 }
