@@ -46,10 +46,15 @@
                   <div class="divRow d-flex justify-content-around">
                     <p class="divCell w200 text-left"><%= report.name %></p>
                     <p class="divCell"><%= report.created_at.strftime("%b %Y") %></p>
-                    <p class="divCell">
+                    <p class="divCell" style="width:30px">
                       <%= link_to report_path(report.id) do %>
                         <i class="fas fa-search"></i>
                       <% end %>
+                    </p>
+                    <p class="divCell" style="width:30px">
+                      <%= link_to report_path(report.id), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <i class="fas fa-trash-alt"></i>
+                    <% end %>
                     </p>
                   </div>
                 <% end %>
