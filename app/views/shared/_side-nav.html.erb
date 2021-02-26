@@ -8,27 +8,28 @@
 
   <div class="nav-links">
 
-    <p>
+    <p class="nav-links">
       <%= link_to reports_path do %>
-        <i class="fas fa-home pr-10"></i> Dashboard
+       
+        <i class="fas fa-home pr-10"></i> <span class="nav-links">Dashboard</span>
       <% end %>
     </p>
 
     <p>
       <%= link_to report_treasury_path(@report) do %>
-        <i class="fas fa-piggy-bank pr-10"></i> Treasury
+        <i class="fas fa-piggy-bank pr-10"></i> <span class="nav-links">Treasury</span>
       <% end %>
     </p>
 
     <p>
       <%= link_to report_sales_path(@report) do %>
-        <i class="fas fa-cart-plus pr-10"></i> Sales
+        <i class="fas fa-cart-plus pr-10"></i> <span class="nav-links">Sales</span>
       <% end %>
     </p>
 
     <p>
       <%= link_to report_expenditures_path(@report) do %>
-        <i class="fas fa-coins pr-10"></i> Expenditures
+        <i class="fas fa-coins pr-10"></i> <span class="nav-links">Expenditures</span>
       <% end %>
     </p>
 
