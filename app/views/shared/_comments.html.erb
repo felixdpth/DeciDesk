@@ -23,16 +23,18 @@
               <% if comment.status == "Urgent" %>
                 <h4><i class="fas fa-circle" style="color: red"></i></i><strong> <%= comment.title %></strong></h4>
               <% elsif comment.status == "Medium" %>
-                <h4><i class="fas fa-circle" style="color: yellow"></i></i><strong> <%= comment.title %></strong></h4>
+                <h4><i class="fas fa-circle" style="color: orange"></i></i><strong> <%= comment.title %></strong></h4>
               <% else %>
                 <h4><i class="fas fa-circle" style="color: green"></i></i><strong> <%= comment.title %></strong></h4>
               <% end %>
               <p><%= comment.comment %></p>
               <div class="comment-infos">
-                <%= cl_image_tag current_user.photo.key, class: "avatar-small" %>
-                <%= link_to comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } do %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
+                <div> <%= cl_image_tag current_user.photo.key, class: "avatar-small" %> </div>
+                <div class="push">
+                  <%= link_to comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </div>
               </div>
             </div>
           <% end %>
