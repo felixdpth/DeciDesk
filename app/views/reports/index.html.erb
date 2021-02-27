@@ -25,7 +25,7 @@
       </div>
 
       <div class="col">
-        <div class="card-dash">
+        <div class="card-dash h-523">
           <h3 class="text-center"><strong class="highlight">Upload a new FEC for analysis</strong></h3>
           <div>
             <%= render 'reports/form' %>
@@ -33,14 +33,9 @@
           <br>
           <div class="dropdown-divider"></div>
           <br>
-          <p>
-
-            <p class="mt-3 mw" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              Click here to see all reports 👇
-            </p>
-          </p>
-          <div class="collapse" id="collapseExample">
-            <div class="card-body justify-content-center">
+          <h3 class="text-center"><strong class="highlight">All your reports</strong></h3>
+          <div>
+            <div class="card-body justify-content-center pd100">
               <% if @current_user.reports %>
                 <% @current_user.reports.all.each do |report| %>
                   <div class="divRow d-flex justify-content-around">
@@ -51,7 +46,7 @@
                         <i class="fas fa-search"></i>
                       <% end %>
                     </p>
-                    <p class="divCell" style="width:30px">
+                    <p class="divCell " style="width:30px">
                       <%= link_to report_path(report.id), method: :delete, data: { confirm: "Are you sure?" } do %>
                     <i class="fas fa-trash-alt"></i>
                     <% end %>
