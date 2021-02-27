@@ -32,7 +32,7 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
-    @report.user = cu rrent_user
+    @report.user = current_user
     authorize @report
     if @report.save
       ParseCsv.new(params[:report][:csv_file].tempfile.path, @report).call
