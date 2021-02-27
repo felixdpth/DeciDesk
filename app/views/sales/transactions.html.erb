@@ -7,16 +7,18 @@
 
   <div class="container">
     <div class="container-equal-margin mb-4 p-0">
-      <%= form_tag report_sales_transactions_path, method: :get do %>
-      <div class="d-flex align-items-center m-3">
-      <%= text_field_tag :query,
-      params[:query],
-      class: "form-control mr-1",
-      placeholder: "Search a date, an amount, a transaction..."
-      %>
-      <%= submit_tag "Search", class: "btn btn-flat m-0" %>
-      <% end %>
-    </div>
+      <form novalidate="novalidate" class="simple_form search" accept-charset="UTF-8"><input name="utf8" type="hidden" value="&#x2713;" />
+        <%= form_tag report_sales_transactions_path, method: :get do %>
+          <div class="search-form-control form-group m-3">
+            <%= text_field_tag :query,
+            params[:query],
+            class: "form-control string required",
+            placeholder: "Search a date, an amount, a sale..."
+             %>
+             <%= submit_tag "Search", class: "btn btn-flat m-0" %>
+            <% end %>
+          </div>
+      </form>
   </div>
 
     <div class="col-12">
