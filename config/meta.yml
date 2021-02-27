@@ -1,0 +1,5 @@
+meta_product_name: "Decidesk"
+meta_title: "Decidesk - Import, Analyse, Decide"
+meta_description: "Translate complex data into opportunities with just one click"
+meta_image: "stock.jpg" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
