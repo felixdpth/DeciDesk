@@ -36,7 +36,7 @@ class ReportsController < ApplicationController
     authorize @report
     if @report.save
       ParseCsv.new(params[:report][:csv_file].tempfile.path, @report).call
-      redirect_to report_path(@report)
+      redirect_to reports_path
     else
       redirect_to reports_path
     end
