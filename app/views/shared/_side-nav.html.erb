@@ -10,7 +10,7 @@
 
     <p>
       <%= link_to reports_path do %>
-       
+
         <i class="fas fa-home pr-10"></i> <span>Dashboard</span>
       <% end %>
     </p>
@@ -32,7 +32,6 @@
         <i class="fas fa-coins pr-10"></i> <span class="<%= 'active' if controller.controller_name == 'expenditures' && controller.action_name == "show" %>">Expenditures</span>
       <% end %>
     </p>
-
     <div class="separator">
       <p>
         <%= link_to edit_user_registration_path do %>
