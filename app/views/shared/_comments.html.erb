@@ -13,7 +13,7 @@
               <%= f.input :comment, as: :text, required: true, placeholder: "Type your reminder here" %>
               <%= f.input :status, collection: Comment::STATUS, include_blank: false %>
               <%= f.hidden_field :category, value: params[:controller] %>
-              <%= f.button :submit, class: 'btn-bleu mt-3 mw' %>
+              <%= f.button :submit, class: 'btn btn-flat mw' %>
             <% end %>
           </div>
         </div>
