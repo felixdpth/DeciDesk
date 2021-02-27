@@ -34,10 +34,12 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user = current_user
     authorize @report
-    @report.save
-    ParseCsv.new(params[:report][:csv_file].tempfile.path, @report).call
-
-    redirect_to report_path(@report)
+    if @report.save
+      ParseCsv.new(params[:report][:csv_file].tempfile.path, @report).call
+      redirect_to report_path(@report)
+    else
+      render :new
+    end
   end
 
   def edit
