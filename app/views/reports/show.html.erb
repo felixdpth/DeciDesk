@@ -3,7 +3,7 @@
 <div class="container-decidesk">
 
   <div class="show-report-title">
-      <h1 class="main-title text-left"><strong class="highlight">Your Analysis</strong></h1>
+    <h1 class="main-title text-left"><strong class="highlight">Your Analysis</strong></h1>
   </div>
 
   <div class="div-logo">
@@ -19,17 +19,17 @@
   </div>
 
   <div class="report-info">
-      <div class="row">
-        <div class="col">
-          <p>Report name: <strong><%= @report.name %></strong> </p>
-        </div>
+    <div class="row">
+      <div class="col">
+        <p>Report name: <strong><%= @report.name %></strong> </p>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col">
-          <p>Period: <strong><%= @report.lines.first.ecriture_date.strftime("%d %B %Y") %></strong> to<strong> <%= @report.lines.treasury_last_day.ecriture_date.strftime("%d %B %Y")%></strong> </p>
-        </div>
+    <div class="row">
+      <div class="col">
+        <p>Period: <strong><%= @report.lines.first.ecriture_date.strftime("%d %B %Y") %></strong> to<strong> <%= @report.lines.treasury_last_day.ecriture_date.strftime("%d %B %Y")%></strong> </p>
       </div>
+    </div>
   </div>
 
   <div class="row">
@@ -37,32 +37,31 @@
       <div class="cards-page-show">
         <div class="row d-flex justify-content-center mt-3">
 
-          <div class="col text-center">
-            <h4 class="text-center"> Total <strong class="text-info">Treasury</strong>
+          <div class="col text-center total-link">
             <%= link_to report_treasury_path(@report) do %>
-              <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more"></i>
-            <% end %>
+            <h4 class="text-center"> Total <strong class="text-info">Treasury</strong>
+              <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more details about your treasury"></i>
             </h4>
             <h1 class="text-center"> <strong class="text-info"> € <%= number_with_delimiter(@treasury_balance.to_i, :delimiter => ',') %> </strong></h1>
+            <% end %>
           </div>
 
-          <div class="col text-center">
-            <h4 class="text-center">Total <strong class="highlight">Sales</strong>
+          <div class="col text-center total-link">
             <%= link_to report_sales_path(@report) do %>
-              <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more"></i>
-            <% end %>
+            <h4 class="text-center">Total <strong class="highlight">Sales</strong>
+              <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more details about your sales"></i>
             </h4>
             <h1 class="text-center"> <strong class="highlight"> € <%= number_with_delimiter(@total_sales.to_i, :delimiter => ',') %></strong></h1>
+            <% end %>
           </div>
 
-          <div class="col text-center">
-
-            <h4 class="text-center">Total <strong class="text-primary">Expenditures</strong>
+          <div class="col text-center total-link">
             <%= link_to report_expenditures_path(@report) do %>
-              <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more"></i>
-            <% end %>
+            <h4 class="text-center">Total <strong class="text-primary">Expenditures</strong>
+              <i class="fas fa-search search" data-toggle="tooltip" data-placement="top" title="See more info about your expenditures"></i>
             </h4>
             <h1 class="text-center"> <strong class="text-primary"> € <%= number_with_delimiter(@total_expenditures.to_i, :delimiter => ',') %></strong></h1>
+            <% end %>
           </div>
 
         </div>
@@ -70,7 +69,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row m-auto">
     <div class="col-lg-12 mt-3">
       <div class="card-page">
         <div class="ratio-card text-center">
