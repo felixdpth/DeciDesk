@@ -26,7 +26,7 @@
         <div class="card-dash-bis">
           <div class="d-flex justify-content-between" style="margin-bottom: 20px">
             <h3>Monthly Expenditures</h3>
-            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Hello!"></i>
+            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Keep an eye on your monthly expenditures and make sure you anticipate your cash needs for those high spending months!"></i>
           </div>
           <br>
             <%= column_chart @report.lines.annual_expenditures, prefix: "€", thousands: ",", download: true, colors: ["#04C586", "#04C586"] %>
@@ -40,7 +40,7 @@
         <div class="card-dash-bis">
           <div class="d-flex justify-content-between" style="margin-bottom: 20px">
             <h3>Expenditures per category</h3>
-            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Hello!"></i>
+            <i class="far fa-info-circle color-black font-weight-bold" data-toggle="tooltip" data-placement="top" title="Here you can see where you have been spending all your cash. Does it make sense? If not try to get better control of your spending spree!"></i>
           </div>
           <br>
           <%= pie_chart Line.top_expenditures_subcategory, prefix: "€", thousands: ",", download: true, donut: true, legend: false %>
@@ -79,20 +79,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<!-- <div class="container ml200"> -->
-
-
-
-
-
-
-    <!-- <div class="d-flex flex-column" style="min-width: 45%"> -->
-
-
-<!--  <h4>🚀 Your total sales for the period are <strong class="highlight">€ <%= number_with_delimiter(@total_sales, :delimiter => ',') %> 🚀</strong></h4> -->
-
-
